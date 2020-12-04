@@ -16,7 +16,7 @@ const Header = (props) => {
             <Nav.Link as={Link} to="/state" style={{marginTop: "20px",fontSize: "19px",marginLeft: "56px"}}>State</Nav.Link>
         </Nav>
         <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/city" style={{marginTop: "20px",fontSize: "19px",marginRight: "1044px"}}>City</Nav.Link>
+            <Nav.Link as={Link} to="/city" style={{marginTop: "20px",fontSize: "19px",marginRight: "1044px"}} >City</Nav.Link>
         </Nav>
     </Navbar.Collapse>
   </Navbar>
