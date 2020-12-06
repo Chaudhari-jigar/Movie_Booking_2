@@ -117,6 +117,10 @@ const FormPage = (props) => {
     props.history.replace("/userreg")
   }
 
+  const loginHandler = () =>{
+    props.history.replace("/")
+  }
+
     return (
               <div>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
@@ -206,7 +210,9 @@ const FormPage = (props) => {
                           <Button className="btnRegister" defaultValue="Register" style={{marginLeft: "28px"}} onClick={handleSubmit}>Submit</Button>
                       </Form.Group>
                   </Form.Row>
+
                   </Form>
+                  <span className="logn-form-copy" style={{ marginLeft: "262px",marginTop: "26px"}}>Already have an account? <a onClick={()=>{loginHandler()}} className="login-form__sign-up" style={{color:"#0074d9"}}>Sign in</a></span>
                   </div>
                 </div>
               </div>
