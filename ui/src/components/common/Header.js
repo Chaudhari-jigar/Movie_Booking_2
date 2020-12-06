@@ -8,8 +8,6 @@ import Logo from '../../Movie_logo/logo1.png'
 
 const Header = (props) => {
     return <Navbar bg="dark" expand="lg" variant="dark">
-        {/* <ControlledTabs /> */}
-    {/* <Navbar.Brand href="/studentAdd">Add Student</Navbar.Brand> */}
     <Navbar.Collapse id="basic-navbar-nav">
     <Image src={Logo} style={{height: "60px",width: "60px"}}/>        
         <Nav className="mr-auto">

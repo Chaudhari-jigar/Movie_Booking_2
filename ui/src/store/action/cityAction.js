@@ -98,4 +98,24 @@ export const updatecitiesdata = (id,put) =>{
             })
         });    
     }
-}   
+} 
+
+export const fetchAllStatesBystate_id = (id) =>{
+    return async(dispatch)=>{
+        dispatch({
+            type:actionTypes.INIT_FETCHSTATESBYCITYID_CITIES
+        })
+            await axios.get(`http://localhost:3001/fetchAllStatesBystate_id/${id}`).then(res => {
+            console.log(res.data);
+            dispatch({
+                type:actionTypes.FETCHSTATESBYCITYID_CITIES_SUCCESS,
+                cities:res.data
+            })
+        }).catch(error=>{
+            dispatch({
+                type:actionTypes.FETCHSTATESBYCITYID_CITIES_FAILED,
+                error:error.message
+            })
+        });    
+    }
+} 

@@ -107,6 +107,23 @@ const store = (state = initalstore,action) =>{
                     loading:false,
                     error:action.error
                 }
+        case actionTypes.INIT_FETCHSTATESBYCITYID_CITIES:
+            return{
+                ...state,
+                loading:true,
+            }
+        case actionTypes.FETCHSTATESBYCITYID_CITIES_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                cities:action.cities
+            }
+        case actionTypes.FETCHSTATESBYCITYID_CITIES_FAILED:
+            return{
+                ...state,
+                loading:false,
+                error:action.error,
+            }
             default :
                 return state;
     }

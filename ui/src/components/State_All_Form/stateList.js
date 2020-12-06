@@ -7,7 +7,6 @@ import { BiPlusMedical,BiSearch } from 'react-icons/bi';
 import { FiAlignJustify } from "react-icons/fi";
 import '../state.css';
 
-
 const StateList = (props) => {
   // console.log(props.singlestate);
   const [obj,setMyObj1]= useState({
@@ -28,13 +27,12 @@ const deleteHandler = async (id) =>{
 
 const SingleSubmit = async () =>{
   await props.updatestatedata(obj._id,obj);
-  // setMyObj1(props.singlestate);
   console.log(obj);
-  //  console.log(obj._id);
   usetShow(false);
-  obj._id=props.singlestate._id;
+  // obj._id=props.singlestate._id;
   obj.state_name="";
-  //  props.history.replace(`/state`);
+  props.singlestate.state_name="";
+  // setMyObj1(obj);
 }
 
 const [show, setShow] = useState(false);
@@ -51,7 +49,9 @@ const SingleClose = () => {
 };
 
 if(props.singlestate.state_name && !obj.state_name){
-  setMyObj1(props.singlestate)
+  obj.state_name=props.singlestate.state_name;
+  obj._id=props.singlestate._id;
+  // setMyObj1()
   console.log(obj);
 }
 const handleUpdate = async (_id) => {

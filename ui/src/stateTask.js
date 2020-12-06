@@ -5,7 +5,6 @@ import StateAddForm from './components/State_All_Form/addForm';
 import CityAddForm from './components/City_All_Form/addForm';
 import Header from './components/common/Header';
 import cityList from './components/City_All_Form/cityList';
-import Footer from './components/common/Footer';
 const StateTask = (props) => {
     return <>
         <Header />
@@ -17,7 +16,6 @@ const StateTask = (props) => {
                 <Route path="/city" exact component={cityList}/>
             </Switch>
         </div>
-        {/* <Footer/> */}
     </>
 }
 
