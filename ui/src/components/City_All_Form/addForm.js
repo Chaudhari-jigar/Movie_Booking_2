@@ -87,11 +87,11 @@ const deleteHandler = async (id) =>{
   }
     useEffect(()=>{
         props.fetchstatedata();
-      console.log(props.states);
+      // console.log(props.states);
     },[props.fetchstatedata])
     
     const handleSubmit = async () =>{
-        let errors = { ...error,isValid: true };
+      let errors = { ...error,isValid: true };
         if(obj.city_name == ""){
             errors.city_nameError="Please Required CityName !!";
             errors.isValid=true;
@@ -99,17 +99,19 @@ const deleteHandler = async (id) =>{
             errors.isValid=false;
             errors.city_nameError="";
         }
+        // console.log(errors.city_nameError)
         if(errors.isValid==false){
             await props.addcitiesdata(obj);
             props.history.replace("/city");
             obj.city_name="";
         }
+        setError(errors);
     }
   
     const HandleChange = (e,name) =>{
        let olddata = {...obj};
        olddata[name] = e.target.value;
-       console.log(olddata);
+      //  console.log(olddata);
        setMyObj(olddata);
     }
   
@@ -131,6 +133,8 @@ const deleteHandler = async (id) =>{
     
     }
     let errors = { ...error,isValid: true };
+    // let errors = { ...error};
+    // console.log(errors.city_nameError);
   return (
     <>
     <Card>
@@ -151,10 +155,12 @@ const deleteHandler = async (id) =>{
                     Enter City Name
                 </Form.Label>
                 <Col sm="10">
-                    <Form.Control type="text" name="city_name" onChange={(e)=>{HandleChange(e,"city_name")}} placeholder="Enter city name ..." style={{maxWidth : "300px"}}/>
+                    <Form.Control isInvalid={error.city_nameError} type="text" name="city_name" onChange={(e)=>{HandleChange(e,"city_name")}} placeholder="Enter city name ..." style={{maxWidth : "300px"}}/>
+                    <Form.Control.Feedback type="invalid">
+                    {error.city_nameError}
+                        </Form.Control.Feedback>
                 </Col>
             </Form.Group>
-                    {errors.city_nameError}
 
             <Form.Group as={Row} controlId="formPlaintextPassword">
                 <Form.Label column sm="2">

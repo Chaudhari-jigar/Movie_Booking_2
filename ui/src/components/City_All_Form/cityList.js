@@ -15,13 +15,14 @@ const CityList = (props) => {
     city_name:"",
     state_id:""
   })
-
-   const [ids,setIds] = useState("");
+  
+  const [ids,setIds] = useState("");
+  const [show, setShow] = useState(false);
+  const [ushow, usetShow] = useState(false);
   
    useEffect(()=>{    
     props.fetchcitiesdata();
     props.fetchstatedata();
-    console.log(props.cities);
   },[props.fetchcitiesdata,props.fetchstatedata])
   
   const deleteHandler = async (id) =>{
@@ -34,11 +35,8 @@ const SingleSubmit = async () =>{
   usetShow(false);
   obj._id=props.singlecities._id;
   obj.city_name="";
-  //  props.history.replace(`/state`);
 }
 
-const [show, setShow] = useState(false);
-const [ushow, usetShow] = useState(false);
 
 const handleClose = () => setShow(false);
 const handleShow = (id) => {setShow(true);

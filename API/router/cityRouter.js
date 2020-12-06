@@ -51,6 +51,15 @@ router.get('/singlecities/:id',async(req,res) => {
     }
 });
 
+router.get('/fetchAllStatesBystate_id/:id',async(req,res) => {
+    try{
+        const Cities = await city.find({state_id:req.params.id});
+        res.send(Cities);
+    }catch(error){
+        console.log("fetch error !!");
+    }
+});
+
 router.put('/updatecities/:id',async(req,res) => {
     try{
         const Cities = await city.findByIdAndUpdate({_id:req.params.id},req.body,{new:true}).populate('state_id');
