@@ -99,3 +99,20 @@ export const adduserdata = (postdata) =>{
 //         });    
 //     }
 // }   
+
+
+// LoginPage
+// stateProp = user, error, loading
+        // if(loading) > show loadr
+        // if(user && !error) redirect("home")
+        // if(error) > show error
+ // dispatchProp = loginuser
+
+// loginuser <== email, password
+// dispatch => init_login => loading = true
+    // axios => URL & Email, Password
+        // <= user, token
+        // reducer state
+            // Success  => (dispatch) => loading=false, user = user, token = token
+                // localstorage.setItem("token", token);
+            // Failed => (dispatch) => Loading = false, error = error

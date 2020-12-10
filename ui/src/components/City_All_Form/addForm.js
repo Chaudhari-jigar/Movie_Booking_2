@@ -1,69 +1,39 @@
 import React,{useState,useEffect} from 'react';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import {Row,Col,Modal,CardGroup} from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button'/;
 import {addcitiesdata} from '../../store/action/cityAction';
 import {fetchstatedata} from '../../store/action/stateAction';
 import {connect} from 'react-redux';
-import Carousel from 'react-bootstrap/Carousel'
-import Logo from '../../Movie_logo/logo1.png';
-import Logo1 from '../../Movie_logo/logo1.jpg'
+import { Breadcrumb,Card,Select,Space } from 'antd';
+import {
+  Form,
+  Input,
+  Button
+} from 'antd';
+const {Option} = Select;
 
-function ControlledCarousel() {
-    const [index, setIndex] = useState(0);
-  
-    const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
-    };
-  
-    return (
-      <Carousel activeIndex={index} onSelect={handleSelect}>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={Logo1}
-            alt="First slide"
-            height="300px"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={Logo}
-            alt="Second slide"
-            height="300px"
-          />
-  
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={Logo1}
-            alt="Third slide"
-            height="300px"
-          />
-  
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    );
-  }
-  
+const formItemLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 8,
+  },
+};
+const formTailLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 8,
+    offset: 4,
+  },
+};
+
 const AddForm = (props) => {
+  const [form] = Form.useForm();
     const [obj,setMyObj]= useState({
       city_name:"",
       state_id:""
@@ -86,117 +56,71 @@ const deleteHandler = async (id) =>{
     setShow(false);
   }
     useEffect(()=>{
+      form.validateFields(['nickname']);
         props.fetchstatedata();
       // console.log(props.states);
     },[props.fetchstatedata])
     
     const handleSubmit = async () =>{
-      let errors = { ...error,isValid: true };
-        if(obj.city_name == ""){
-            errors.city_nameError="Please Required CityName !!";
-            errors.isValid=true;
-        }else{
-            errors.isValid=false;
-            errors.city_nameError="";
-        }
-        // console.log(errors.city_nameError)
-        if(errors.isValid==false){
-            await props.addcitiesdata(obj);
-            props.history.replace("/city");
-            obj.city_name="";
-        }
-        setError(errors);
+      try {
+        const values = await form.validateFields();
+        // console.log('Success:', values);
+        await props.addcitiesdata(obj);
+        props.history.replace("/city");
+        obj.city_name="";
+      } catch (errorInfo) {
+        console.log('Failed:', errorInfo);
+      }
     }
   
+
     const HandleChange = (e,name) =>{
-       let olddata = {...obj};
-       olddata[name] = e.target.value;
-      //  console.log(olddata);
+      let olddata = {...obj};
+      if(name!="state_id"){
+        olddata[name] = e.target.value;
+        }else{
+          olddata[name] = e;
+        }
        setMyObj(olddata);
-    }
-  
-    const backHandler = () => {
-      props.history.replace("/city")
     }
 
     const optionTemplate = () => {
       return props.states.map((stateslist) => {
       const { _id, state_name } = stateslist;
-      if(!obj.state_id){
-        obj.state_id=_id;
-        setMyObj(obj);
-    }
       return (
-          <option value={_id} key={_id}>{state_name}</option>
+          <Option value={_id}>{state_name}</Option>
        )
-      })
-    
+      })    
     }
-    let errors = { ...error,isValid: true };
-    // let errors = { ...error};
-    // console.log(errors.city_nameError);
   return (
-    <>
-    <Card>
-      <Card.Header className={"Header"}>
-          <div className={"Title"}>
-              City List
-          </div>
-          <div className="input-group" style={{ maxWidth: "50px" }}>
-              <Button variant="secondary" onClick={() => backHandler()} >Back</Button>
-                 
-              </div>
-        </Card.Header>
-        <Card.Body>
-        <Card.Title>Add City</Card.Title>
-        <Form>
-            <Form.Group as={Row} controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                    Enter City Name
-                </Form.Label>
-                <Col sm="10">
-                    <Form.Control isInvalid={error.city_nameError} type="text" name="city_name" onChange={(e)=>{HandleChange(e,"city_name")}} placeholder="Enter city name ..." style={{maxWidth : "300px"}}/>
-                    <Form.Control.Feedback type="invalid">
-                    {error.city_nameError}
-                        </Form.Control.Feedback>
-                </Col>
-            </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
-                    Select State :-
-                </Form.Label>
-                <Col sm="3">
-                    <Form.Control as="select" name="state_id" onChange={(e) => {HandleChange(e,"state_id")}} >
-                        {optionTemplate()}
-                    </Form.Control>
-                </Col>
-            </Form.Group>
-                    <Button variant="primary" onClick={handleSubmit}>Submit</Button>
-            </Form>
-        </Card.Body>
-    </Card>
-    {/* Delete Record  */}
-    <Modal  show={show} onHide={handleClose} style={{paddingTop:"156px"}}>
-            <Card bg="Light" text='dark' >
-                  <Modal.Header closeButton style={{ backgroundColor: "#344c63",color: "white"}}>
-                    {/* <Card.Body > */}
-                        <Card.Title><b>Are you sure!</b></Card.Title>
-                    {/* </Card.Body> */}
-                  </Modal.Header>
-                      <Card.Body>
-                        <Card.Text>
-                            Do you want to delete this state?
-                        </Card.Text>
-                        </Card.Body>
-                        <Modal.Footer>
-                          <Button variant="danger"  onClick={() => deleteHandler(ids)}>Delete</Button>
-                          <Button variant="secondary"  onClick={handleClose} style={{    marginLeft: "17px"}}>Cancel</Button>
-                        </Modal.Footer>
-                    
-                </Card>
-            </Modal>
-    <ControlledCarousel />
+    <>
+     <div className={"Title"} style={{marginTop: "-29px" }}>
+              Add City 
+          </div>
+          <Breadcrumb style={{ marginTop: "1px" }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>City</Breadcrumb.Item>
+              <Breadcrumb.Item>Add City</Breadcrumb.Item>
+          </Breadcrumb>
+            <div className="site-card-border-less-wrapper">
+              <Card title="Add City Form" bordered={false} style={{ width: 1100 }}>
+                      <Form form={form} name="AddForm">
+                      <Form.Item {...formItemLayout} label="Enter City Name:-" name="city_name" rules={[{ required: true, message: 'Please required City!' }]}>
+                              <Input type="text" name="city_name" onChange={(e)=>{HandleChange(e,"city_name")}} placeholder="Enter city name ..." style={{maxWidth : "300px"}}/>
+                          </Form.Item>
+                          <Form.Item {...formItemLayout} label="Select State :-" name="state_id" rules={[{ required: true, message: 'Please required State!' }]}>
+                                <Select name="state_id" onChange={(e)=>HandleChange(e,"state_id")} placeholder="------ Select State-----" allowClear>
+                                      {optionTemplate()}
+                                  </Select>
+                          </Form.Item>
+                           <Form.Item {...formTailLayout} label="" controlId="formBasicEmail"> 
+                                <Button type="primary" onClick={(e) =>handleSubmit()}>Add City</Button>
+                          </Form.Item> 
+                      </Form>
+              </Card>
+            </div>
+    
     </>
   );
 }
