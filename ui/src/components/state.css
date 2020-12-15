@@ -1,4 +1,4 @@
-  
+
 .Header {
     display: flex;
     justify-content: space-between;
@@ -16,4 +16,9 @@
 }
 .Pagination {
     margin: 0px !important;
+}
+.ant-layout-content{
+    margin: 1px 1px!important;
+    padding: 42px!important;
+    min-height: 280px!important;
 }

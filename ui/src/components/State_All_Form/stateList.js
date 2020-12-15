@@ -15,11 +15,20 @@ const StateList = (props) => {
   })
 
   const [ids, setIds] = useState("");
-
+  const [error,setError] = useState({
+    state_nameError:'',
+    IsValid:false
+})
   useEffect(() => {
-    console.log(props.states.length);
     props.fetchstatedata();
-  }, [props.fetchstatedata])
+    if (props.singlestate.state_name) {
+      console.log(props.singlestate.state_name)
+      let olddata={...obj};
+      olddata.state_name = props.singlestate.state_name;
+      olddata._id = props.singlestate._id;
+      setMyObj1(olddata);
+    }
+  }, [props.fetchstatedata,props.singlestate])
 
   const deleteHandler = async (id) => {
     await props.deletestatedata(id);
@@ -27,11 +36,22 @@ const StateList = (props) => {
   }
 
   const SingleSubmit = async () => {
-    await props.updatestatedata(obj._id, obj);
-    console.log(obj);
-    usetShow(false);
-    obj.state_name = "";
-    props.singlestate.state_name = "";
+    // let categoryData = {...obj}
+    let errors = { ...error, IsValid : true };
+    if(!obj.state_name || obj.state_name === "")
+    {
+        errors.IsValid = false;
+        errors.state_nameError = "StateName Is Required "
+    }
+    else
+        errors.state_nameError = ""
+    setError(errors);
+    if(errors.IsValid==true){
+      // await props.updatestatedata(obj._id, obj);
+      usetShow(false);
+      obj.state_name = "";
+      props.singlestate.state_name = "";
+    }
   }
 
   const [show, setShow] = useState(false);
@@ -44,33 +64,23 @@ const StateList = (props) => {
   }
 
   const SingleClose = () => {
+    setError({
+      state_nameError:"",
+      IsValid:true
+    })
     obj.state_name = "";
     props.singlestate.state_name = "";
     usetShow(false)
   };
 
-  if (props.singlestate.state_name && !obj.state_name) {
-    obj.state_name = props.singlestate.state_name;
-    obj._id = props.singlestate._id;
-  }
+  // if (props.singlestate.state_name && !obj.state_name) {
+  //   obj.state_name = props.singlestate.state_name;
+  //   obj._id = props.singlestate._id;
+  // }
   const handleUpdate = async (_id) => {
     await props.singlestateDataFetch(_id);
     usetShow(true);
   }
- 
-  // const renderTableData = () => {
-  //   return props.states.map((stateslist, index) => {
-  //     const { _id, state_name } = stateslist
-  //     return (
-  //       <tr key={_id}>
-  //         <td>{index + 1}</td>
-  //         <td>{state_name}</td>
-  //         <td><Button onClick={() => handleUpdate(_id)} >UPDATE</Button></td>
-  //         <td><Button variant="danger" onClick={() => handleShow(_id)} >Delete</Button></td>
-  //       </tr>
-  //     )
-  //   })
-  // }
   
   const columns = [
     {
@@ -100,42 +110,46 @@ const StateList = (props) => {
   // }
   const HandleChange = (e, name) => {
     let olddata = { ...obj };
-    olddata[name] = e.target.value;
+    olddata[name] = e.target.value;    
     setMyObj1(olddata);
   }
   return (
     <>
-      <div className={"Title"} style={{marginTop: "-29px" }}>
-              State List 
-          </div>
-          <Breadcrumb style={{ marginTop: "1px" }}>
+          <Breadcrumb style={{ marginTop: "-29px",textAlign:"right",marginBottom:"29px" }} key="sdsgf">
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>State</Breadcrumb.Item>
               <Breadcrumb.Item>View State List</Breadcrumb.Item>
           </Breadcrumb>
-            <div className="site-card-border-less-wrapper">
-              <Card title="View State List" bordered={false} style={{ width: 1100 }}>
-                <Table columns={columns} dataSource={props.states} pagination={{ pageSize: 4 }} />
+            <div className="site-card-border-less-wrapper" key="sdsbhdcb">
+              <Card title="View State List" bordered={false} style={{ width: "auto" }} key="sdkbjse">
+                <Table columns={columns} dataSource={props.states} pagination={{ pageSize: 4 }} key="mvseuiwi"/>
               </Card>
             </div>
       {/* Update Record */}
        <Modal title="Update State"
+       key="ssd"
         visible={ushow}
         onOk={() => SingleSubmit()}
         onCancel={() =>SingleClose()}>
             <Form>
                 <Input type="hidden" name="_id" value={obj._id} onChange={(e) => HandleChange(e, "_id")} placeholder="Enter state name ..." />
-                <Input title="Enter State Name:-" type="text" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="state_name" value={obj.state_name} onChange={(e) => HandleChange(e, "state_name")} placeholder="Enter state name ..." />
+                <Form.Item label="Enter State Name:-"
+                hasFeedback
+                validateStatus={(error.state_nameError)?"error":"success"}
+                help={error.state_nameError}>                  
+                    <Input type="text" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="state_name" value={obj.state_name} onChange={(e) => HandleChange(e, "state_name")} placeholder="Enter state name ..." />
+                </Form.Item>
             </Form>
       </Modal>
 
       {/* Delete Record  */}
        <Modal title="Are you sure!"
+       key="sdsfd"
         visible={show}
         onOk={() => deleteHandler(ids)}
         onCancel={() =>handleClose()}>
               Do you want to delete this state?
-      </Modal>  
+      </Modal> 
     </>
   );
 }

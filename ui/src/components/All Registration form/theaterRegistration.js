@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {adduserdata,fetchusersdata} from '../../store/action/userAction';
 import {fetchstatedata} from '../../store/action/stateAction';
 import {fetchAllStatesBystate_id} from '../../store/action/cityAction';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import '../register.css';
 
 const FormPage = (props) => {
@@ -16,7 +17,7 @@ const FormPage = (props) => {
     password:"",
     email:"",
     gender:"Male",
-    photo:"",
+    photo1:"",
     state_id:"",
     city_id:"",
     group_id:"",
@@ -37,7 +38,7 @@ const FormPage = (props) => {
     let errors = { ...error,isValid: true };
     obj.group_id="5fcc4230e862ea35384c7c8f";
     obj.is_active="1";
-    obj.photo="sds";
+    // obj.photo1="sds";
     errors.state_nameError="";
     errors.city_nameError="";
     errors.user_name_nameError="";
@@ -81,19 +82,41 @@ const FormPage = (props) => {
       errors.isValid=false;
     }
     if(errors.isValid==false){
-      await props.adduserdata(obj);
+      const formdata = new FormData();
+      console.log(obj);
+      formdata.append("user_name",obj.user_name);
+      formdata.append("password",obj.password);
+      formdata.append("email",obj.email);
+      formdata.append("gender",obj.gender);
+      formdata.append("photo1",obj.photo1);
+      formdata.append("state_id",obj.state_id);
+      formdata.append("city_id",obj.city_id);
+      formdata.append("group_id",obj.group_id);
+      formdata.append("is_active",obj.is_active);
+      console.log(obj.photo1);
+      await props.adduserdata(formdata);
+      props.history.replace("/");
     }
     setError(errors);
   }
   const HandleChange = (e,name) =>{
     let olddata = {...obj};
-    olddata[name]= e.target.value;
-    setMyObj(olddata);
+    if (name == "photo1") {
+      const { target: { files } } = e
+      olddata[name] = files.length === 1 ? files[0] : files
+      olddata[name] = e.target.files[0];
+    }
+    else
+    {
+      olddata[name] = e.target.value;
+    }
+    setMyObj(olddata)
     cityCall(olddata.state_id);
   }
 
   const cityCall =async (id) =>{
     await props.fetchAllStatesBystate_id(id);
+    // console.log(props.cities);
   }
 
   const optionStates = () => {
@@ -113,6 +136,7 @@ const FormPage = (props) => {
       )
     })
   }
+
   const backHandler = () => {
     props.history.replace("/userreg")
   }
@@ -203,7 +227,7 @@ const FormPage = (props) => {
                   <Form.Row>
                       <Form.Group>
                           <Form.Label>Select User Photo:-</Form.Label>
-                          <Form.File id="exampleFormControlFile1" />
+                          <Form.Control type="file" name="photo1" onChange={(e) => {HandleChange(e,"photo1")}} style={{maxWidth : "300px"}}/>
                       </Form.Group> 
                       <Form.Group as={Col} controlId="formGridEmail2">
                           {/* <input type="submit" /> */}

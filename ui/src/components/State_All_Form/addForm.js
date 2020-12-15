@@ -1,56 +1,72 @@
 import React,{useState} from 'react';
-// import Form from 'react-bootstrap/Form';
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
 import {addstatedata} from '../../store/action/stateAction';
 import {connect} from 'react-redux';
 import { Breadcrumb,Card } from 'antd';
+import "../state.css";
 import {
   Form,
   Input,
   Button
 } from 'antd';
 
+
+const formItemLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 8,
+  },
+};
+const formTailLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 8,
+    offset: 4,
+  },
+};
+
 const AddForm = (props) => {
+  const [form] = Form.useForm();
   const [obj,setMyObj]= useState({
     state_name:""
   })
 
   const handleSubmit = async () =>{
-     console.log(obj);
+    try {
+      const values = await form.validateFields();
      await props.addstatedata(obj);
      props.history.replace("/state");
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
   }
 
   const HandleChange = (e,name) =>{
      let olddata = {...obj};
      olddata[name] = e.target.value;
-     console.log(olddata);
      setMyObj(olddata);
-  }
-
-  const backHandler = () => {
-    props.history.replace("/state")
   }
 
   return (
     <>    
           <div className={"Title"} style={{marginTop: "-29px" }}>
-              Add State 
           </div>
-          <Breadcrumb style={{ marginTop: "1px" }}>
+          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px"  }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>State</Breadcrumb.Item>
               <Breadcrumb.Item>Add State</Breadcrumb.Item>
           </Breadcrumb>
             <div className="site-card-border-less-wrapper">
-              <Card title="Add State Form" bordered={false} style={{ width: 1100 }}>
-                      <Form>
-                          <Form.Item controlId="formBasicEmail" label="Enter State Name:-">
+              <Card title="Add State Form" bordered={false} style={{ width: "auto" }}>
+                      <Form form={form} name="AddForm">
+                          <Form.Item {...formItemLayout} name="state_name" label="Enter State Name:-" rules={[{ required: true, message: 'Please required State!' }]}>
                               <Input type="text" name="state_name" onChange={(e)=>{HandleChange(e,"state_name")}} placeholder="Enter state name ..." style={{maxWidth : "300px"}}/>
                           </Form.Item>
-                          <Form.Item label="" controlId="formBasicEmail">
-                              <Button type="primary" onClick={handleSubmit}>Submit</Button>
+                          <Form.Item {...formTailLayout} label="">
+                              <Button type="primary" onClick={handleSubmit}>Add State</Button>
                           </Form.Item>
                       </Form>
               </Card>

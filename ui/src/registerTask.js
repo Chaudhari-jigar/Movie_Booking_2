@@ -10,10 +10,15 @@ const RegisterTask = (props) => {
             <Switch>
                 <Route path="/userreg" exact component={RegisterForm}/>
                 <Route path="/theaterreg" exact component={TheaterRegistration}/>
+                
                 <Route path="/city" component={StateTask}/>
                 <Route path="/city/cityAdd" exact component={StateTask}/>x
+                
                 <Route path="/state/stateAdd" exact component={StateTask}/>
                 <Route path="/state" exact component={StateTask}/>
+
+                <Route path="/movie" exact component={StateTask} />
+                <Route path="/movie/movieAdd" exact component={StateTask} />
                 <Route path="/" exact component={LoginForm}/>
             </Switch>
         </div>

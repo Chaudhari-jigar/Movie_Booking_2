@@ -72,4 +72,3 @@ router.put('/updatecities/:id',async(req,res) => {
 });
 
 module.exports = router;
-

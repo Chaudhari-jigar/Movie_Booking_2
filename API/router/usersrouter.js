@@ -7,7 +7,7 @@ var path = require('path');
 app.use(bodyparser.urlencoded({ extended: true }));
 const router = express.Router();
 
-router.post('/adduser', async (req, res) => {
+router.post('/kaibimovie', async (req, res) => {
     console.log(req.files);
     const { photo1 } = req.files;
     console.log(photo1.name)
@@ -16,7 +16,7 @@ router.post('/adduser', async (req, res) => {
         // const imagepath = path.join(__dirname, '..', '..','public','images');
         const datenow = Date.now();
         photo1.mv('./public/images/' + datenow + photo1.name)
-        req.body.photo = "/images/"+ datenow +photo1.name;
+        req.body.photo1 = "/images/"+ datenow +photo1.name;
         const movies = new user(req.body);
         movies.save();
         res.send(movies)

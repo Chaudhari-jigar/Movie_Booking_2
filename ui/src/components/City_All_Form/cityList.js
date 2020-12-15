@@ -23,7 +23,7 @@ const CityList = (props) => {
     city_name: "",
     state_id: ""
   })
-
+  const [op,setOp] = useState(true);
   const [ids, setIds] = useState("");
   const [show, setShow] = useState(false);
   const [ushow, usetShow] = useState(false);
@@ -42,6 +42,7 @@ const CityList = (props) => {
     try {
       const values = await form.validateFields();
       await props.updatecitiesdata(obj._id, obj);
+      setOp(true);
       usetShow(false);
       obj._id = props.singlecities._id;
       obj.city_name = "";
@@ -52,18 +53,23 @@ const CityList = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
+    setOp(true);
     setShow(true);
     setIds(id);
   }
 
   const SingleClose = () => {
+    setOp(true);
     obj.city_name = "";
     props.singlecities.city_name = "";
     usetShow(false)
   };
 
   if (props.singlecities.city_name && !obj.city_name) {
-    setMyObj1(props.singlecities)
+    if(op!=false){
+      console.log(op);
+      setMyObj1(props.singlecities)
+    }
   }
   const handleUpdate = async (_id) => {
     await props.singlecitiesDataFetch(_id);
@@ -109,9 +115,10 @@ const CityList = (props) => {
     } else {
       olddata[name] = e;
     }
+    setOp(false);
     console.log(olddata);
     setMyObj1(olddata);
-
+    console.log(obj);
   }
 
   const optionTemplate = () => {
@@ -124,16 +131,16 @@ const CityList = (props) => {
   }
   return (
     <>
-      <div className={"Title"} style={{ marginTop: "-29px" }}>
-        City List
+      <div className={"Title"} style={{ marginTop: "-29px"}}>
+        {/* City List */}
           </div>
-      <Breadcrumb style={{ marginTop: "1px" }}>
+      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px" }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>City</Breadcrumb.Item>
         <Breadcrumb.Item>View City List</Breadcrumb.Item>
       </Breadcrumb>
       <div className="site-card-border-less-wrapper">
-        <Card title="View City List" bordered={false} style={{ width: 1100 }}>
+        <Card title="View City List" bordered={true} style={{ width: "auto",border:"5px" }}>
           <Table columns={columns} dataSource={props.cities} pagination={{ pageSize: 4 }} />
         </Card>
       </div>

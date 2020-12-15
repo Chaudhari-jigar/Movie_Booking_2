@@ -37,6 +37,10 @@ const { SubMenu } = Menu;
               <Menu.Item key="/city"><Link to="/city">City</Link></Menu.Item>
               <Menu.Item key="/city/cityAdd"><Link to="/city/cityAdd">Add City</Link></Menu.Item>
             </SubMenu>
+            <SubMenu key="sub3" icon={<UserOutlined />} title="movie">
+              <Menu.Item key="/movie"><Link to="/movie">movie</Link></Menu.Item>
+              <Menu.Item key="/movie/movieAdd"><Link to="/movie/movieAdd">Add movie</Link></Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
        

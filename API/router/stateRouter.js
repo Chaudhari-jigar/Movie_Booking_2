@@ -3,7 +3,7 @@ const app = express();
 const state = require('../model/state');
 const bodyparser = require('body-parser');
 const router = new express.Router();
-app.use(bodyparser.urlencoded({entended:false}));
+app.use(bodyparser.urlencoded({extended:false}));
 
 router.get('/getstate',async(req,res)=>{
     try{
@@ -42,7 +42,7 @@ router.delete('/deletestate/:id',async(req,res) => {
 
 router.get('/singlestate/:id',async(req,res) => {
     try{
-        const States = await state.findOne({_id:req.params.id});
+        const States = await state.findById({_id:req.params.id});
         res.send(States);
     }catch(error){
         console.log("fetch error !!");

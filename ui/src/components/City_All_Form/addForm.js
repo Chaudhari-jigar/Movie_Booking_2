@@ -88,7 +88,7 @@ const deleteHandler = async (id) =>{
       return props.states.map((stateslist) => {
       const { _id, state_name } = stateslist;
       return (
-          <Option value={_id}>{state_name}</Option>
+          <Option value={_id} key={_id}>{state_name}</Option>
        )
       })    
     }
@@ -96,15 +96,14 @@ const deleteHandler = async (id) =>{
 
     <>
      <div className={"Title"} style={{marginTop: "-29px" }}>
-              Add City 
           </div>
-          <Breadcrumb style={{ marginTop: "1px" }}>
+          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px"  }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>City</Breadcrumb.Item>
               <Breadcrumb.Item>Add City</Breadcrumb.Item>
           </Breadcrumb>
             <div className="site-card-border-less-wrapper">
-              <Card title="Add City Form" bordered={false} style={{ width: 1100 }}>
+              <Card title="Add City Form" bordered={false} style={{ width: "auto" }}>
                       <Form form={form} name="AddForm">
                       <Form.Item {...formItemLayout} label="Enter City Name:-" name="city_name" rules={[{ required: true, message: 'Please required City!' }]}>
                               <Input type="text" name="city_name" onChange={(e)=>{HandleChange(e,"city_name")}} placeholder="Enter city name ..." style={{maxWidth : "300px"}}/>
@@ -114,7 +113,7 @@ const deleteHandler = async (id) =>{
                                       {optionTemplate()}
                                   </Select>
                           </Form.Item>
-                           <Form.Item {...formTailLayout} label="" controlId="formBasicEmail"> 
+                           <Form.Item {...formTailLayout} label=""> 
                                 <Button type="primary" onClick={(e) =>handleSubmit()}>Add City</Button>
                           </Form.Item> 
                       </Form>

@@ -7,7 +7,7 @@ const city_scheme = new mongoose.Schema({
     },
     state_id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:state
+        ref:'state'
     }
     
 })

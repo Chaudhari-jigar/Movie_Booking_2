@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router'
 import StateList from './components/State_All_Form/stateList';
 import StateAddForm from './components/State_All_Form/addForm';
 import CityAddForm from './components/City_All_Form/addForm';
+import AddMovie from './components/Movie_All_Form/addMovie';
+import MovieList from './components/Movie_All_Form/movieList';
 import Header2 from './components/common/Header';
 import cityList from './components/City_All_Form/cityList';
 import { Layout } from 'antd';
@@ -20,6 +22,8 @@ const StateTask = (props) => {
         }}
         >
         <Switch>
+            <Route path="/movie" exact component={MovieList} />
+            <Route path="/movie/movieAdd" exact component={AddMovie} />
             <Route path="/state" exact component={StateList}/>
             <Route path="/state/stateAdd" exact component={StateAddForm}/>
             <Route path="/city/cityAdd" exact component={CityAddForm}/>

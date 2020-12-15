@@ -17,7 +17,7 @@ const FormPage = (props) => {
     password:"",
     email:"",
     gender:"Male",
-    photo:"",
+    photo1:"",
     state_id:"",
     city_id:"",
     group_id:"",
@@ -38,7 +38,7 @@ const FormPage = (props) => {
     let errors = { ...error,isValid: true };
     obj.group_id="5fcc4220e862ea35384c7c8e";
     obj.is_active="1";
-    // obj.photo="sds";
+    // obj.photo1="sds";
     errors.state_nameError="";
     errors.city_nameError="";
     errors.user_name_nameError="";
@@ -88,18 +88,20 @@ const FormPage = (props) => {
       formdata.append("password",obj.password);
       formdata.append("email",obj.email);
       formdata.append("gender",obj.gender);
-      formdata.append("photo",obj.photo);
+      formdata.append("photo1",obj.photo1);
       formdata.append("state_id",obj.state_id);
       formdata.append("city_id",obj.city_id);
       formdata.append("group_id",obj.group_id);
       formdata.append("is_active",obj.is_active);
+      console.log(obj.photo1);
       await props.adduserdata(formdata);
+      props.history.replace("/");
     }
     setError(errors);
   }
   const HandleChange = (e,name) =>{
     let olddata = {...obj};
-    if (name == "photo") {
+    if (name == "photo1") {
       const { target: { files } } = e
       olddata[name] = files.length === 1 ? files[0] : files
       olddata[name] = e.target.files[0];
@@ -224,9 +226,9 @@ const FormPage = (props) => {
                   </Form.Row>
                   <Form.Row>
                       <Form.Group>
-                          <Form.Label>Select User Photo:-</Form.Label>
+                          <Form.Label>Select User photo:-</Form.Label>
                           {/* <Form.File id="exampleFormControlFile1" />   */}
-                          <Form.Control type="file" name="photo" onChange={(e) => {HandleChange(e,"photo")}} style={{maxWidth : "300px"}}/>
+                          <Form.Control type="file" name="photo1" onChange={(e) => {HandleChange(e,"photo1")}} style={{maxWidth : "300px"}}/>
                       </Form.Group> 
                       <Form.Group as={Col} controlId="formGridEmail2">
                           {/* <input type="submit" /> */}

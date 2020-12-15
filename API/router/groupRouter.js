@@ -3,7 +3,7 @@ const app = express();
 const group = require('../model/group');
 const bodyparser = require('body-parser');
 const router = new express.Router();
-app.use(bodyparser.urlencoded({entended:false}));
+app.use(bodyparser.urlencoded({extended:false}));
 
 router.get('/getgroup',async(req,res)=>{
     try{

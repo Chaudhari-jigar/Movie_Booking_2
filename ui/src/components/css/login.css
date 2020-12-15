@@ -6,7 +6,7 @@
   }
   body {
     justify-content: center;
-    font-family: 'Kumbh Sans', sans-serif;
+    font-family: "Poppins", sans-serif!important;
     background-image: url("../../Movie_logo/61d0e802a331a940d948154a79d332a8.jpg");
     background-position: center;
     background-size: cover;
