@@ -4,6 +4,7 @@ const initalstore ={
     singleuser:{},
     loading:false,
     error1:"",
+    token:null,
 }
 
 const store = (state = initalstore,action) =>{
@@ -47,7 +48,6 @@ const store = (state = initalstore,action) =>{
                     return{
                         ...state,
                         loading:true,
-    
                     };
         case actionTypes.DELETE_USER_SUCCESS:
                 let usert = state.users.filter(statese => statese._id !== action.id);
@@ -69,13 +69,33 @@ const store = (state = initalstore,action) =>{
                         loading:true,    
                     };
         case actionTypes.SINGLE_USER_SUCCESS:
-            // console.log(ac)
+            // console.log()
                 return{
                     ...state,
                     loading:false, 
                     singleuser:action.singleuser             
                 }
         case actionTypes.SINGLE_USER_FAILED:
+                return{
+                    ...state,
+                    loading:false,
+                    error1:action.error1
+                }
+        case actionTypes.INIT_SINGLE_LOGIN:
+                    return{
+                        ...state,
+                        loading:true,    
+                    };
+        case actionTypes.SINGLE_LOGIN_SUCCESS:
+                console.log(action.token)
+                console.log(action.singleuser)
+                return{
+                    ...state,
+                    loading:false, 
+                    token:action.token,
+                    singleuser:action.singleuser             
+                }
+        case actionTypes.SINGLE_LOGIN_FAILED:
                 return{
                     ...state,
                     loading:false,
@@ -101,6 +121,11 @@ const store = (state = initalstore,action) =>{
                     loading:false, 
                     // USER:statesst
                 }
+        case "VerifyToken":
+            return {
+                ...state,
+                token:action.token
+            }
         case actionTypes.UPDATE_USER_FAILED:
                 return{
                     ...state,

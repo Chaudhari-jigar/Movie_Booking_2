@@ -7,7 +7,6 @@ export const fetchusersdata = () =>{
             type:actionTypes.INIT_FETCH_USER
         })
         await axios.get("http://localhost:3001/getusers").then(res => {
-            // console.log(res.data);
             dispatch({
                 type:actionTypes.FETCH_USER_SUCCESS,
                 users:res.data
@@ -37,6 +36,39 @@ export const adduserdata = (postdata) =>{
                 error1:error.message
             })
         });    
+    }
+}
+
+export const login = (email,password) =>{
+    return async(dispatch)=>{
+        dispatch({
+            type:actionTypes.INIT_SINGLE_LOGIN
+        })
+        await axios.get(`http://localhost:3001/login/${email}/${password}`).then(res => {
+            console.log(res.data);
+            dispatch({
+                type:actionTypes.SINGLE_LOGIN_SUCCESS,
+                token:res.data.token,
+                singleuser:res.data.user
+            })
+            localStorage.setItem("Token",res.data.token);
+        }).catch(error=>{
+            dispatch({
+                type:actionTypes.SINGLE_LOGIN_FAILED,
+                error1:error.message
+            })
+        });    
+    }
+}
+
+export const autoCheckLogin = () =>{
+    return async(dispatch)=>{
+        let verifytoken= localStorage.getItem("Token");
+        console.log(verifytoken);
+        dispatch({
+            type:"VerifyToken",
+            token:verifytoken
+        })   
     }
 }
 

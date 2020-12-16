@@ -8,21 +8,20 @@ const bodyparser = require('body-parser');
 const router = new express.Router();
 app.use(bodyparser.urlencoded({extended:false}));
 
-router.post('/login',async (req,res) => {
+router.get('/login/:email/:password',async (req,res,next) => {
     try {
-
-        let user = await User.findOne({email:req.body.email,group_id:req.body.group_id}).populate("group_id").populate("state_id").populate("city_id");
-        const isValid = bcrypt.compareSync(req.body.password, user.password);
+        let user = await User.findOne({email:req.params.email}).populate("group_id").populate("state_id").populate("city_id");
+        console.log(req.params.password+" sd "+ user.password)
+        const isValid = bcrypt.compareSync(req.params.password, user.password);
+        console.log(isValid);
         if(!isValid) {
-            user.message = "Unable to login!";
-            throw errorObj;
-        }
-
-        let token = jwt.sign({ id: user._id }, secret);
-        res.send({token: "Bearer "+token,user})
-        
-    } catch (error) {
-        console.log(error.message);
+            throw new Error('BROKEN')
+        }else{
+            let token = jwt.sign({ id: user._id }, secret);
+            res.send({token: "Bearer "+token,user})
+        }        
+    } catch (err) {
+        next(err)
     }
 })
 

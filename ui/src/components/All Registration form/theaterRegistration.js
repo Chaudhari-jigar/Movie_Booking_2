@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {adduserdata,fetchusersdata} from '../../store/action/userAction';
 import {fetchstatedata} from '../../store/action/stateAction';
 import {fetchAllStatesBystate_id} from '../../store/action/cityAction';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 import '../register.css';
 
 const FormPage = (props) => {

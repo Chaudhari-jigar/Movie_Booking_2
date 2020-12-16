@@ -7,7 +7,6 @@ export const fetchcitiesdata = () =>{
             type:actionTypes.INIT_FETCH_CITIES
         })
         await axios.get("http://localhost:3001/getcities").then(res => {
-            // console.log(res.data);
             dispatch({
                 type:actionTypes.FETCH_CITIES_SUCCESS,
                 cities:res.data

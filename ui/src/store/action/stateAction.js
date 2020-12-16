@@ -7,7 +7,6 @@ export const fetchstatedata = () =>{
             type:actionTypes.INIT_FETCH_STATES
         })
         await axios.get("http://localhost:3001/getstate").then(res => {
-            //console.log(res.data);
             dispatch({
                 type:actionTypes.FETCH_STATES_SUCCESS,
                 states:res.data
@@ -46,7 +45,6 @@ export const deletestatedata = (id) =>{
             type:actionTypes.INIT_DELETE_STATES
         })
         await axios.delete(`http://localhost:3001/deletestate/${id}`).then(res => {
-            //console.log(res.data);
             dispatch({
                 type:actionTypes.DELETE_STATES_SUCCESS,
                 id:id
@@ -61,13 +59,11 @@ export const deletestatedata = (id) =>{
 }
 
 export const singlestateDataFetch = (id) =>{
-    // console.log(id);
     return async(dispatch)=>{
         dispatch({
             type:actionTypes.INIT_SINGLE_STATES
         })
         await axios.get(`http://localhost:3001/singlestate/${id}`).then(res => {
-            // console.log(res.data);
             dispatch({
                 type:actionTypes.SINGLE_STATES_SUCCESS,
                 singlestate:res.data
@@ -87,7 +83,6 @@ export const updatestatedata = (id,put) =>{
             type:actionTypes.INIT_UPDATE_STATES
         })
         await axios.put(`http://localhost:3001/updatestate/${id}`,put).then(res => {
-            // console.log(res.data);
             dispatch({
                 type:actionTypes.UPDATE_STATES_SUCCESS,
                 states:res.data

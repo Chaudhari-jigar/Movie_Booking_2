@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import stateReducer from './store/reducer/stateReducer';
 import cityReducer from './store/reducer/cityReducer';
+import userReducer from './store/reducer/userReducer';
 import movieReducer from './store/reducer/movieReducer';
 import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
 import {Provider} from "react-redux";
@@ -13,7 +14,8 @@ import thunk from "redux-thunk";
 const rootReducer = combineReducers({
   stateReducer:stateReducer,
   cityReducer:cityReducer,
-  movieReducer:movieReducer
+  movieReducer:movieReducer,
+  userReducer:userReducer
 })
 
 const componseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

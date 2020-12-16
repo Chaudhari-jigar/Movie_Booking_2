@@ -50,7 +50,7 @@
     margin-left: 200px;
   }*/
   .field {
-    background-color: #fff;
+    /* background-color: #fff; */
     width: 100%;
     margin-bottom: 15px;
     display: flex;
@@ -58,7 +58,7 @@
   
   .field span {
     color: #222;
-    width: 40px;
+    /* width: 40px; */
     line-height: 45px;
     text-align: center;
   }
