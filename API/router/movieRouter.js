@@ -18,7 +18,7 @@ router.get('/getmovie', async (req, res) => {
 
 router.get('/getsinglemovie/:id', async (req, res) => {
     try {
-        const movies = await movie.find({ _id: req.params.id });
+        const movies = await movie.findOne({ _id: req.params.id });
         res.send(movies);
     } catch (error) {
         console.log(error);
@@ -54,6 +54,24 @@ router.post('/addmovie', async (req, res) => {
     catch (err) {
         console.log(err.message)
         return res.send("err")
+    }
+});
+
+router.put('/updatemovie/:id',async (req,res) => {
+    
+    try{
+        if(req.files){
+            const { movie_logo } = req.files;
+            console.log(movie_logo.name)
+            const datenow = Date.now();
+            movie_logo.mv('./public/images/' + datenow + movie_logo.name)
+            req.body.movie_logo = "/images/"+ datenow +movie_logo.name;
+        }
+        console.log(req.body.movie_logo);
+        const Movies = await movie.findByIdAndUpdate({_id:req.params.id},req.body,{new:true});
+        res.send(Movies);
+    }catch(error){
+        console.log("updated error !!"+error);
     }
 });
 module.exports = router;

@@ -61,13 +61,13 @@ export const deletemoviedata = (id) =>{
 }
 
 export const singlemovieDataFetch = (id) =>{
-    // console.log(id);
+    console.log(id);
     return async(dispatch)=>{
         dispatch({
             type:actionTypes.INIT_SINGLE_MOVIES
         })
         await axios.get(`http://localhost:3001/getsinglemovie/${id}`).then(res => {
-            // console.log(res.data);
+            console.log(res.data);
             dispatch({
                 type:actionTypes.SINGLE_MOVIES_SUCCESS,
                 singlemovie:res.data
@@ -81,22 +81,23 @@ export const singlemovieDataFetch = (id) =>{
     }
 }   
 
-// export const updatestatedata = (id,put) =>{
-//     return async(dispatch)=>{
-//         dispatch({
-//             type:actionTypes.INIT_UPDATE_MOVIES
-//         })
-//         await axios.put(`http://localhost:3001/updatestate/${id}`,put).then(res => {
-//             // console.log(res.data);
-//             dispatch({
-//                 type:actionTypes.UPDATE_MOVIES_SUCCESS,
-//                 states:res.data
-//             })
-//         }).catch(error=>{
-//             dispatch({
-//                 type:actionTypes.UPDATE_MOVIES_FAILED,
-//                 error:error.message
-//             })
-//         });    
-//     }
-// }   
+export const updatemoviedata = (id,put) =>{
+    console.log(put);
+    return async(dispatch)=>{
+        dispatch({
+            type:actionTypes.INIT_UPDATE_MOVIES
+        })
+        await axios.put(`http://localhost:3001/updatemovie/${id}`,put).then(res => {
+            // console.log(res.data);
+            dispatch({
+                type:actionTypes.UPDATE_MOVIES_SUCCESS,
+                movies:res.data
+            })
+        }).catch(error=>{
+            dispatch({
+                type:actionTypes.UPDATE_MOVIES_FAILED,
+                error:error.message
+            })
+        });    
+    }
+}   

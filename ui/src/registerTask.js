@@ -20,9 +20,9 @@ const RegisterTask = (props) => {
         console.log("Login In " + false + " token " + props.token);
         content = <Switch>
             <Route path="/" exact component={LoginForm}/>
-            <Redirect to="/" />
             <Route path="/userreg" exact component={RegisterForm}/>
             <Route path="/theaterreg" exact component={TheaterRegistration}/>
+            <Redirect to="/" />
         </Switch>
     } else if(props.location.pathname.startsWith("/") && props.token) {
         console.log("Login In " + true + " token " + props.token);
@@ -38,7 +38,7 @@ const RegisterTask = (props) => {
 
                 <Route path="/movie" exact component={StateTask} />
                 <Route path="/movie/movieAdd" exact component={StateTask} />
-                <Redirect to="/city" />
+                <Redirect to="/movie" />
             </Switch>
             </div>
         </>

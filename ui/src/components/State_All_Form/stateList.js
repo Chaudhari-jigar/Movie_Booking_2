@@ -47,7 +47,7 @@ const StateList = (props) => {
         errors.state_nameError = ""
     setError(errors);
     if(errors.IsValid==true){
-      // await props.updatestatedata(obj._id, obj);
+      await props.updatestatedata(obj._id, obj);
       usetShow(false);
       obj.state_name = "";
       props.singlestate.state_name = "";

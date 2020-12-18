@@ -17,7 +17,11 @@ const formItemLayout = {
 const CityList = (props) => {
   const { Option } = Select;
   const [form] = Form.useForm();
-
+  const [error,setError] = useState({
+    state_nameError:'',
+    IsValid:false,
+    city_nameError:""
+})
   const [obj, setMyObj1] = useState({
     _id: "",
     city_name: "",
@@ -31,7 +35,15 @@ const CityList = (props) => {
   useEffect(() => {
     props.fetchcitiesdata();
     props.fetchstatedata();
-  }, [props.fetchcitiesdata, props.fetchstatedata])
+    if (props.singlecities.city_name) {
+      console.log(props.singlecities.city_name)
+      let olddata={...obj};
+      olddata.city_name = props.singlecities.city_name;
+      olddata._id = props.singlecities._id;
+      olddata.state_id=props.singlecities.state_id;
+      setMyObj1(olddata);
+    }
+  }, [props.fetchcitiesdata, props.fetchstatedata,props.singlecities])
 
   const deleteHandler = async (id) => {
     await props.deletecitiesdata(id);
@@ -39,16 +51,31 @@ const CityList = (props) => {
   }
 
   const SingleSubmit = async () => {
-    try {
-      const values = await form.validateFields();
-      await props.updatecitiesdata(obj._id, obj);
-      setOp(true);
-      usetShow(false);
-      obj._id = props.singlecities._id;
-      obj.city_name = "";
-    } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
+    let errors = { ...error, IsValid : true };
+    if(!obj.state_id || obj.state_id === "" || !obj.city_name || obj.city_name === "")
+    {
+      if(!obj.state_id || obj.state_id === ""){
+        errors.IsValid = false;
+        errors.state_nameError = "StateName Is Required "
+      }
+      if(!obj.city_name || obj.city_name === ""){
+        errors.IsValid = false;
+        errors.city_nameError = "cityname Is Required "
+      }
+
+    }else{
+        errors.state_nameError = ""
+        errors.city_nameError = ""
     }
+      setError(errors);
+      if(errors.IsValid==true){
+        await props.updatecitiesdata(obj._id, obj);
+        setOp(true);
+        usetShow(false);
+        obj._id = props.singlecities._id;
+        obj.city_name = "";
+      }
+    
   }
 
   const handleClose = () => setShow(false);
@@ -65,12 +92,12 @@ const CityList = (props) => {
     usetShow(false)
   };
 
-  if (props.singlecities.city_name && !obj.city_name) {
-    if(op!=false){
-      console.log(op);
-      setMyObj1(props.singlecities)
-    }
-  }
+  // if (props.singlecities.city_name && !obj.city_name) {
+  //   if(op!=false){
+  //     console.log(op);
+  //     setMyObj1(props.singlecities)
+  //   }
+  // }
   const handleUpdate = async (_id) => {
     await props.singlecitiesDataFetch(_id);
     usetShow(true);
@@ -116,9 +143,7 @@ const CityList = (props) => {
       olddata[name] = e;
     }
     setOp(false);
-    console.log(olddata);
     setMyObj1(olddata);
-    console.log(obj);
   }
 
   const optionTemplate = () => {
@@ -151,10 +176,16 @@ const CityList = (props) => {
         onCancel={() => SingleClose()}>
         <Form form={form} name="CityList">
           <Input type="hidden" name="_id" value={obj._id} onChange={(e) => HandleChange(e, "_id")} />
-          <Form.Item {...formItemLayout} label="Enter City Name:-" rules={[{ required: true, message: 'Please required City!!' }]}>
+          <Form.Item {...formItemLayout} label="Enter City Name:-" 
+                hasFeedback
+                validateStatus={(error.city_nameError)?"error":"success"}
+                help={error.city_nameError}>
             <Input type="text" name="city_name" value={obj.city_name || " "} onChange={(e) => { HandleChange(e, "city_name") }} placeholder="Enter city name ..." />
           </Form.Item>
-          <Form.Item {...formItemLayout} label="Select State :-" rules={[{ required: true, message: 'Please required State!' }]}>
+          <Form.Item {...formItemLayout} label="Select State :-" 
+                hasFeedback
+                validateStatus={(error.state_nameError)?"error":"success"}
+                help={error.state_nameError}>
             <Select name="state_id" value={obj.state_id} onChange={(e) => HandleChange(e, "state_id")} placeholder="------ Select State-----">
               {optionTemplate()}
             </Select>

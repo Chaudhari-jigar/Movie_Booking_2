@@ -1,99 +1,164 @@
 import React,{useState,useEffect} from 'react';
 // import {Button,Card,Table,Modal,Form, Spinner }from 'react-bootstrap';
-import {fetchmoviedata,addmoviedata,singlemovieDataFetch,deletemoviedata} from '../../store/action/movieAction';
+import {fetchmoviedata,updatemoviedata,singlemovieDataFetch,deletemoviedata} from '../../store/action/movieAction';
 import {connect} from 'react-redux';
 import '../state.css';
-import { Table, Space, Button, Breadcrumb, Card, Form, Modal, Input, Select } from 'antd';
+import { Table, Space, Button, Breadcrumb, Card, Form, Modal, Input, Row, Col,DatePicker, } from 'antd';
+import moment from 'moment';
 
+const formItemLayout = {
+  labelCol: {
+    span: 24,
+  },
+  wrapperCol: {
+    span: 12,
+  },
+};
+const formTailLayout = {
+  labelCol: {
+    span: 4,
+  },
+  wrapperCol: {
+    span: 8,
+    offset: 4,
+  },
+};
 
 const MovieList = (props) => {
-  // console.log(props.singlestate);
+  const {form} =Form.useForm();
   const [obj,setMyObj1]= useState({
     _id:"",
     moviename:"",
     releasedate:"",
-    movie_status:"",
     movie_category:"",
     director_name:"",
     Actors_name:"",
     movie_description:"",
     movie_type:"",
     movie_logo:"",
+    movie_status:"",
     booking_status:""
   })
   
+  const [op,setOp] = useState(true);
   const [ids,setIds] = useState("");
+  const [show, setShow] = useState(false);
+  const [ushow, usetShow] = useState(false);
   
+  const [error,setError] = useState({
+    movie_nameError:'',
+    IsValid:false,
+})
   useEffect(()=>{    
     props.fetchmoviedata();
-  },[props.fetchmoviedata])
+    if (props.singlemovie.moviename || props.singlemovie.movie_category) {
+      console.log(props.singlemovie.moviename)
+      let olddata={...obj};
+      olddata.moviename = props.singlemovie.moviename;
+      olddata._id = props.singlemovie._id;
+      olddata.movie_category=props.singlemovie.movie_category;
+      olddata.releasedate=props.singlemovie.releasedate;
+      olddata.director_name=props.singlemovie.director_name;
+      olddata.Actors_name=props.singlemovie.Actors_name;
+      olddata.movie_description=props.singlemovie.movie_description;
+      olddata.movie_type=props.singlemovie.movie_type;
+      olddata.movie_logo=props.singlemovie.movie_logo;
+      olddata.movie_status=props.singlemovie.movie_status;
+      olddata.booking_status=props.singlemovie.booking_status;
+      setMyObj1(olddata);
+    }
+  },[props.fetchmoviedata,props.singlemovie])
   
-const deleteHandler = async (id) =>{
-  await props.deletemoviedata(id);
-  setShow(false);
-}
+  const deleteHandler = async (id) =>{
+      await props.deletemoviedata(id);
+      setShow(false);
+  }
 
 const SingleSubmit = async () =>{
-  await props.updatestatedata(obj._id,obj);
-  // setMyObj1(props.singlestate);
-  console.log(obj);
-  //  console.log(obj._id);
-  usetShow(false);
-  obj._id=props.singlestate._id;
-  obj.state_name="";
-  //  props.history.replace(`/state`);
+  let errors = { ...error, IsValid : true };
+    if(!obj.moviename || obj.moviename === "")
+    {
+      console.log(errors.IsValid);
+      if(!obj.moviename || obj.moviename === ""){
+        errors.IsValid = false;
+        errors.movie_nameError = "moviename Is Required "
+      }
+
+    }else{
+        errors.movie_nameError = ""
+    }
+    setError(errors);
+    if(errors.IsValid==true){
+      // const values = await form.validateFields();
+      console.log(obj);
+          const formdata = new FormData();
+          formdata.append("moviename",obj.moviename);
+          formdata.append("releasedate",obj.releasedate);
+          formdata.append("movie_status",obj.movie_status);
+          formdata.append("movie_category",obj.movie_category);
+          formdata.append("director_name",obj.director_name);
+          formdata.append("Actors_name",obj.Actors_name);
+          formdata.append("movie_description",obj.movie_description);
+          formdata.append("movie_type",obj.movie_type);
+          formdata.append("movie_logo",obj.movie_logo);
+          formdata.append("booking_status",obj.booking_status);
+        await props.updatemoviedata(obj._id,formdata);
+        // setOp(true);
+        usetShow(false);
+        obj._id=props.singlemovie._id;
+        obj.moviename="";
+        props.history.replace(`/movie`);
+    }
 }
 
-const [show, setShow] = useState(false);
-const [ushow, usetShow] = useState(false);
 
 const handleClose = () => setShow(false);
-const handleShow = (id) => {setShow(true);
+const handleShow = (id) => {
+  let errors = { ...error, IsValid : true };
+  setError(errors);
+  // setOp(true);
+  setShow(true);
   setIds(id);
 }
 
-// const SingleClose = () => { 
-//   obj.state_name="";
-//   usetShow(false) 
-// };
+const SingleClose = () => {
+  let errors = { ...error, IsValid : true }; 
+  errors.movie_nameError = ""
+  setError(errors);
+  // setOp(true);
+  obj.moviename="";
+  props.singlemovie.moviename = "";
+  usetShow(false) 
+};
 
-// if(props.singlestate.state_name && !obj.state_name){
-//   setMyObj1(props.singlestate)
-//   console.log(obj);
+// if(props.singlemovie.moviename && !obj.moviename){
+//   // if(op!=false){
+//     setMyObj1(props.singlemovie)
+//   // }
 // }
 const handleUpdate = async (_id) => {
-  await props.singlestateDataFetch(_id); 
+  await props.singlemovieDataFetch(_id); 
   usetShow(true);
 }
-
-  const renderTableData = () => {
-    return props.movies.map((movieslist, index) => {
-        
-       const { _id, moviename,releasedate,movie_status,movie_description,director_name,Actors_name,movie_category,movie_type,booking_status,movie_logo } = movieslist
-       
-       return (
-          <tr key={_id}>
-             <td>{index+1}</td>
-             <td>{moviename}</td>
-             <td>{releasedate}</td>
-             <td>{movie_status}</td>
-             <td>{movie_description}</td>
-             <td>{director_name}</td>
-             <td>{Actors_name}</td>
-             <td>{movie_category}</td>
-             <td>{movie_type}</td>
-             <td>{movie_status}</td>
-             <td><img src={"http://localhost:3001"+movie_logo} height="15px" width="15px"/></td>
-             <td><Button  >UPDATE</Button></td>
-             <td><Button variant="danger" >Delete</Button></td>
-          </tr>
-       )
-    })
- }
  const HandleChange = (e,name) =>{
   let olddata = {...obj};
-  olddata[name] = e.target.value;
+  if (name == "movie_logo") {
+    console.log(name);
+    const { target: { files } } = e
+    olddata[name] = files.length === 1 ? files[0] : files
+    olddata[name] = e.target.files[0];
+  }else if(name == "releasedate"){
+    if(e!=null){
+      olddata[name] = new Date(e._d).toLocaleDateString();
+    }
+  }else
+  {
+    olddata[name] = e.target.value;
+  }
+  // console.log(olddata);
+  // setOp(false);
   setMyObj1(olddata);
+  console.log(obj);
 }
 const columns = [
   {
@@ -114,12 +179,6 @@ const columns = [
     key: 'releasedate',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.releasedate.length - b.releasedate.length,
-  },{
-    title: () => <b>Movie Status</b>,
-    dataIndex: 'movie_status',
-    key: 'movie_status',
-    defaultSortOrder: 'descend',
-    sorter: (a, b) => a.movie_status.length - b.movie_status.length,
   },{
     title: () => <b>Movie Description</b>,
     dataIndex: 'movie_description',
@@ -154,6 +213,12 @@ const columns = [
     title: () => <b>Movie Status</b>,
     dataIndex: 'movie_status',
     key: 'movie_status',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.movie_status.length - b.movie_status.length,
+  },{
+    title: () => <b>Booking Status</b>,
+    dataIndex: 'booking_status',
+    key: 'booking_status',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.movie_status - b.movie_status,
   },{
@@ -200,6 +265,87 @@ const columns = [
         </Card>
       </div>
 
+      {/* Update Record */}
+      <Modal title="Update State"
+        visible={ushow}
+        onOk={() => SingleSubmit()}
+        onCancel={() => SingleClose()}>
+       <Form>
+                      <Row gutter={0}>
+                          <Col span={12} >
+                              <Input type="hidden" name="_id" value={obj._id} onChange={(e) => { HandleChange(e, "_id") }}/>
+                          <Form.Item {...formItemLayout} label="Enter Movie Name:-" 
+                                      hasFeedback
+                                      validateStatus={(error.movie_nameError)?"error":"success"}
+                                      help={error.movie_nameError}
+                                      style={{width: "400px"}}>
+                              <Input type="text" name="moviename" value={obj.moviename} onChange={(e) => { HandleChange(e, "moviename") }} placeholder="Enter moviename ..." style={{maxWidth : "300px", width:"100%"}}/>
+                          </Form.Item>
+                          
+                      </Col>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Movie Category:-" rules={[{ required: true, message: 'Please required movie category!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="movie_category" value={obj.movie_category} onChange={(e) => { HandleChange(e, "movie_category") }} placeholder="Enter movie_category ..." style={{maxWidth : "300px", width:"100%"}}/>
+                          </Form.Item>
+                      </Col>
+                    </Row>
+                      <Row gutter={0}>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Release Date:-" name="releasedate" rules={[{ required: true, message: 'Please required Releasedate!' }]} style={{width: "400px"}}>
+                              <DatePicker onChange={(e) => { HandleChange(e, "releasedate") }} defaultValue={moment(obj.releasedate,"DD/MM/YYYY")}  value={obj.releasedate}/>
+                          </Form.Item>
+                      </Col>
+                        <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Director Name:-" rules={[{ required: true, message: 'Please required director name!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="director_name" value={obj.director_name} onChange={(e) => { HandleChange(e, "director_name") }} placeholder="Enter director_name ..." style={{maxWidth : "300px"}}/>
+                          </Form.Item>
+                          
+                      </Col>
+                      </Row>
+                      <Row gutter={0}>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Actors Name:-" rules={[{ required: true, message: 'Please required actors name!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="Actors_name" value={obj.Actors_name} onChange={(e) => { HandleChange(e, "Actors_name") }} placeholder="Enter Actors ..." style={{maxWidth : "300px"}}/>
+                          </Form.Item>
+                          
+                      </Col>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Movie Description:-" rules={[{ required: true, message: 'Please required movie description!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="movie_description" value={obj.movie_description} onChange={(e) => { HandleChange(e, "movie_description") }} placeholder="Enter movie_description ..." style={{maxWidth : "300px"}}/>
+                          </Form.Item>
+                          </Col>
+                      </Row>
+                      <Row gutter={0}>
+                        <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Movie Type:-" rules={[{ required: true, message: 'Please required movie type!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="movie_type" value={obj.movie_type} onChange={(e) => { HandleChange(e, "movie_type") }} placeholder="Enter movie_type..." style={{maxWidth : "300px"}}/>
+                          </Form.Item>
+                          
+                      </Col>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Choice Movie Logo:-" style={{width: "400px"}}>
+                              <Input type="file" name="movie_logo"  onChange={(e)=>{HandleChange(e,"movie_logo")}} placeholder="Enter movie_logo ..." style={{maxWidth : "100px"}}>
+                              </Input>
+                          </Form.Item>
+                                <img src={"http://localhost:3001"+obj.movie_logo} height="25px" width="25px" />
+                          
+                      </Col>
+                      </Row>
+                      <Row gutter={0}>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Booking Status:-" rules={[{ required: true, message: 'Please required booking status!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="booking_status" value={obj.booking_status} onChange={(e) => { HandleChange(e, "booking_status") }} placeholder="Enter booking_status ..." style={{maxWidth : "300px"}}/>
+                          </Form.Item>
+                          </Col>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Movie Status:-" rules={[{ required: true, message: 'Please required movie status!' }]} style={{width: "400px"}}>
+                              <Input type="text" name="movie_status" value={obj.movie_status} onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} />
+                          </Form.Item>
+                          </Col>
+                      </Row>                          
+                      </Form>
+      </Modal>
+
       {/* Delete Record  */}
       <Modal title="Are you sure!"
         visible={show}
@@ -215,15 +361,15 @@ const mapStateToProps =  (state) => ({
   err:state.movieReducer.error,
   Loading:state.movieReducer.loading,
   movies:state.movieReducer.movies,
-  singlestate:state.stateReducer.singlestate,
+  singlemovie:state.movieReducer.singlemovie,
 })
 
 const mapDispatchToProps = dispatch =>{
   return{
     fetchmoviedata:()=>dispatch(fetchmoviedata()),
-    deletemoviedata:(_id)=>dispatch(deletemoviedata(_id))
-    // updatestatedata:(postdata,put) => dispatch(updatestatedata(postdata,put)),
-    // singlestateDataFetch:(id)=>dispatch(singlestateDataFetch(id))
+    deletemoviedata:(_id)=>dispatch(deletemoviedata(_id)),
+    updatemoviedata:(postdata,put) => dispatch(updatemoviedata(postdata,put)),
+    singlemovieDataFetch:(id)=>dispatch(singlemovieDataFetch(id))
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(MovieList);
