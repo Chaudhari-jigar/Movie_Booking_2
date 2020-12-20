@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { addmoviedata } from "../../store/action/movieAction";
 import { connect } from 'react-redux';
-import { Breadcrumb,Card,Row,Col,DatePicker } from 'antd';
+import { Breadcrumb,Card,Row,Col,DatePicker,Select } from 'antd';
 import moment from 'moment';
 import {
   Form,
   Input,
-  Button
+  Button,
+  Switch
 } from 'antd';
 // import { Row } from 'react-bootstrap';
-
+const {Option} = Select;
 const formItemLayout = {
   labelCol: {
     // span: 5,
@@ -48,6 +49,13 @@ const AddMovie = (props) => {
     try {
         const values = await form.validateFields();
         // console.log(obj);
+        if(obj.booking_status=="" || obj.movie_status==""){
+          if(obj.movie_status==""){
+            obj.booking_status=false;
+          }if(obj.booking_status==""){
+            obj.movie_status=false;
+          }
+        }
         const formdata = new FormData();
         formdata.append("moviename",obj.moviename);
         formdata.append("releasedate",obj.releasedate);
@@ -78,9 +86,10 @@ const AddMovie = (props) => {
       olddata[name] = e.target.files[0];
     }else if(name == "releasedate"){
       if(e!=null){
-
         olddata[name] = new Date(e._d).toLocaleDateString();
       }
+    }else if((name === "movie_type") || (name === "movie_category") || (name === "booking_status") || (name === "movie_status")){
+        olddata[name] = e;
     }else
     {
       olddata[name] = e.target.value;
@@ -110,7 +119,13 @@ const AddMovie = (props) => {
                       </Col>
                       <Col span={12}>
                           <Form.Item {...formItemLayout} label="Enter Movie Category:-" name="movie_category" rules={[{ required: true, message: 'Please required movie category!' }]}>
-                              <Input type="text" name="movie_category" onChange={(e) => { HandleChange(e, "movie_category") }} placeholder="Enter movie_category ..." style={{maxWidth : "300px", width:"100%"}}/>
+                                  <Select name="movie_category" onChange={(e)=>HandleChange(e,"movie_category")} placeholder="------ Select Movie Category-----" allowClear style={{maxWidth : "300px"}}>
+                                      <Option value="A" key={"A"}>A</Option>
+                                      <Option value="B" key={"B"}>B</Option>
+                                      <Option value="C" key={"C"}>C</Option>
+                                      <Option value="D" key={"D"}>D</Option>
+                                  </Select>
+                              {/* <Input type="text" name="movie_category" onChange={(e) => { HandleChange(e, "movie_category") }} placeholder="Enter movie_category ..." style={{maxWidth : "300px", width:"100%"}}/> */}
                           </Form.Item>
                       </Col>
                     </Row>
@@ -143,7 +158,21 @@ const AddMovie = (props) => {
                       <Row gutter={0}>
                         <Col span={12}>
                           <Form.Item {...formItemLayout} label="Enter Movie Type:-" name="movie_type" rules={[{ required: true, message: 'Please required movie type!' }]}>
-                              <Input type="text" name="movie_type" onChange={(e) => { HandleChange(e, "movie_type") }} placeholder="Enter movie_type..." style={{maxWidth : "300px"}}/>
+                                  <Select name="movie_type" onChange={(e)=>HandleChange(e,"movie_type")} placeholder="------ Select Movie Type-----" allowClear style={{maxWidth : "300px"}}>
+                                      <Option value="Action" key={"Action"}>Action</Option>
+                                      <Option value="Comedy" key={"Comedy"}>Comedy</Option>
+                                      <Option value="Drama" key={"Drama"}>Drama</Option>
+                                      <Option value="Fantasy" key={"Fantasy"}>Fantasy</Option>
+                                      <Option value="Horror" key={"Horror"}>Horror</Option>
+                                      <Option value="Mystery" key={"Mystery"}>Mystery</Option>
+                                      <Option value="Romance" key={"Romance"}>Romance</Option>
+                                      <Option value="Thriller" key={"Thriller"}>Thriller</Option>
+                                      <Option value="Western" key={"Western"}>Western</Option>
+                                      <Option value="Crime Film" key={"Crime Film"}>Crime Film</Option>
+                                      <Option value="Romantic Comedy" key={"Romantic Comedy"}>Romantic Comedy</Option>
+                                      <Option value="Documentary" key={"Documentary"}>Documentary</Option>
+                                  </Select>
+                              {/* <Input type="text" name="movie_type" onChange={(e) => { HandleChange(e, "movie_type") }} placeholder="Enter movie_type..." style={{maxWidth : "300px"}}/> */}
                           </Form.Item>
                           
                       </Col>
@@ -156,19 +185,23 @@ const AddMovie = (props) => {
                       </Row>
                       <Row gutter={0}>
                       <Col span={12}>
-                          <Form.Item {...formItemLayout} label="Enter Booking Status:-" name="booking_status" rules={[{ required: true, message: 'Please required booking status!' }]}>
-                              <Input type="text" name="booking_status" onChange={(e) => { HandleChange(e, "booking_status") }} placeholder="Enter booking_status ..." style={{maxWidth : "300px"}}/>
+                          <Form.Item {...formItemLayout} label="Select Booking Status:-" name="booking_status" valuePropName="checked" >
+                          {/* <Form.Item label="Switch"> */}
+                              <Switch name="booking_status" onChange={(e) => { HandleChange(e, "booking_status") }} required/>
+                            {/* </Form.Item> */}
+                              {/* <Input type="text" name="booking_status" onChange={(e) => { HandleChange(e, "booking_status") }} placeholder="Enter booking_status ..." style={{maxWidth : "300px"}}/> */}
                           </Form.Item>
                           </Col>
                       <Col span={12}>
-                          <Form.Item {...formItemLayout} label="Enter Movie Status:-" name="movie_status" rules={[{ required: true, message: 'Please required movie status!' }]}>
-                              <Input type="text" name="movie_status" onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} />
+                          <Form.Item {...formItemLayout} label="Select Movie Status:-" name="movie_status">
+                          <Switch name="movie_status" onChange={(e) => { HandleChange(e, "movie_status") }} />
+                              {/* <Input type="text" name="movie_status" onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} /> */}
                           </Form.Item>
                           </Col>
                       </Row>
                         
                            <Form.Item {...formTailLayout} label=""> 
-                                <Button type="primary" onClick={(e) =>handleSubmit()} loading={props.loading}>Add City</Button>
+                                <Button type="primary" onClick={(e) =>handleSubmit()} loading={props.loading}>Add Movie</Button>
                           </Form.Item>                           
                       </Form>
               </Card>

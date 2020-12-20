@@ -3,9 +3,10 @@ import React,{useState,useEffect} from 'react';
 import {fetchmoviedata,updatemoviedata,singlemovieDataFetch,deletemoviedata} from '../../store/action/movieAction';
 import {connect} from 'react-redux';
 import '../state.css';
-import { Table, Space, Button, Breadcrumb, Card, Form, Modal, Input, Row, Col,DatePicker, } from 'antd';
+import { Table, Space, Button, Breadcrumb, Card, Form, Modal, Input, Row, Col,DatePicker,Switch,Select } from 'antd';
 import moment from 'moment';
 
+const {Option} = Select;
 const formItemLayout = {
   labelCol: {
     span: 24,
@@ -51,7 +52,7 @@ const MovieList = (props) => {
 })
   useEffect(()=>{    
     props.fetchmoviedata();
-    if (props.singlemovie.moviename || props.singlemovie.movie_category) {
+    if (props.singlemovie.moviename || props.singlemovie.movie_category || props.singlemovie.releasedate) {
       console.log(props.singlemovie.moviename)
       let olddata={...obj};
       olddata.moviename = props.singlemovie.moviename;
@@ -63,8 +64,16 @@ const MovieList = (props) => {
       olddata.movie_description=props.singlemovie.movie_description;
       olddata.movie_type=props.singlemovie.movie_type;
       olddata.movie_logo=props.singlemovie.movie_logo;
-      olddata.movie_status=props.singlemovie.movie_status;
-      olddata.booking_status=props.singlemovie.booking_status;
+      if(props.singlemovie.movie_status=="true"){
+        olddata.movie_status=true;
+      }else{
+        olddata.movie_status=false;        
+      }
+      if(props.singlemovie.booking_status=="true"){
+        olddata.booking_status=true;
+      }else{
+        olddata.booking_status=false;
+      }
       setMyObj1(olddata);
     }
   },[props.fetchmoviedata,props.singlemovie])
@@ -126,6 +135,8 @@ const SingleClose = () => {
   errors.movie_nameError = ""
   setError(errors);
   // setOp(true);
+  obj.releasedate="";
+  obj.booking_status=false;
   obj.moviename="";
   props.singlemovie.moviename = "";
   usetShow(false) 
@@ -151,6 +162,8 @@ const handleUpdate = async (_id) => {
     if(e!=null){
       olddata[name] = new Date(e._d).toLocaleDateString();
     }
+  }else if((name=="booking_status") || (name==="movie_status") || (name === "movie_type")  || (name === "movie_category")){
+      olddata[name]=e;
   }else
   {
     olddata[name] = e.target.value;
@@ -211,13 +224,13 @@ const columns = [
     // sorter: (a, b) => a.movie_type.length - b.movie_types.length,
   },{
     title: () => <b>Movie Status</b>,
-    dataIndex: 'movie_status',
+    render : (text, record, index) => text.movie_status=="true"?"Available":"Closed",
     key: 'movie_status',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.movie_status.length - b.movie_status.length,
   },{
     title: () => <b>Booking Status</b>,
-    dataIndex: 'booking_status',
+    render : (text, record, index) => text.booking_status=="true"?"Available":"Pending",
     key: 'booking_status',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.movie_status - b.movie_status,
@@ -285,14 +298,20 @@ const columns = [
                       </Col>
                       <Col span={12}>
                           <Form.Item {...formItemLayout} label="Enter Movie Category:-" rules={[{ required: true, message: 'Please required movie category!' }]} style={{width: "400px"}}>
-                              <Input type="text" name="movie_category" value={obj.movie_category} onChange={(e) => { HandleChange(e, "movie_category") }} placeholder="Enter movie_category ..." style={{maxWidth : "300px", width:"100%"}}/>
+                                  <Select name="movie_category" value={obj.movie_category} onChange={(e)=>HandleChange(e,"movie_category")} placeholder="------ Select Movie Category-----" allowClear style={{maxWidth : "300px"}}>
+                                      <Option value="A" key={"A"}>A</Option>
+                                      <Option value="B" key={"B"}>B</Option>
+                                      <Option value="C" key={"C"}>C</Option>
+                                      <Option value="D" key={"D"}>D</Option>
+                                  </Select>
+                              {/* <Input type="text" name="movie_category" value={obj.movie_category} onChange={(e) => { HandleChange(e, "movie_category") }} placeholder="Enter movie_category ..." style={{maxWidth : "300px", width:"100%"}}/> */}
                           </Form.Item>
                       </Col>
                     </Row>
                       <Row gutter={0}>
                       <Col span={12}>
-                          <Form.Item {...formItemLayout} label="Enter Release Date:-" name="releasedate" rules={[{ required: true, message: 'Please required Releasedate!' }]} style={{width: "400px"}}>
-                              <DatePicker onChange={(e) => { HandleChange(e, "releasedate") }} defaultValue={moment(obj.releasedate,"DD/MM/YYYY")}  value={obj.releasedate}/>
+                          <Form.Item {...formItemLayout} label="Enter Release Date:-" rules={[{ required: true, message: 'Please required Releasedate!' }]} style={{width: "400px"}}>
+                              <DatePicker name="releasedate" onChange={(e) => { HandleChange(e, "releasedate") }} value={moment(obj.releasedate,"MM/DD/ YYYY")} />
                           </Form.Item>
                       </Col>
                         <Col span={12}>
@@ -318,7 +337,21 @@ const columns = [
                       <Row gutter={0}>
                         <Col span={12}>
                           <Form.Item {...formItemLayout} label="Enter Movie Type:-" rules={[{ required: true, message: 'Please required movie type!' }]} style={{width: "400px"}}>
-                              <Input type="text" name="movie_type" value={obj.movie_type} onChange={(e) => { HandleChange(e, "movie_type") }} placeholder="Enter movie_type..." style={{maxWidth : "300px"}}/>
+                          <Select name="movie_type" value={obj.movie_type} onChange={(e)=>HandleChange(e,"movie_type")} placeholder="------ Select Movie Type-----" allowClear style={{maxWidth : "300px"}}>
+                                      <Option value="Action" key={"Action"}>Action</Option>
+                                      <Option value="Comedy" key={"Comedy"}>Comedy</Option>
+                                      <Option value="Drama" key={"Drama"}>Drama</Option>
+                                      <Option value="Fantasy" key={"Fantasy"}>Fantasy</Option>
+                                      <Option value="Horror" key={"Horror"}>Horror</Option>
+                                      <Option value="Mystery" key={"Mystery"}>Mystery</Option>
+                                      <Option value="Romance" key={"Romance"}>Romance</Option>
+                                      <Option value="Thriller" key={"Thriller"}>Thriller</Option>
+                                      <Option value="Western" key={"Western"}>Western</Option>
+                                      <Option value="Crime Film" key={"Crime Film"}>Crime Film</Option>
+                                      <Option value="Romantic Comedy" key={"Romantic Comedy"}>Romantic Comedy</Option>
+                                      <Option value="Documentary" key={"Documentary"}>Documentary</Option>
+                                  </Select>
+                              {/* <Input type="text" name="movie_type" value={obj.movie_type} onChange={(e) => { HandleChange(e, "movie_type") }} placeholder="Enter movie_type..." style={{maxWidth : "300px"}}/> */}
                           </Form.Item>
                           
                       </Col>
@@ -333,13 +366,17 @@ const columns = [
                       </Row>
                       <Row gutter={0}>
                       <Col span={12}>
-                          <Form.Item {...formItemLayout} label="Enter Booking Status:-" rules={[{ required: true, message: 'Please required booking status!' }]} style={{width: "400px"}}>
-                              <Input type="text" name="booking_status" value={obj.booking_status} onChange={(e) => { HandleChange(e, "booking_status") }} placeholder="Enter booking_status ..." style={{maxWidth : "300px"}}/>
+                          <Form.Item {...formItemLayout} label="Enter Booking Status:-">
+                            <Switch name="booking_status" checked={Boolean(obj.booking_status)==true} onChange={(e) => { HandleChange(e, "booking_status") }}  style={{ maxWidth: "300px" }}>
+                                
+                            </Switch>
+                              {/* <Input type="text" name="booking_status" value={obj.booking_status} onChange={(e) => { HandleChange(e, "booking_status") }} placeholder="Enter booking_status ..." style={{maxWidth : "300px"}}/> */}
                           </Form.Item>
                           </Col>
                       <Col span={12}>
-                          <Form.Item {...formItemLayout} label="Enter Movie Status:-" rules={[{ required: true, message: 'Please required movie status!' }]} style={{width: "400px"}}>
-                              <Input type="text" name="movie_status" value={obj.movie_status} onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} />
+                          <Form.Item {...formItemLayout} label="Enter Movie Status:-">
+                          <Switch name="movie_status" checked={Boolean(obj.movie_status)==true} onChange={(e) => { HandleChange(e, "movie_status") }}  style={{ maxWidth: "300px" }}/>
+                              {/* <Input type="text" name="movie_status" value={obj.movie_status} onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} /> */}
                           </Form.Item>
                           </Col>
                       </Row>                          
