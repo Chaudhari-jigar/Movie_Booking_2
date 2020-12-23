@@ -52,11 +52,6 @@ router.get('/changepassword/:pass/:newpass', auth, async (req, res) => {
         res.setHeader('Content-type', 'application/json');
         res.statusCode = 400;
         res.end(JSON.stringify({message: err.message}));
-        // throw err.message;
-        // res.send({StatusCode:404})
-            // console.log("ChangePassword ERROR");
-    //     // "ChangePassword ERROR Not Call";
-    //     // next(err)
     }
 });
 

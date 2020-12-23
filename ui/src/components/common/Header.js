@@ -57,6 +57,9 @@ const SiderDemo = (props) => {
       const changePassword = async()=>{
           let errors = { ...error, IsValid : true };
             if(!obj.new_password || !obj.password || !obj.confirm_password ){
+              errors.confirmError = "";
+              errors.newError = "";
+              errors.passwordError = "";
               if(!obj.new_password){
                 errors.IsValid = false;
                 errors.newError = "Please enter new password !!"
@@ -70,6 +73,8 @@ const SiderDemo = (props) => {
                 errors.confirmError = "Please enter confirm password !!"
               }
             }else if(obj.new_password!=obj.confirm_password){
+                    errors.newError = "";
+                    errors.passwordError = "";
                   if(obj.new_password!=obj.confirm_password){
                     errors.IsValid = false;
                     errors.confirmError = "Confirm Password Is Not Matched"
@@ -150,11 +155,11 @@ const SiderDemo = (props) => {
             })}
           <Dropdown.Button
                 style={{ float: 'right',marginTop: "20px", marginRight: "13px" }}
-                // className="dropdown-btn"
                 overlay={userMenu}
                 icon={
                   <UserOutlined
                   style={{
+                    marginTop: "-3px",
                     fontSize: '28px',
                     backgroundColor: '#f0f0f0',
                     borderRadius: '50%',
@@ -165,30 +170,32 @@ const SiderDemo = (props) => {
           </Header>
             {props.content}
           </Layout>
-
               <Modal title="Are you sure!"
               visible={show}
               onOk={() => changePassword()}
               onCancel={() => handleClose()}>
+                
                   <Form>
-                    {/* <Input type="hidden" name="_id" value={obj._id} onChange={(e) => HandleChange(e, "_id")} placeholder="Enter state name ..." /> */}
                     <Form.Item label="Enter Old Password:-"
                         hasFeedback
+                        style={{    marginLeft:"30px"}}
                         validateStatus={(error.passwordError)?"error":"success"}
                         help={error.passwordError}>                  
-                          <Input type="text" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="password"  onChange={(e) => HandleChange(e, "password")} placeholder="Enter old password ..." />
+                          <Input type="password" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="password"  onChange={(e) => HandleChange(e, "password")} placeholder="Enter old password ..." />
                         </Form.Item>
                     <Form.Item label="Enter New Password:-"
                         hasFeedback
+                        style={{    marginLeft:"24px"}}
                         validateStatus={(error.newError)?"error":"success"}
                         help={error.newError}>                  
-                        <Input type="text" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="new_password"  onChange={(e) => HandleChange(e, "new_password")} placeholder="Enter New password ..." />
+                        <Input type="password" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="new_password"  onChange={(e) => HandleChange(e, "new_password")} placeholder="Enter New password ..." />
                     </Form.Item>
-                    <Form.Item label="Enter Confirm Password:-"
+                    <Form.Item label="Enter Confirm Password:-       "
                         hasFeedback
+                        style={{    marginLeft:"4px"}}
                         validateStatus={(error.confirmError)?"error":"success"}
                         help={error.confirmError}>                  
-                        <Input type="text" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="confirm_password"  onChange={(e) => HandleChange(e, "confirm_password")} placeholder="Enter Confirm password ..." />
+                        <Input type="password" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="confirm_password"  onChange={(e) => HandleChange(e, "confirm_password")} placeholder="Enter Confirm password ..." />
                     </Form.Item>
                 </Form>
               </Modal>
