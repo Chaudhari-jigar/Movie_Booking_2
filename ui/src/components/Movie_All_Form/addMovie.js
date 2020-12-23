@@ -72,15 +72,12 @@ const AddMovie = (props) => {
         await props.addmoviedata(formdata);
         props.history.replace("/movie");
     } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
     }
   }
 
   const HandleChange = (e, name) => {
     let olddata = { ...obj };
-    console.log(name);
     if (name == "movie_logo") {
-      console.log(name);
       const { target: { files } } = e
       olddata[name] = files.length === 1 ? files[0] : files
       olddata[name] = e.target.files[0];
@@ -94,7 +91,6 @@ const AddMovie = (props) => {
     {
       olddata[name] = e.target.value;
     }
-    console.log(olddata);
     setMyObj(olddata);
   }
 

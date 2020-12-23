@@ -4,6 +4,8 @@ import RegisterForm from './components/All Registration form/userRegistration';
 import LoginForm from './components/All Registration form/loginForm';
 import {login,autoCheckLogin} from './store/action/userAction';
 import TheaterRegistration from './components/All Registration form/theaterRegistration';
+import Temp from './components/All Registration form/Temp';
+import Temp1 from './components/All Registration form/Temp1';
 import StateTask from './stateTask';
 import {connect} from 'react-redux';
 
@@ -12,20 +14,20 @@ const RegisterTask = (props) => {
     useEffect(() => {
         if(props.location.pathname.startsWith("/") && !props.token) {
             props.autoCheckLogin();
+            // props.singleuser
+            console.log(props.singleuser1)
         }
     }, [props.location.pathname,props.autoCheckLogin,props.token])
     let content = <Redirect to="/" />
-
     if(props.location.pathname.startsWith("/") && !props.token) {
         console.log("Login In " + false + " token " + props.token);
         content = <Switch>
-            <Route path="/" exact component={LoginForm}/>
+            <Route path="/login" exact component={LoginForm}/>
             <Route path="/userreg" exact component={RegisterForm}/>
             <Route path="/theaterreg" exact component={TheaterRegistration}/>
-            <Redirect to="/" />
+            <Redirect to="/login" />
         </Switch>
-    } else if(props.location.pathname.startsWith("/") && props.token) {
-        console.log("Login In " + true + " token " + props.token);
+    } else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="admin") {
         content = <>
             <div >
             <Switch>
@@ -38,9 +40,35 @@ const RegisterTask = (props) => {
 
                 <Route path="/movie" exact component={StateTask} />
                 <Route path="/movie/movieAdd" exact component={StateTask} />
-                <Redirect to="/movie" />
+                
+                <Route path="/users/" exact component={StateTask} />
+                <Route path="/theaters/" exact component={StateTask} />
+                <Route path="/dashboard" exact component={StateTask} />
+
+                <Redirect to="/dashboard" />
             </Switch>
             </div>
+        </>    
+    }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="user"){
+        content = <>
+        <div >
+        <Switch>
+            <Route path="/Temp" exact component={Temp} />
+
+            <Redirect to="/Temp" />
+         </Switch>
+        </div> 
+    </>
+     }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="theater"){
+            content = <>
+            <div > 
+             <Switch>
+                
+                <Route path="/Temp1" exact component={Temp1} />
+
+                <Redirect to="/Temp1" />
+            </Switch>
+             </div>
         </>
     }
     return content

@@ -224,13 +224,13 @@ const columns = [
     // sorter: (a, b) => a.movie_type.length - b.movie_types.length,
   },{
     title: () => <b>Movie Status</b>,
-    render : (text, record, index) => text.movie_status=="true"?"Available":"Closed",
+    render : (text, record, index) => <Switch name="movie_status" checked={text.movie_status=="true"} style={{color:"red"}}/>,
     key: 'movie_status',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.movie_status.length - b.movie_status.length,
   },{
     title: () => <b>Booking Status</b>,
-    render : (text, record, index) => text.booking_status=="true"?"Available":"Pending",
+    render : (text, record, index) => text.booking_status=="true"?<div style={{color:"Green"}}>Available</div>:<div style={{color:"Red"}}>Not Available</div>,
     key: 'booking_status',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.movie_status - b.movie_status,
@@ -366,17 +366,17 @@ const columns = [
                       </Row>
                       <Row gutter={0}>
                       <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Enter Movie Status:-">
+                          <Switch name="movie_status" checked={Boolean(obj.movie_status)==true} onChange={(e) => { HandleChange(e, "movie_status") }}  style={{ maxWidth: "300px" }}/>
+                              {/* <Input type="text" name="movie_status" value={obj.movie_status} onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} /> */}
+                          </Form.Item>
+                          </Col>
+                      <Col span={12}>
                           <Form.Item {...formItemLayout} label="Enter Booking Status:-">
                             <Switch name="booking_status" checked={Boolean(obj.booking_status)==true} onChange={(e) => { HandleChange(e, "booking_status") }}  style={{ maxWidth: "300px" }}>
                                 
                             </Switch>
                               {/* <Input type="text" name="booking_status" value={obj.booking_status} onChange={(e) => { HandleChange(e, "booking_status") }} placeholder="Enter booking_status ..." style={{maxWidth : "300px"}}/> */}
-                          </Form.Item>
-                          </Col>
-                      <Col span={12}>
-                          <Form.Item {...formItemLayout} label="Enter Movie Status:-">
-                          <Switch name="movie_status" checked={Boolean(obj.movie_status)==true} onChange={(e) => { HandleChange(e, "movie_status") }}  style={{ maxWidth: "300px" }}/>
-                              {/* <Input type="text" name="movie_status" value={obj.movie_status} onChange={(e) => { HandleChange(e, "movie_status") }} placeholder="Enter movie_status ..." style={{ maxWidth: "300px" }} /> */}
                           </Form.Item>
                           </Col>
                       </Row>                          

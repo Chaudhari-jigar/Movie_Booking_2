@@ -63,8 +63,6 @@ router.get('/fetchAllStatesBystate_id/:id',async(req,res) => {
 router.put('/updatecities/:id',async(req,res) => {
     try{
         const Cities = await city.findByIdAndUpdate({_id:req.params.id},req.body,{new:true}).populate('state_id');
-        // console.log(students);
-       // students.save();
         res.send(Cities);
     }catch(error){
         console.log("updated error !!"+error);

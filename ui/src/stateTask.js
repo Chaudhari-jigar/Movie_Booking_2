@@ -7,6 +7,9 @@ import AddMovie from './components/Movie_All_Form/addMovie';
 import MovieList from './components/Movie_All_Form/movieList';
 import Header2 from './components/common/Header';
 import cityList from './components/City_All_Form/cityList';
+import userList from './components/Users_Theater_List/allUsersList';
+import dashboard from './components/All Registration form/dashboard';
+import theaterList from './components/Users_Theater_List/allTheaterList';
 import { Layout } from 'antd';
 
 
@@ -28,6 +31,9 @@ const StateTask = (props) => {
             <Route path="/state/stateAdd" exact component={StateAddForm}/>
             <Route path="/city/cityAdd" exact component={CityAddForm}/>
             <Route path="/city" exact component={cityList}/>
+            <Route path="/users/" exact component={userList} />
+            <Route path="/theaters/" exact component={theaterList} />
+            <Route path="/dashboard" exact component={dashboard} />
         </Switch>
     </Content>
 

@@ -3,6 +3,7 @@ import  "./../css/login.css";
 import {connect} from 'react-redux';
 import {login} from '../../store/action/userAction';
 import {Form,Button,Input} from "antd";
+import Logo from '../../Movie_logo/Admin3.jpg'
 
 const NewComponent = (props) => {
   const [form] = Form.useForm();
@@ -33,9 +34,12 @@ const NewComponent = (props) => {
       setMyObj(olddata)
     }
       return (  
-        <Form className="login" style={{marginLeft: "500px",marginTop:"90px"}} form={form}
+        <Form className="login" style={{marginLeft: "500px",marginTop:"90px",borderBottomLeftRadius: "50px",
+        borderBottomRightRadius: "50px",
+        borderTopLeftRadius: "50px",
+        borderTopRightRadius: "50px"}} form={form}
         name="register">
-          <header>Login</header>
+          <header style={{marginTop:"35px",color:'#0ec78b'}}><img src={Logo} style={{height: "60px",width: "60px",marginLeft:"05px",borderBottomLeftRadius: "43px",borderBottomRightRadius: "43px",borderTopLeftRadius: "43px",borderTopRightRadius: "43px"}}/> Movie Login</header>
           <div className="field">
               <span className="fa fa-user" />
               <Form.Item

@@ -2,6 +2,9 @@ import * as actionTypes from "../userActionTypes";
 const initalstore ={
     users:[],
     singleuser:{},
+    singleuser1:{},
+    singleuser2:{},
+    singleDashboard:{},
     loading:false,
     error1:"",
     token:null,
@@ -93,6 +96,7 @@ const store = (state = initalstore,action) =>{
                     ...state,
                     loading:false, 
                     token:action.token,
+                    error1:"",
                     singleuser:action.singleuser             
                 }
         case actionTypes.SINGLE_LOGIN_FAILED:
@@ -124,7 +128,8 @@ const store = (state = initalstore,action) =>{
         case "VerifyToken":
             return {
                 ...state,
-                token:action.token
+                token:action.token,
+                singleuser:action.singleuser
             }
         case actionTypes.UPDATE_USER_FAILED:
                 return{
@@ -132,6 +137,120 @@ const store = (state = initalstore,action) =>{
                     loading:false,
                     error1:action.error1
                 }
+        case actionTypes.INIT_FETCH_GETALLUSER:
+            return{
+                ...state,
+                loading:true,
+            }
+        case actionTypes.FETCH_GETALLUSER_SUCCESS:
+            console.log(action.users);
+            return{
+                ...state,
+                loading:false,
+                users:action.users
+            }
+
+        case actionTypes.FETCH_GETALLUSER_FAILED:
+            return{
+                ...state,
+                loading:false,
+                error1:action.error1,
+            }
+        case actionTypes.INIT_FETCH_GETALLTHEATER:
+                return{
+                    ...state,
+                    loading:true,
+                }
+        case actionTypes.FETCH_GETALLTHEATER_SUCCESS:
+            console.log(action.users);
+            return{
+                ...state,
+                loading:false,
+                users:action.users
+            }
+
+        case actionTypes.FETCH_GETALLTHEATER_FAILED:
+            return{
+                ...state,
+                loading:false,
+                error1:action.error1,
+            }
+        case actionTypes.INIT_UPDATE_UPDATEPROFILE:
+                return{
+                    ...state,
+                    loading:true,
+                }
+        case actionTypes.UPDATE_UPDATEPROFILE_SUCCESS:
+            console.log(action.singleuser);
+            return{
+                ...state,
+                loading:false,
+                singleuser1:action.singleuser1
+            }
+
+        case actionTypes.UPDATE_UPDATEPROFILE_FAILED:
+            return{
+                ...state,
+                loading:false,
+                error1:action.error1,
+            }
+        case actionTypes.INIT_SINGLE_FETCHPROFILE:
+                    return{
+                        ...state,
+                        loading:true,    
+                    };
+        case actionTypes.SINGLE_FETCHPROFILE_SUCCESS:
+            // console.log()
+                return{
+                    ...state,
+                    loading:false, 
+                    singleuser1:action.singleuser1             
+                }
+        case actionTypes.SINGLE_FETCHPROFILE_FAILED:
+                return{
+                    ...state,
+                    loading:false,
+                    error1:action.error1
+            }
+        case actionTypes.INIT_SINGLE_FETCHDASHBOARDRECORD:
+                return{
+                    ...state,
+                    loading:true,    
+                };
+        case actionTypes.SINGLE_FETCHDASHBOARDRECORD_SUCCESS:
+        console.log(action.singleDashboard);
+            return{
+                ...state,
+                loading:false, 
+                singleDashboard:action.singleDashboard             
+            }
+        case actionTypes.SINGLE_FETCHDASHBOARDRECORD_FAILED:
+            return{
+                ...state,
+                loading:false,
+                error1:action.error1
+        }
+        case actionTypes.INIT_SINGLE_CHANGEPASSWORD:
+                return{
+                    ...state,
+                    loading:true, 
+                    error1:""
+                };
+        case actionTypes.SINGLE_CHANGEPASSWORD_SUCCESS:
+            console.log(action.singleuser2);
+            return{
+                ...state,
+                loading:false, 
+                error1:"",
+                singleuser2:action.singleuser2,        
+            }
+        case actionTypes.SINGLE_CHANGEPASSWORD_FAILED:
+            console.log(action.error1);
+            return{
+                ...state,
+                loading:false,
+                error1:action.error1
+        }
             default :
                 return state;
     }
