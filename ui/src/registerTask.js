@@ -5,7 +5,7 @@ import LoginForm from './components/All Registration form/loginForm';
 import {login,autoCheckLogin} from './store/action/userAction';
 import TheaterRegistration from './components/All Registration form/theaterRegistration';
 import Temp from './components/All Registration form/Temp';
-import Temp1 from './TheaterTask';
+import TheaterTask from './TheaterTask';
 import StateTask from './stateTask';
 import {connect} from 'react-redux';
 
@@ -54,6 +54,7 @@ const RegisterTask = (props) => {
         <div >
         <Switch>
             <Route path="/Temp" exact component={Temp} />
+            {/* <Route path="/Temp" exact component={Temp} /> */}
 
             <Redirect to="/Temp" />
          </Switch>
@@ -64,7 +65,9 @@ const RegisterTask = (props) => {
             <div > 
              <Switch>
                 
-                <Route path="/theater/dashboard" exact component={Temp1} />
+                <Route path="/theater/dashboard" exact component={TheaterTask} />
+                <Route path="/theater/addScreen" exact component={TheaterTask} />
+                <Route path="/theater/screenList" exact component={TheaterTask} />
 
                 <Redirect to="/theater/dashboard" />
             </Switch>

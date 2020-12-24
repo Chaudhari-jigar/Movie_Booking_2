@@ -51,7 +51,6 @@ const Dashboard = (props) => {
     );
 }
 
-
 const mapDispatchToProps = dispatch =>{
   return{
     fetchDashboradRecord:()=>dispatch(fetchDashboradRecord())

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router'
-import Temp1 from './components/All Registration form/Temp1';
+import Dashboard from './components/TheaterPanel/dashboard';
+import AddScreen from './components/TheaterPanel/addScreen';
+import ScreenList from './components/TheaterPanel/screenList';
 import HeaderTheater from './components/common/HeaderTheater';
 import { Layout } from 'antd';
 
@@ -16,7 +18,10 @@ const TheaterTask = () => {
         }}
         >
         <Switch>
-            <Route path="/theater/dashboard" exact component={Temp1} />
+            <Route path="/theater/dashboard" exact component={Dashboard} />
+            
+            <Route path="/theater/addScreen" exact component={AddScreen} />
+            <Route path="/theater/screenList" exact component={ScreenList} />
         </Switch>
     </Content>
 

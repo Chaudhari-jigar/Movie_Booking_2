@@ -44,8 +44,7 @@ const SiderDemo = (props) => {
         password:"",
         new_password:"",
         confirm_password:""
-      });
-      
+      });      
       
       const handleClose = () => {
         setShow(false);
@@ -93,8 +92,7 @@ const SiderDemo = (props) => {
               } catch {
 
               }
-            }
-          
+            }   
       }
       
       const HandleChange = (e, name) => {
@@ -115,9 +113,9 @@ const SiderDemo = (props) => {
       const userMenu = (
         <Menu>
           <Menu.Item key="admin"><h4><UserOutlined /> Welcome, Admin</h4></Menu.Item>  
-          <Menu.Item key="/prasangadmin/changepassword" onClick={() => handleShow()}><LockOutlined />Change Password</Menu.Item>
+          <Menu.Item key="/admin/changepassword" onClick={() => handleShow()}><LockOutlined />Change Password</Menu.Item>
           <Menu.Divider />
-          <Menu.Item key="/prasangadmin/logout" onClick={() => HandleLogOut()}><LogoutOutlined />Logout</Menu.Item>
+          <Menu.Item key="/admin/logout" onClick={() => HandleLogOut()}><LogoutOutlined />Logout</Menu.Item>
         </Menu>
       );
     return (
