@@ -21,98 +21,96 @@ const { SubMenu } = Menu;
 const TheaterHeader = (props) => {
 
   
-  const [active,setActive] = useState(false);
+  const [active,setActive] =useState(false);
     
-  const [error,setError] =useState({
-    IsValid:true,        
-    confirmError:"",
-    newError:"",
-    passwordError:""
-  });
-  const [show, setShow] = useState(false);
+      const [error,setError] =useState({
+        IsValid:true,        
+        confirmError:"",
+        newError:"",
+        passwordError:""
+      });
+      const [show, setShow] = useState(false);
 
-  useEffect(() =>{
-    if(props.err.length!=0)
-    {
-      setError({
-        passwordError:props.err,
-      })
-      setActive(true);
-      console.log(active);
-    }
-  },[props.err])
-
-  const [obj,setMyObj1] =useState({
-    password:"",
-    new_password:"",
-    confirm_password:""
-  });
-  
-  
-  const handleClose = () => {
-    setShow(false);
-  }
-  const handleShow = async () => {
-    setShow(true);
-  }
-  
-  const changePassword = async(props)=>{
-      let errors = { ...error, IsValid : true };
-        if(!obj.new_password || !obj.password || !obj.confirm_password ){
-          errors.confirmError = "";
-          errors.newError = "";
-          errors.passwordError = "";
-          if(!obj.new_password){
-            errors.IsValid = false;
-            errors.newError = "Please enter new password !!"
-          }
-          if(!obj.password){
-            errors.IsValid = false;
-            errors.passwordError = "Please enter old password !!"
-          }
-          if(!obj.confirm_password){
-            errors.IsValid = false;
-            errors.confirmError = "Please enter confirm password !!"
-          }
-        }else if(obj.new_password!=obj.confirm_password){
-                errors.newError = "";
-                errors.passwordError = "";
-              if(obj.new_password!=obj.confirm_password){
-                errors.IsValid = false;
-                errors.confirmError = "Confirm Password Is Not Matched"
-              }
-        }else{
-          errors.confirmError = "";
-          errors.newError = "";
-          errors.passwordError = "";
-          errors.IsValid=true;
+      useEffect(() =>{
+        if(props.err.length!=0)
+        {
+          setError({
+            passwordError:props.err,
+          })
+          setActive(true);
+          console.log(active);
         }
-        setError(errors);
-        if(errors.IsValid==true){
-          try {
-            await props.changepassword(obj.password,obj.new_password);
-            setShow(false);
-          } catch {
+      },[props.err])
 
-          }
-        }   
-  }
-  
-  const HandleChange = (e, name) => {
-    let olddata = { ...obj };
-    olddata[name] = e.target.value;    
-    setMyObj1(olddata);
-  }
-
-  const HandleLogOut = async () =>{
-    await props.logout();
-  }
-
-    const[collapsed,setCollapsed] = useState(false);
+      const [obj,setMyObj1] =useState({
+        password:"",
+        new_password:"",
+        confirm_password:""
+      });      
       
-    const toggle = () => {
-      setCollapsed(!collapsed);
-    };
+      const handleClose = () => {
+        setShow(false);
+      }
+      const handleShow = async () => {
+        setShow(true);
+      }
+      
+      const changePassword = async()=>{
+          let errors = { ...error, IsValid : true };
+            if(!obj.new_password || !obj.password || !obj.confirm_password ){
+              errors.confirmError = "";
+              errors.newError = "";
+              errors.passwordError = "";
+              if(!obj.new_password){
+                errors.IsValid = false;
+                errors.newError = "Please enter new password !!"
+              }
+              if(!obj.password){
+                errors.IsValid = false;
+                errors.passwordError = "Please enter old password !!"
+              }
+              if(!obj.confirm_password){
+                errors.IsValid = false;
+                errors.confirmError = "Please enter confirm password !!"
+              }
+            }else if(obj.new_password!=obj.confirm_password){
+                    errors.newError = "";
+                    errors.passwordError = "";
+                  if(obj.new_password!=obj.confirm_password){
+                    errors.IsValid = false;
+                    errors.confirmError = "Confirm Password Is Not Matched"
+                  }
+            }else{
+              errors.confirmError = "";
+              errors.newError = "";
+              errors.passwordError = "";
+              errors.IsValid=true;
+            }
+            setError(errors);
+            if(errors.IsValid==true){
+              try {
+                await props.changepassword(obj.password,obj.new_password);
+                setShow(false);
+              } catch {
+
+              }
+            }   
+      }
+      
+      const HandleChange = (e, name) => {
+        let olddata = { ...obj };
+        olddata[name] = e.target.value;    
+        setMyObj1(olddata);
+      }
+
+      const HandleLogOut = async () =>{
+        await props.logout();
+      }
+      const[collapsed,setCollapsed] = useState(false);
+      
+    // const toggle = () => {
+    //   setCollapsed(!collapsed);
+    // };
 
     const onCollapse=() =>{
         if(collapsed==true){
