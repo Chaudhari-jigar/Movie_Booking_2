@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import {Form,Col,Button} from "react-bootstrap";
 import {connect} from 'react-redux';
-import {adduserdata,fetchusersdata} from '../../store/action/userAction';
+import {adduserdata} from '../../store/action/userAction';
 import {fetchstatedata} from '../../store/action/stateAction';
 import {fetchAllStatesBystate_id} from '../../store/action/cityAction';
 import '../register.css';
@@ -13,6 +13,7 @@ const FormPage = (props) => {
 
   const [obj,setMyObj] = useState({
     user_name:"",
+    cinema_name:"",
     password:"",
     email:"",
     gender:"Male",
@@ -25,6 +26,7 @@ const FormPage = (props) => {
   
   const [error,setError]=useState({
     user_name_nameError:"",
+    cinema_nameError:"",
     password_nameError:"",
     gender_nameError:"",
     email_nameError:"",
@@ -41,10 +43,11 @@ const FormPage = (props) => {
     errors.state_nameError="";
     errors.city_nameError="";
     errors.user_name_nameError="";
+    errors.cinema_nameError="";
     errors.password_nameError="";
     errors.email_nameError="";
     errors.isValid=false;
-    if(obj.state_id == "" || obj.city_id == "" || obj.user_name == "" || obj.password == "" || obj.email == "" || obj.email != ""){
+    if(obj.state_id == "" || obj.city_id == "" || obj.user_name == "" || obj.password == "" || obj.email == "" || obj.email != "" || obj.cinema_name!=""){
       if(obj.state_id == ""){
         errors.state_nameError="Please atleast one select state !!"
         errors.isValid=true;
@@ -65,6 +68,10 @@ const FormPage = (props) => {
         errors.email_nameError="Please required email !!"
         errors.isValid=true;
       }
+      if(obj.cinema_name == ""){
+        errors.cinema_nameError="Please required cinema name !!"
+        errors.isValid=true;
+      }
       if(obj.email != ""){
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (!pattern.test(obj.email)) {
@@ -76,6 +83,7 @@ const FormPage = (props) => {
       errors.state_nameError="";
       errors.city_nameError="";
       errors.user_name_nameError="";
+      errors.cinema_nameError="";
       errors.password_nameError="";
       errors.email_nameError="";
       errors.isValid=false;
@@ -84,6 +92,7 @@ const FormPage = (props) => {
       const formdata = new FormData();
       console.log(obj);
       formdata.append("user_name",obj.user_name);
+      formdata.append("cinema_name",obj.cinema_name);
       formdata.append("password",obj.password);
       formdata.append("email",obj.email);
       formdata.append("gender",obj.gender);
@@ -115,7 +124,6 @@ const FormPage = (props) => {
 
   const cityCall =async (id) =>{
     await props.fetchAllStatesBystate_id(id);
-    // console.log(props.cities);
   }
 
   const optionStates = () => {
@@ -179,14 +187,21 @@ const FormPage = (props) => {
                           </Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group as={Col} controlId="formGridEmail2">
+                      <Form.Label style={{marginLeft: "28px"}}>Enter Cinema name:-</Form.Label>
+                      <Form.Control type="text" isInvalid={error.cinema_nameError} placeholder="Enter cinema name ..." name="cinema_name" onChange={(e) => {HandleChange(e,"cinema_name")}}  style={{marginLeft: "28px",width:"250px"}}/>
+                      <Form.Control.Feedback type="invalid" style={{marginLeft: "28px"}}>
+                            {error.cinema_nameError}
+                        </Form.Control.Feedback>
+                        </Form.Group>
+                  </Form.Row>
+                  <Form.Row>
+                      <Form.Group as={Col} controlId="formGridEmail2">
                       <Form.Label style={{marginLeft: "28px"}}>Enter Password:-</Form.Label>
                       <Form.Control type="password" isInvalid={error.password_nameError} placeholder="Enter Password ..." name="password" onChange={(e) => {HandleChange(e,"password")}}  style={{marginLeft: "28px",width:"250px"}}/>
                       <Form.Control.Feedback type="invalid" style={{marginLeft: "28px"}}>
                             {error.password_nameError}
                         </Form.Control.Feedback>
                         </Form.Group>
-                  </Form.Row>
-                  <Form.Row>
                       <Form.Group  as={Col} controlId="formGridEmail">
                         <Form.Label>Enter Email:-</Form.Label>
                         <Form.Control type="email" isInvalid={error.email_nameError} className="form-control" name="email" onChange={(e) => {HandleChange(e,"email")}} onBlur={() => cityCall()} placeholder="Enter email ..."   style={{width:"290px"}}/>
@@ -194,13 +209,19 @@ const FormPage = (props) => {
                             {error.email_nameError}
                         </Form.Control.Feedback>
                       </Form.Group>
+                  </Form.Row>
+                      
+                  <Form.Row>
                       <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Label style={{marginLeft: "28px"}}>Select Gender:-</Form.Label>
                         <Form.Check type="radio" name="gender" value="male" label="Male" style={{marginLeft: "28px"}} onChange={(e) => {HandleChange(e,"gender")}} checked/>
                         <Form.Check type="radio" name="gender" value="female" label="Female" style={{marginLeft: "28px"}} onChange={(e) => {HandleChange(e,"gender")}}/>
                       </Form.Group>
+                      <Form.Group>
+                          <Form.Label>Select User Photo:-</Form.Label>
+                          <Form.Control type="file" name="photo1" onChange={(e) => {HandleChange(e,"photo1")}} style={{maxWidth : "300px"}}/>
+                      </Form.Group> 
                   </Form.Row>
-                      
                   <Form.Row>
                       <Form.Group>
                           <Form.Label>Select State:-</Form.Label>
@@ -224,10 +245,6 @@ const FormPage = (props) => {
                       </Form.Group> 
                   </Form.Row>
                   <Form.Row>
-                      <Form.Group>
-                          <Form.Label>Select User Photo:-</Form.Label>
-                          <Form.Control type="file" name="photo1" onChange={(e) => {HandleChange(e,"photo1")}} style={{maxWidth : "300px"}}/>
-                      </Form.Group> 
                       <Form.Group as={Col} controlId="formGridEmail2">
                           {/* <input type="submit" /> */}
                           <Button className="btnRegister" defaultValue="Register" style={{marginLeft: "28px"}} onClick={handleSubmit}>Submit</Button>

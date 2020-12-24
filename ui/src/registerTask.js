@@ -15,7 +15,7 @@ const RegisterTask = (props) => {
         if(props.location.pathname.startsWith("/") && !props.token) {
             props.autoCheckLogin();
             // props.singleuser
-            console.log(props.singleuser1)
+            console.log(props.singleuser)
         }
     }, [props.location.pathname,props.autoCheckLogin,props.token])
     let content = <Redirect to="/" />

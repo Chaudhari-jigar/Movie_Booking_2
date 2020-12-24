@@ -191,7 +191,7 @@ export const fetchDashboradRecord = () =>{
 }
 
 export const changepassword = (pass,newpass) =>{
-    // console.log(newpass);
+    console.log(newpass);
     return async(dispatch)=>{
         dispatch({
             type:actionTypes.INIT_SINGLE_CHANGEPASSWORD

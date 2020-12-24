@@ -31,6 +31,7 @@ const AllUsersList = (props) => {
         let olddata={...obj};
         olddata._id=props.singleuser1._id;
         olddata.user_name = props.singleuser1.user_name;
+        olddata.cinema_name = props.singleuser1.cinema_name;
         olddata.password = props.singleuser1.password;
         olddata.email = props.singleuser1.email;
         olddata.gender = props.singleuser1.gender;
@@ -64,6 +65,11 @@ const columns = [
     key: 'Index',
     fixed:"left",
     render : (text, record, index) => index+1,
+  },{
+    title: () => <b>Cinema Name</b>,
+    dataIndex: 'cinema_name',
+    key: 'cinema_name',
+    defaultSortOrder: 'descend',
   },{
     title: () => <b>User Name</b>,
     dataIndex: 'user_name',

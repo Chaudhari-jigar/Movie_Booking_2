@@ -8,6 +8,9 @@ const user_scheme = new mongoose.Schema({
         type:String,
         require:true
     },
+    cinema_name:{
+        type:String
+    },
     password:{
         type:String,
         require:true

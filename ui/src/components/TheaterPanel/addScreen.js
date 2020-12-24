@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { addscreen } from '../../store/action/screenAction';
+import {login} from '../../store/action/userAction';
 import { connect } from 'react-redux';
 import { Breadcrumb, Card, } from 'antd';
 import {
@@ -27,11 +28,16 @@ const formTailLayout = {
 };
 
 const AddForm = (props) => {
+    useEffect(()=>{
+        console.log(props.singleuser._id);
+        // props.singleuser;
+    },[props.singleuser])
     const [form] = Form.useForm();
     const [obj, setMyObj] = useState({
         screen_name: "",
         rows: "",
-        cols: ""
+        cols: "",
+        user_id:""
     })
     const [error, setError] = useState({
         screen_nameError: "",
@@ -41,7 +47,11 @@ const AddForm = (props) => {
 
     const handleSubmit = async () => {
         try {
-            await props.addscreen(obj);
+            console.log(props.singleuser._id);
+            let olddata = { ...obj };
+            olddata["user_id"]=props.singleuser._id;
+            setMyObj(olddata);
+            await props.addscreen(olddata);
             props.history.replace("/theater/screenList");
         } catch (errorInfo) {
             console.log('Failed:', errorInfo);
@@ -86,9 +96,16 @@ const AddForm = (props) => {
         </>
     );
 }
+const mapStateToProps =  (state) => ({
+    // err:state.userReducer.error,
+    // Loading:state.userReducer.loading,
+    singleuser:state.userReducer.singleuser,
+  })
 const mapDispatchToProps = dispatch => {
     return {
-        addscreen: (postdata) => dispatch(addscreen(postdata))
+        addscreen: (postdata) => dispatch(addscreen(postdata)),
+        // updateProfile:()=>dispatch(updateProfile())
+
     }
 }
-export default connect(null, mapDispatchToProps)(AddForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);

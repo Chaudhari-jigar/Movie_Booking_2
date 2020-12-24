@@ -11,6 +11,7 @@ const userRouter = require('./router/userRouter');
 const groupRouter = require('./router/groupRouter');
 const authService = require('./router/authService');
 const screenRouter = require('./router/screenRouter');
+const moviereviewRouter = require('./router/moviereviewRouter');
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
         app.use(express.json());
@@ -24,6 +25,7 @@ app.use(fileUpload())
         app.use(groupRouter);
         app.use(authService);
         app.use(screenRouter);
+        app.use(moviereviewRouter);
         app.use(cors());
 
     app.set('view engine','ejs');
@@ -32,5 +34,5 @@ app.use(fileUpload())
         });
 
 app.listen(3001,() =>{
-    console.log("Server is running 3001");
+    console.log("Server is running 3001 !!");
 });

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const state = require("./state");
+const user = require("./user");
 const Screen_Schema = new mongoose.Schema({
     screen_name: {
         type: String,
@@ -12,6 +12,10 @@ const Screen_Schema = new mongoose.Schema({
     cols: {
         type: String,
         require: true
+    },
+    user_id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
     }
 
 })

@@ -21,7 +21,7 @@ const { SubMenu } = Menu;
 const TheaterHeader = (props) => {
 
   
-  const [active,setActive] =useState(false);
+  const [active,setActive] = useState(false);
     
   const [error,setError] =useState({
     IsValid:true,        

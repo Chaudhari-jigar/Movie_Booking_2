@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
+const auth = require("../middleware/auth");
 const screen = require('../model/screen');
 const bodyparser = require('body-parser');
 const router = new express.Router();
 app.use(bodyparser.urlencoded({ extended: false }));
 
-router.get('/getScreen', async (req, res) => {
+router.get('/getscreen', auth, async (req, res) => {
     try {
-        const Screens = await screen.find({});
+        const Screens = await screen.find({ user_id: req.user._id }).populate('user_id');
         if (!Screens) {
             throw new Error("No Record Found !!");
         }
@@ -22,7 +23,8 @@ router.get('/getScreen', async (req, res) => {
 
 router.post('/addscreen', async (req, res) => {
     try {
-        const Screens = await new screen(req.body);
+        console.log(req.body);
+        const Screens = await new screen(req.body).populate('user_id');
         if (!Screens) {
             throw new Error("Content Is Not Found !!");
         }
@@ -38,7 +40,7 @@ router.post('/addscreen', async (req, res) => {
 
 router.delete('/deletescreen/:id', async (req, res) => {
     try {
-        const Screens = await screen.findByIdAndDelete({ _id: req.params.id });
+        const Screens = await screen.findByIdAndDelete({ _id: req.params.id }).populate('user_id');
         if (!Screens) {
             throw new Error("No Record Found !!");
         }
@@ -52,7 +54,7 @@ router.delete('/deletescreen/:id', async (req, res) => {
 
 router.get('/singlescreen/:id', async (req, res) => {
     try {
-        const Screens = await screen.findOne({ _id: req.params.id });
+        const Screens = await screen.findOne({ _id: req.params.id }).populate('user_id');
         if (!Screens) {
             throw new Error("No Record Found !!");
         }
@@ -67,10 +69,7 @@ router.get('/singlescreen/:id', async (req, res) => {
 
 router.put('/updatescreen/:id', async (req, res) => {
     try {
-        const Screens = await screen.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
-        // if (!Screens) {
-        //     throw new Error("No Record Found !!");
-        // }
+        const Screens = await screen.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true }).populate('user_id');
         res.send(Screens);
     } catch (err) {
         console.log(err.message);

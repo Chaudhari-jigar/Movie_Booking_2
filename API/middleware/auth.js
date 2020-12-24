@@ -24,6 +24,7 @@ const auth = async (req,res,next) => {
             errorObj.message = "Authorization required!";
             throw errorObj;
         }
+        console.log(user[0]);
         req.user = user[0];        
         next();
     } catch(error) {

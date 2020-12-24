@@ -7,7 +7,11 @@ export const getscreen = () => {
             type: actionTypes.INIT_FETCH_SCREEN
         })
         try {
-            let response = await axios.get("http://localhost:3001/getscreen")
+            let verifytoken = localStorage.getItem("Token");
+            let response = await axios.get("http://localhost:3001/getscreen", {
+                headers: { 'Authorization': verifytoken }
+            })
+            console.log(response.data);
             dispatch({
                 type: actionTypes.FETCH_SCREEN_SUCCESS,
                 screens: response.data
@@ -24,6 +28,7 @@ export const getscreen = () => {
 }
 
 export const addscreen = (postdata) => {
+    console.log(postdata);
     return async (dispatch) => {
         dispatch({
             type: actionTypes.INIT_ADD_SCREEN
