@@ -3,11 +3,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import stateReducer from './store/reducer/stateReducer';
+import cityReducer from './store/reducer/cityReducer';
+import userReducer from './store/reducer/userReducer';
+import movieReducer from './store/reducer/movieReducer';
+import screenReducer from './store/reducer/screenReducer';
+import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
+import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+
+const rootReducer = combineReducers({
+  stateReducer:stateReducer,
+  cityReducer:cityReducer,
+  movieReducer:movieReducer,
+  userReducer:userReducer,
+  screenReducer:screenReducer
+})
+
+const componseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer,componseEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
-  <React.StrictMode>
+
+    <Provider store={store}>
     <App />
-  </React.StrictMode>,
+    </Provider>,
+  
   document.getElementById('root')
 );
 
