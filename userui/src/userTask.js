@@ -2,9 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router'
 import Header2 from './demo/Header';
 import Index from './demo/index';
+import Sign from './demo/sign-up';
 
 
-const StateTask = (props) => {
+const UserTask = (props) => {
 
     let content = 
         <Switch>
@@ -16,4 +17,4 @@ const StateTask = (props) => {
     </>
 }
 
-export default StateTask
+export default UserTask

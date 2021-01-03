@@ -1,6 +1,7 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import './css/Home';
-import {Select} from 'antd';
+import {fetchmoviedata,updatemoviedata,singlemovieDataFetch,deletemoviedata} from '../store/action/movieAction';
+import {Select,Form} from 'antd';
 // import Logo from './assets/images/logo/logo.png';
 import first from './assets/images/ticket/ticket-tab01.png';
 import second from "./assets/images/ticket/ticket-tab02.png";
@@ -28,9 +29,62 @@ import sports01 from './assets/images/sports/sports01.jpg';
 import sports02 from './assets/images/sports/sports02.jpg';
 import sports03 from './assets/images/sports/sports03.jpg';
 import footerLogo from './assets/images/footer/footer-logo.png';
-
+import {connect} from 'react-redux';
 const {Option} = Select;
-     const Index = () =>{
+     const Index = (props) =>{
+        const {form} =Form.useForm();
+        const [obj,setMyObj1]= useState({
+          _id:"",
+          moviename:"",
+          releasedate:"",
+          movie_category:"",
+          director_name:"",
+          Actors_name:"",
+          movie_description:"",
+          movie_type:"",
+          movie_logo:"",
+          movie_status:"",
+          booking_status:""
+        })
+
+        useEffect(()=>{
+          props.fetchmoviedata();
+        },[props.fetchmoviedata])
+const renderTableData = () => {
+    return props.movies.map((movies, index) => {
+      const { _id, moviename,releasedate,movie_category,movie_type,movie_logo,movie_status,booking_status } = movies
+      return (
+        <div className="col-sm-6 col-lg-4">
+                        <div className="movie-grid">
+                          <div className="movie-thumb c-thumb">
+                            <a href="#0">
+                              <img src={"http://localhost:3001/"+movie_logo} alt="movie"/>
+                            </a>
+                          </div>
+                          <div className="movie-content bg-one">
+                            <h5 className="title m-0">
+                              <a href="#0">{moviename}</a>
+                            </h5>
+                            <ul className="movie-rating-percent">
+                              <li>
+                                <div className="thumb">
+                                  <img src={tomato} alt="movie" />
+                                </div>
+                                <span className="content">88%</span>
+                              </li>
+                              <li>
+                                <div className="thumb">
+                                  <img src={cake} alt="movie" />
+                                </div>
+                                <span className="content">88%</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+      )
+    })
+  }
       return (
         <>
         <section class="banner-section" style={{backgroundColor:"#00123266"}}>
@@ -322,90 +376,7 @@ const {Option} = Select;
                       <a className="view-all" href="movie-grid.html">View All</a>
                     </div>
                     <div className="row mb-30-none justify-content-center">
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="movie-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={movie01} alt="movie" />
-                            </a>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">alone</a>
-                            </h5>
-                            <ul className="movie-rating-percent">
-                              <li>
-                                <div className="thumb">
-                                  <img src={tomato} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                              <li>
-                                <div className="thumb">
-                                  <img src={cake} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="movie-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={movie02} alt="movie" />
-                            </a>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">mars</a>
-                            </h5>
-                            <ul className="movie-rating-percent">
-                              <li>
-                                <div className="thumb">
-                                  <img src={tomato} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                              <li>
-                                <div className="thumb">
-                                  <img src={cake} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="movie-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={movie03} alt="movie" />
-                            </a>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">venus</a>
-                            </h5>
-                            <ul className="movie-rating-percent">
-                              <li>
-                                <div className="thumb">
-                                  <img src={tomato} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                              <li>
-                                <div className="thumb">
-                                  <img src={cake} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+                      {renderTableData()}
                     </div>
                   </div>
                   <div className="article-section padding-bottom">
@@ -558,4 +529,20 @@ const {Option} = Select;
       );
     }
 
-    export default (Index);
+    const mapStateToProps =  (state) => ({
+      err:state.movieReducer.error,
+      Loading:state.movieReducer.loading,
+      movies:state.movieReducer.movies,
+      singlemovie:state.movieReducer.singlemovie,
+    })
+    
+    const mapDispatchToProps = dispatch =>{
+      return{
+        fetchmoviedata:()=>dispatch(fetchmoviedata()),
+        deletemoviedata:(_id)=>dispatch(deletemoviedata(_id)),
+        updatemoviedata:(postdata,put) => dispatch(updatemoviedata(postdata,put)),
+        singlemovieDataFetch:(id)=>dispatch(singlemovieDataFetch(id))
+      }
+    }
+
+    export default connect(mapStateToProps,mapDispatchToProps)(Index);
