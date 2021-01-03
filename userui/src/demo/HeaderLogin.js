@@ -1,108 +1,16 @@
 import React,{useState, useEffect} from 'react';
-import { logout} from '../store/action/userAction';
-import { Menu } from 'antd';
+// import { logout} from '../../store/action/userAction';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 // import Logo from '../../Movie_logo/logo1.png'
 import 'antd/dist/antd.css';
-import {changepassword} from '../store/action/userAction';
+// import {changepassword} from '../../store/action/userAction';
 import './css/Home';
 import Logo from './assets/images/logo/logo.png';
 import newslater from './assets/images/newslater/newslater-bg01.jpg';
 import footerLogo from './assets/images/footer/footer-logo.png';
-import author from './assets/images/blog/author.jpg';
-import { Layout,Modal,Form,Input } from 'antd';
 
-const { Header, Sider } = Layout;
-const { SubMenu } = Menu;
 const SiderDemo = (props) => {
-  
-  const [active,setActive] =useState(false);
-    
-  const [error,setError] =useState({
-    IsValid:true,        
-    confirmError:"",
-    newError:"",
-    passwordError:""
-  });
-  const [show, setShow] = useState(false);
-
-  useEffect(() =>{
-    if(props.err.length!=0)
-    {
-      setError({
-        passwordError:props.err,
-      })
-      setActive(true);
-      console.log(active);
-    }
-  },[props.err])
-
-  const [obj,setMyObj1] =useState({
-    password:"",
-    new_password:"",
-    confirm_password:""
-  });      
-  
-  const handleClose = () => {
-    setShow(false);
-  }
-  const handleShow = async () => {
-    setShow(true);
-  }
-  
-  const changePassword = async()=>{
-      let errors = { ...error, IsValid : true };
-        if(!obj.new_password || !obj.password || !obj.confirm_password ){
-          errors.confirmError = "";
-          errors.newError = "";
-          errors.passwordError = "";
-          if(!obj.new_password){
-            errors.IsValid = false;
-            errors.newError = "Please enter new password !!"
-          }
-          if(!obj.password){
-            errors.IsValid = false;
-            errors.passwordError = "Please enter old password !!"
-          }
-          if(!obj.confirm_password){
-            errors.IsValid = false;
-            errors.confirmError = "Please enter confirm password !!"
-          }
-        }else if(obj.new_password!=obj.confirm_password){
-                errors.newError = "";
-                errors.passwordError = "";
-              if(obj.new_password!=obj.confirm_password){
-                errors.IsValid = false;
-                errors.confirmError = "Confirm Password Is Not Matched"
-              }
-        }else{
-          errors.confirmError = "";
-          errors.newError = "";
-          errors.passwordError = "";
-          errors.IsValid=true;
-        }
-        setError(errors);
-        if(errors.IsValid==true){
-          try {
-            await props.changepassword(obj.password,obj.new_password);
-            setShow(false);
-          } catch {
-
-          }
-        }   
-  }
-  
-  const HandleChange = (e, name) => {
-    let olddata = { ...obj };
-    olddata[name] = e.target.value;    
-    setMyObj1(olddata);
-  }
-
-  const HandleLogOut = async () =>{
-    await props.logout();
-  }
-
     return (
       <>
      <div>
@@ -110,7 +18,17 @@ const SiderDemo = (props) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
           <title>Boleto  - Online Ticket Booking </title>
-         
+          {/* ==========Preloader========== */}
+          {/* <div className="preloader">
+            <div className="preloader-inner">
+              <div className="preloader-icon">
+                <span />
+                <span />
+              </div>
+            </div>
+          </div> */}
+          {/* ==========Preloader========== */}
+          {/* ==========Overlay========== */}
           <div className="overlay" />
           <a href="#0" className="scrollToTop">
             <i className="fas fa-angle-up" />
@@ -127,7 +45,7 @@ const SiderDemo = (props) => {
                 </div>
                 <ul className="menu">
                   <li>
-                    <Link to="/index" className="active">Home</Link>
+                    <a href="/index">Home</a>
                   </li>
                   <li>
                     <a href="#0">movies</a>
@@ -199,7 +117,7 @@ const SiderDemo = (props) => {
                     <a href="#0">pages</a>
                     <ul className="submenu">
                       <li>
-                        <a href="about.html">About Us</a>
+                        <a href="/about-us">About Us</a>
                       </li>
                       <li>
                         <a href="apps-download.html">Apps Download</a>
@@ -222,29 +140,18 @@ const SiderDemo = (props) => {
                         <a href="blog.html">Blog</a>
                       </li>
                       <li>
-                        <a href="blog-details.html">Blog Single</a>
+                        <a href="/sign-sdin">Blog Single</a>
                       </li>
                     </ul>
                   </li>
                   <li>
                     <a href="contact.html">contact</a>
                   </li>
-                  <li >
-                    <div class="blog-thumb">
-                        <img src={author} alt="blog" style={{height:"40px",width:"40px",borderBottomLeftRadius: "35px",borderTopRightRadius: "35px",borderBottomRightRadius: "35px",borderTopLeftRadius: "35px"}}/>
-                    </div>
-                    <ul className="submenu">
-                      <li>
-                      <Menu>
-                        <Menu.Item key="/admin/changepassword" onClick={() => handleShow()}>Change Password</Menu.Item>
-                      </Menu>
-                      </li>
-                      <li>
-                      <Menu>
-                          <Menu.Item key="/admin/logout" onClick={() => HandleLogOut()}>Logout</Menu.Item>
-                      </Menu>
-                      </li>
-                    </ul>
+                  <li>
+                    <a href="about-us">About</a>
+                  </li>
+                  <li className="header-button pr-0">
+                    <a href="/sign-in">Sign IN</a>
                   </li>
                 </ul>
                 <div className="header-bar d-lg-none">
@@ -334,49 +241,8 @@ const SiderDemo = (props) => {
               </div>
             </div>
           </footer>
-              <Modal title="Are you sure!"
-              visible={show}
-              onOk={() => changePassword()}
-              onCancel={() => handleClose()}>
-                
-                  <Form>
-                    <Form.Item label="Enter Old Password:-"
-                        hasFeedback
-                        style={{    marginLeft:"30px"}}
-                        validateStatus={(error.passwordError)?"error":"success"}
-                        help={error.passwordError}>                  
-                          <Input type="password" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="password"  onChange={(e) => HandleChange(e, "password")} placeholder="Enter old password ..." />
-                        </Form.Item>
-                    <Form.Item label="Enter New Password:-"
-                        hasFeedback
-                        style={{    marginLeft:"24px"}}
-                        validateStatus={(error.newError)?"error":"success"}
-                        help={error.newError}>                  
-                        <Input type="password" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="new_password"  onChange={(e) => HandleChange(e, "new_password")} placeholder="Enter New password ..." />
-                    </Form.Item>
-                    <Form.Item label="Enter Confirm Password:-       "
-                        hasFeedback
-                        style={{    marginLeft:"4px"}}
-                        validateStatus={(error.confirmError)?"error":"success"}
-                        help={error.confirmError}>                  
-                        <Input type="password" style={{ backgroundColor: "#e2e2e2", color: "#463334" }} name="confirm_password"  onChange={(e) => HandleChange(e, "confirm_password")} placeholder="Enter Confirm password ..." />
-                    </Form.Item>
-                </Form>
-              </Modal>          
-     </div> 
-       
+     </div>   
      </>
     );
 }
-const mapStateToProps = (state) => ({
-  err: state.userReducer.error1,
-  Loading: state.userReducer.loading,
-  singleuser2: state.userReducer.singleuser2,
-})
-const mapDispatchToProps = dispatch =>{
-  return{
-    logout:()=>dispatch(logout()),
-    changepassword:(pass,newpass)=> dispatch(changepassword(pass,newpass))
-  }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(SiderDemo);
+export default (SiderDemo);

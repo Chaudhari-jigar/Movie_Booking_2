@@ -138,50 +138,25 @@ import accountbg from './assets/images/account/account-bg.jpg';
   }
       return (
         <>
-            <section class="account-section bg_img" data-background={accountbg}  style={{backgroundColor: "#0a1e5e"}}>
+            <section class="account-section bg_img" data-background={accountbg}  style={{backgroundColor: "#0a1e5e",color:"white"}}>
                 <div class="container">
-                    <div class="padding-top padding-bottom">
+                    <div class="">
                         <div class="account-area">
-                            <div class="section-header-3">
+                            <div class="section-header-3" >
                                 <span class="cate">welcome</span>
-                                <h2 class="title">to New Register</h2>
+                                <h2 class="title" style={{color:"white"}}>to New Register</h2>
                             </div>
-                            {/* <form class="account-form">
-                                <div class="form-group">
-                                    <label for="email1">Email<span>*</span></label>
-                                    <input type="text" placeholder="Enter Your Email" id="email1" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="pass1">Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" id="pass1" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="pass2">Confirm Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" id="pass2" required />
-                                </div>
-                                <div class="form-group checkgroup">
-                                    <input type="checkbox" id="bal" required checked />
-                                    <label for="bal">I agree to the <a href="#0">Terms, Privacy Policy</a> and <a href="#0">Fees</a></label>
-                                </div>
-                                <div class="form-group text-center">
-                                    <input type="submit" value="Sign Up" />
-                                </div>
-                            </form> */}
                             <Form style={{marginLeft: "100px"}} class="account-form" style={{color:"white",marginLeft:"72px"}}>
-                                {/* <div class="form-group">
-                                    <label for="email1">Enter Username:-<span>*</span></label>
-                                    <Form.Control type="text" isInvalid={error.user_name_nameError}  placeholder="Enter Username ..." name="user_name" onChange={(e) => {HandleChange(e,"user_name")}} style={{width:"290px"}}/>
-                                </div> */}
                                 <Form.Group  as={Col} controlId="formGridEmail">
                                     <label for="email1">Enter Username:-</label>
-                                    <Form.Control type="text" isInvalid={error.user_name_nameError}  placeholder="Enter Username ..." name="user_name" onChange={(e) => {HandleChange(e,"user_name")}} style={{width:"290px"}}/>
+                                    <Form.Control type="text" isInvalid={error.user_name_nameError}  placeholder="Enter Username ..." name="user_name" onChange={(e) => {HandleChange(e,"user_name")}} style={{width:"310px",height:"38px",color: "white",backgroundColor: "#001232"}}/>
                                     <Form.Control.Feedback type="invalid">
                                         {error.user_name_nameError}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="formGridEmail2">
                                 <label for="email1">Enter Password:-</label>
-                                <Form.Control type="password" isInvalid={error.password_nameError} placeholder="Enter Password ..." name="password" onChange={(e) => {HandleChange(e,"password")}}  style={{width:"290px"}}/>
+                                <Form.Control type="password" isInvalid={error.password_nameError} placeholder="Enter Password ..." name="password" onChange={(e) => {HandleChange(e,"password")}}  style={{width:"310px",height:"38px",color: "white",backgroundColor: "#001232"}}/>
                                 <Form.Control.Feedback type="invalid">
                                         {error.password_nameError}
                                     </Form.Control.Feedback>
@@ -189,20 +164,20 @@ import accountbg from './assets/images/account/account-bg.jpg';
                           
                                 <Form.Group  as={Col} controlId="formGridEmail">
                                     <Form.Label>Enter Email:-</Form.Label>
-                                    <Form.Control type="email" isInvalid={error.email_nameError} className="form-control" name="email" onChange={(e) => {HandleChange(e,"email")}} onBlur={() => cityCall()} placeholder="Enter email ..."   style={{width:"290px"}}/>
+                                    <Form.Control type="email" isInvalid={error.email_nameError} className="form-control" name="email" onChange={(e) => {HandleChange(e,"email")}} onBlur={() => cityCall()} placeholder="Enter email ..."   style={{width:"310px",height:"38px",color: "white",backgroundColor: "#001232"}}/>
                                     <Form.Control.Feedback type="invalid">
                                         {error.email_nameError}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="formGridEmail">
                                     <label for="email1">Select Gender:-</label><br></br>
-                                    Male:-<input type="radio" name="gender" value="male" label="Male" style={{width: "65%",height: "1.5em"}} onChange={(e) => {HandleChange(e,"gender")}} checked/><br></br>
-                                    Female:-<input type="radio" name="gender" value="female" label="Female" style={{width: "57%",height: "1.5em"}} onChange={(e) => {HandleChange(e,"gender")}}/>
+                                    <span style={{marginLeft:"60px"}}>Male</span><input type="radio" name="gender" value="male" label="Male" style={{width: "21%",height: "1.5em"}} onChange={(e) => {HandleChange(e,"gender")}} checked/><br></br>
+                                    <span style={{marginLeft:"60px"}}>FeMale</span><input type="radio" name="gender" value="female" label="Female" style={{width: "15%",height: "1.5em"}} onChange={(e) => {HandleChange(e,"gender")}}/>
                                 </Form.Group>
                            
-                                <Form.Group>
+                                <Form.Group  as={Col} > 
                                     <Form.Label style={{marginLeft:"15px"}}>Select State:-</Form.Label>
-                                    <Form.Control isInvalid={error.state_nameError} className="form-control" as="select" name="state_id" onChange={(e) => {HandleChange(e,"state_id")}}  style={{width:"290px",marginLeft:"15px"}} >
+                                    <Form.Control isInvalid={error.state_nameError} className="form-control" as="select" name="state_id" onChange={(e) => {HandleChange(e,"state_id")}}  style={{width:"310px",height:"38px",color: "white",backgroundColor: "#001232"}}>
                                         <option selected disabled>-----Select -----</option>
                                         {optionStates()}
                                     </Form.Control>
@@ -210,9 +185,9 @@ import accountbg from './assets/images/account/account-bg.jpg';
                                         {error.state_nameError}
                                     </Form.Control.Feedback>
                                 </Form.Group> 
-                                <Form.Group>
+                                <Form.Group  as={Col} >
                                     <Form.Label style={{marginLeft:"15px"}}>Select city:-</Form.Label>
-                                    <Form.Control isInvalid={error.city_nameError} className="form-control" as="select" name="city_id" onChange={(e) => {HandleChange(e,"city_id")}} style={{width:"290px",marginLeft:"15px"}} >
+                                    <Form.Control isInvalid={error.city_nameError} className="form-control" as="select" name="city_id" onChange={(e) => {HandleChange(e,"city_id")}} style={{width:"310px",height:"38px",color: "white",backgroundColor: "#001232"}} >
                                         <option selected disabled>-----Select -----</option>
                                         {optioncities()}
                                     </Form.Control>
@@ -221,12 +196,12 @@ import accountbg from './assets/images/account/account-bg.jpg';
                                     </Form.Control.Feedback>
                                 </Form.Group> 
                           
-                                <Form.Group>
+                                <Form.Group  as={Col} >
                                     <Form.Label style={{marginLeft:"15px"}}>Select User photo:-</Form.Label>
-                                    <Form.Control type="file" name="photo1" onChange={(e) => {HandleChange(e,"photo1")}} style={{maxWidth : "300px",marginLeft:"15px"}}/>
+                                    <Form.Control type="file" name="photo1" onChange={(e) => {HandleChange(e,"photo1")}} style={{maxWidth : "300px"}}/>
                                 </Form.Group> 
-                                <Form.Group controlId="formGridEmail2" class>
-                                    <Button className="btnRegister" defaultValue="Register" style={{marginRight: "181px",width: "97px",height: "46px"}} onClick={handleSubmit}>Submit</Button><br></br>
+                                <Form.Group controlId="formGridEmail2" as={Col} >
+                                    <Button className="btnRegister" style={{marginRight: "214px",width: "100px",height: "32px",marginTop:"20px"}} onClick={handleSubmit}>Register</Button><br></br>
                                 </Form.Group>
                            
                             </Form>

@@ -5,7 +5,8 @@ import index from './demo/index';
 import {login,autoCheckLogin} from './store/action/userAction';
 import TheaterRegistration from './components/All Registration form/theaterRegistration';
 import Temp from './components/All Registration form/Temp';
-import StateTask from './stateTask';
+import UserLoginTask from './userLoginTask';
+import UserTask from  './userTask';
 import {connect} from 'react-redux';
 
 import SignUp from './demo/sign-up';
@@ -14,6 +15,7 @@ import SignIn from './demo/sign-in';
 const RegisterTask = (props) => {
 
     useEffect(() => {
+        console.log(props.singleuser);
         if(props.location.pathname.startsWith("/") && !props.token) {
             props.autoCheckLogin();
             console.log(props.singleuser)
@@ -23,25 +25,19 @@ const RegisterTask = (props) => {
     if(props.location.pathname.startsWith("/") && !props.token) {
         console.log("Login In " + false + " token " + props.token);
         content = <Switch>
-            <Route path="/" exact component={StateTask}/>
+            <Route path="/" exact component={UserLoginTask}/>
+            <Route path="/about-us" exact component={UserLoginTask}/>
             <Route path="/sign-up" exact component={SignUp}/>
             <Route path="/sign-in" exact component={SignIn}/>
             <Redirect to="/" />
         </Switch>
-    } else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="admin") {
-        content = <>
-            <div >
-            <Switch>
-              
-            </Switch>
-            </div>
-        </>    
     }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="user"){
         content = <>
         <div >
         <Switch>
-            <Route path="/" exact component={StateTask}/>
-            <Redirect to="/" />
+            <Route path="/index" exact component={UserTask}/>
+            <Route path="/index/about-us" exact component={UserLoginTask}/>
+            <Redirect to="/index" />
          </Switch>
         </div> 
     </>
