@@ -8,12 +8,14 @@ import Temp from './components/All Registration form/Temp';
 import StateTask from './stateTask';
 import {connect} from 'react-redux';
 
+import SignUp from './demo/sign-up';
+import SignIn from './demo/sign-in';
+
 const RegisterTask = (props) => {
 
     useEffect(() => {
         if(props.location.pathname.startsWith("/") && !props.token) {
             props.autoCheckLogin();
-            // props.singleuser
             console.log(props.singleuser)
         }
     }, [props.location.pathname,props.autoCheckLogin,props.token])
@@ -21,30 +23,16 @@ const RegisterTask = (props) => {
     if(props.location.pathname.startsWith("/") && !props.token) {
         console.log("Login In " + false + " token " + props.token);
         content = <Switch>
-            <Route path="/index" exact component={StateTask}/>
-            {/* <Route path="/userreg" exact component={RegisterForm}/>
-            <Route path="/theaterreg" exact component={TheaterRegistration}/> */}
-            <Redirect to="/index" />
+            <Route path="/" exact component={StateTask}/>
+            <Route path="/sign-up" exact component={SignUp}/>
+            <Route path="/sign-in" exact component={SignIn}/>
+            <Redirect to="/" />
         </Switch>
     } else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="admin") {
         content = <>
             <div >
             <Switch>
-                
-                {/* <Route path="/city" component={StateTask}/>
-                <Route path="/city/cityAdd" exact component={StateTask}/>
-                
-                <Route path="/state/stateAdd" exact component={StateTask}/>
-                <Route path="/state" exact component={StateTask}/>
-
-                <Route path="/movie" exact component={StateTask} />
-                <Route path="/movie/movieAdd" exact component={StateTask} />
-                
-                <Route path="/users/" exact component={StateTask} />
-                <Route path="/theaters/" exact component={StateTask} />
-                <Route path="/dashboard" exact component={StateTask} /> */}
-
-                {/* <Redirect to="/dashboard" /> */}
+              
             </Switch>
             </div>
         </>    
@@ -52,10 +40,8 @@ const RegisterTask = (props) => {
         content = <>
         <div >
         <Switch>
-            <Route path="/Temp" exact component={Temp} />
-            {/* <Route path="/Temp" exact component={Temp} /> */}
-
-            <Redirect to="/Temp" />
+            <Route path="/" exact component={StateTask}/>
+            <Redirect to="/" />
          </Switch>
         </div> 
     </>

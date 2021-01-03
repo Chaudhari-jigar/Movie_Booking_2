@@ -148,7 +148,7 @@ const SiderDemo = (props) => {
                     <a href="contact.html">contact</a>
                   </li>
                   <li className="header-button pr-0">
-                    <a href="sign-up.html">join us</a>
+                    <Link to="/sign-in" className="active">Sign IN</Link>
                   </li>
                 </ul>
                 <div className="header-bar d-lg-none">

@@ -34,7 +34,7 @@ router.post('/adduser', async (req, res) => {
 
 router.get('/getAllUser', async (req, res) => {
     try {
-        const movies = await user.find({ group_id: "5fe49d9efcd4173394b09b42" }).populate("group_id").populate("state_id").populate('city_id');
+        const movies = await user.find({ group_id: "5fcc4220e862ea35384c7c8e" }).populate("group_id").populate("state_id").populate('city_id');
         res.send(movies)
     }
     catch (err) {
@@ -45,7 +45,7 @@ router.get('/getAllUser', async (req, res) => {
 
 router.get('/getAllTheater', async (req, res) => {
     try {
-        const movies = await user.find({ group_id: "5fe49d95fcd4173394b09b40" }).populate("group_id").populate("state_id").populate('city_id');
+        const movies = await user.find({ group_id: "5fcc4230e862ea35384c7c8f" }).populate("group_id").populate("state_id").populate('city_id');
         res.send(movies)
     }
     catch (err) {
@@ -86,7 +86,7 @@ router.get('/fetchProfileToken', auth, async (req, res) => {
 
 router.get('/fetchDashboradRecord', async (req, res) => {
     try {
-        let Users = await user.find({ "group_id": "5fe49d95fcd4173394b09b40" }).populate('group_id').count();
+        let Users = await user.find({ "group_id": "5fcc421ae862ea35384c7c8d" }).populate('group_id').count();
         let States = await state.find().count();
         let Citys = await city.find().count();
         let Movies = await movies.find().count();
