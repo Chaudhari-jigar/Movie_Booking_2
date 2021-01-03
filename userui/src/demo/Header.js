@@ -3,6 +3,7 @@ import { logout} from '../store/action/userAction';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+
 // import Logo from '../../Movie_logo/logo1.png'
 import 'antd/dist/antd.css';
 import {changepassword} from '../store/action/userAction';
@@ -334,6 +335,7 @@ const SiderDemo = (props) => {
               </div>
             </div>
           </footer>
+          
               <Modal title="Are you sure!"
               visible={show}
               onOk={() => changePassword()}
@@ -368,6 +370,7 @@ const SiderDemo = (props) => {
      </>
     );
 }
+
 const mapStateToProps = (state) => ({
   err: state.userReducer.error1,
   Loading: state.userReducer.loading,

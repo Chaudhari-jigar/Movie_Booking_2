@@ -8,9 +8,9 @@ import Temp from './components/All Registration form/Temp';
 import UserLoginTask from './userLoginTask';
 import UserTask from  './userTask';
 import {connect} from 'react-redux';
-
 import SignUp from './demo/sign-up';
 import SignIn from './demo/sign-in';
+import singlemovie from './demo/singlemovie';
 
 const RegisterTask = (props) => {
 
@@ -28,6 +28,8 @@ const RegisterTask = (props) => {
             <Route path="/" exact component={UserLoginTask}/>
             <Route path="/sign-up" exact component={SignUp}/>
             <Route path="/sign-in" exact component={SignIn}/>
+            <Route path="/singlemovie" exact component={UserLoginTask}/>
+            <Route path="/categorymovie/:category" exact component={UserLoginTask}/>
             <Redirect to="/" />
         </Switch>
     }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="user"){
@@ -35,7 +37,9 @@ const RegisterTask = (props) => {
         <div >
         <Switch>
             <Route path="/index" exact component={UserTask}/>
-            <Redirect to="/index" />
+            <Route path="/singlemovie" exact component={UserTask}/>
+            <Route path="/categorymovie/:category" exact component={UserTask}/>
+            <Redirect to="/index" />    
          </Switch>
         </div> 
     </>

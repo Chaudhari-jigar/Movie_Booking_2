@@ -28,6 +28,11 @@ const theaterscreenschema = new mongoose.Schema({
         type:String,
         require:true
     },
+    price:
+    {
+        type:Number,
+        require:true
+    },
     end_date:
     {
         type:String,

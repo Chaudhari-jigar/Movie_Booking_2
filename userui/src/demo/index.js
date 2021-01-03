@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import './css/Home';
+import { Link } from "react-router-dom";
 import {fetchmoviedata,updatemoviedata,singlemovieDataFetch,deletemoviedata} from '../store/action/movieAction';
 import {Select,Form} from 'antd';
 // import Logo from './assets/images/logo/logo.png';
@@ -29,9 +30,16 @@ import sports01 from './assets/images/sports/sports01.jpg';
 import sports02 from './assets/images/sports/sports02.jpg';
 import sports03 from './assets/images/sports/sports03.jpg';
 import footerLogo from './assets/images/footer/footer-logo.png';
+import fantasy from './assets/images/movie_category/fantasymovie.jpeg';
+import comedy from './assets/images/movie_category/comedymovie.jpg';
+import action from './assets/images/movie_category/actionmovie.jpg';
+import horror from './assets/images/movie_category/horrormovie.jpg';
+import romance from './assets/images/movie_category/romancemovie.jpg';
+import mystry from './assets/images/movie_category/mystrymovie.jpg';
 import {connect} from 'react-redux';
 const {Option} = Select;
      const Index = (props) =>{
+       
         const {form} =Form.useForm();
         const [obj,setMyObj1]= useState({
           _id:"",
@@ -46,7 +54,10 @@ const {Option} = Select;
           movie_status:"",
           booking_status:""
         })
-
+        const onmovieclick = async (_id) => {
+          await props.singlemovieDataFetch(_id); 
+          props.history.replace('/singlemovie')
+        }
         useEffect(()=>{
           props.fetchmoviedata();
         },[props.fetchmoviedata])
@@ -63,7 +74,7 @@ const renderTableData = () => {
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">{moviename}</a>
+                              <span style={{color:'white'}} onClick={()=> onmovieclick(_id)}>{moviename}</span>
                             </h5>
                             <ul className="movie-rating-percent">
                               <li>
@@ -76,6 +87,7 @@ const renderTableData = () => {
                                 <div className="thumb">
                                   <img src={cake} alt="movie" />
                                 </div>
+                                
                                 <span className="content">88%</span>
                               </li>
                             </ul>
@@ -372,8 +384,8 @@ const renderTableData = () => {
                 <div className="col-lg-9">
                   <div className="article-section padding-bottom">
                     <div className="section-header-1">
-                      <h2 className="title">movies</h2>
-                      <a className="view-all" href="movie-grid.html">View All</a>
+                      <h2 className="title" style={{color:"#ffff"}}>&nbsp;movies</h2>
+                      <a className="view-all" href="movie-grid.html">View All&nbsp;</a>
                     </div>
                     <div className="row mb-30-none justify-content-center">
                       {renderTableData()}
@@ -381,28 +393,23 @@ const renderTableData = () => {
                   </div>
                   <div className="article-section padding-bottom">
                     <div className="section-header-1">
-                      <h2 className="title">events</h2>
-                      <a className="view-all" href="events.html">View All</a>
+                      <h2 className="title" style={{color:"#ffff"}}>&nbsp;Category</h2>
+                      <a className="view-all" href="events.html">View All&nbsp;</a>
                     </div>
                     <div className="row mb-30-none justify-content-center">
                       <div className="col-sm-6 col-lg-4">
-                        <div className="event-grid">
+                        <div className="movie-grid">
                           <div className="movie-thumb c-thumb">
                             <a href="#0">
-                              <img src={event01} alt="event" />
+                              <img src={action} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">Digital Economy Conference 2020</a>
+                              <a href="#0"><Link to="/categorymovie/Action">Action</Link></a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>
@@ -410,20 +417,14 @@ const renderTableData = () => {
                         <div className="event-grid">
                           <div className="movie-thumb c-thumb">
                             <a href="#0">
-                              <img src={event02} alt="event" />
+                              <img src={fantasy} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">web design conference 2020</a>
+                              <a href="#0"><Link to="/categorymovie/Fantasy">Fantasy</Link></a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>
@@ -431,91 +432,59 @@ const renderTableData = () => {
                         <div className="event-grid">
                           <div className="movie-thumb c-thumb">
                             <a href="#0">
-                              <img src={event03} alt="event" />
+                              <img src={horror} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">digital thinkers meetup</a>
+                              <a href="#0"><Link to="/categorymovie/Horror">Horror</Link></a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="article-section">
-                    <div className="section-header-1">
-                      <h2 className="title">sports</h2>
-                      <a className="view-all" href="sports.html">View All</a>
-                    </div>
-                    <div className="row mb-30-none justify-content-center">
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="sports-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={sports01} alt="sports" />
-                            </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">football league tournament</a>
-                            </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
                           </div>
                         </div>
                       </div>
                       <div className="col-sm-6 col-lg-4">
-                        <div className="sports-grid">
+                        <div className="event-grid">
                           <div className="movie-thumb c-thumb">
                             <a href="#0">
-                              <img src={sports02} alt="sports" />
+                              <img src={romance} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">world cricket league 2020</a>
+                              <a href="#0"><Link to="/categorymovie/Romance">Romance</Link></a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
                           </div>
                         </div>
                       </div>
                       <div className="col-sm-6 col-lg-4">
-                        <div className="sports-grid">
+                        <div className="event-grid">
                           <div className="movie-thumb c-thumb">
                             <a href="#0">
-                              <img src={sports03} alt="sports" />
+                              <img src={comedy} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">basket ball tournament 2020</a>
+                              <a href="#0"><Link to="/categorymovie/Comedy">Comedy</Link></a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-sm-6 col-lg-4">
+                        <div className="event-grid">
+                          <div className="movie-thumb c-thumb">
+                            <a href="#0">
+                              <img src={mystry} alt="event" />
+                            </a>
+                            
+                          </div>
+                          <div className="movie-content bg-one">
+                            <h5 className="title m-0">
+                              <a href="#0"><Link to="/categorymovie/Mystry">Mystry</Link></a>
+                            </h5>
                           </div>
                         </div>
                       </div>

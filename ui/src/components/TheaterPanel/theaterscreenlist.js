@@ -39,7 +39,8 @@ const TheaterScreenList = (props) => {
     screen_time:"",
     start_date:"",
     end_date:"",
-    end_time:""
+    end_time:"",
+    price:""
   })
   const [ids, setIds] = useState("");
   const [show, setShow] = useState(false);
@@ -61,6 +62,7 @@ const TheaterScreenList = (props) => {
       olddata.start_date=props.singletscreen.start_date;
       olddata.end_date=props.singletscreen.end_date;
       olddata.end_time=props.singletscreen.end_time;
+      olddata.price=props.singletscreen.price;
       console.log(olddata);
       console.log(obj.start_date)
       setMyObj1(olddata);
@@ -187,6 +189,10 @@ const TheaterScreenList = (props) => {
       if(e!=null)
       olddata[name] = new Date(e._d).toLocaleTimeString();
     }
+    else
+    {
+      olddata[name] = e.target.value;
+    }
     console.log(olddata);
     
     setMyObj1(olddata);
@@ -273,7 +279,14 @@ const TheaterScreenList = (props) => {
                           <DatePicker format="DD/MM/yyyy" value={moment(obj.end_date,'MM/DD/ YYYY')} name="end_date" onChange={(e) => { HandleChange(e, "end_date") }} placeholder="End date"/>
                           </Form.Item>
                           </Col>
-                      </Row>                                
+                      </Row>  
+                      <Row gutter={0}>
+                      <Col span={12}>
+                      <Form.Item {...formItemLayout} label="Price:-"  rules={[{ required: true, message: 'Please Select End Date!' }]}>
+                      <Input type="text" name="price" value={obj.price} onChange={(e) => { HandleChange(e, "price") }}/>
+                          </Form.Item>
+                          </Col>
+                      </Row>                               
       </Form>
       </Modal>
 

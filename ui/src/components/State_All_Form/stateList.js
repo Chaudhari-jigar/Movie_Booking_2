@@ -81,7 +81,19 @@ const StateList = (props) => {
     await props.singlestateDataFetch(_id);
     usetShow(true);
   }
-  
+  // const renderTableData = () => {
+  //   return props.states.map((stateslist, index) => {
+  //     const { _id, state_name } = stateslist
+  //     return (
+  //       <tr key={_id}>
+  //         <td>{index + 1}</td>
+  //         <td>{state_name}</td>
+  //         <td><Button onClick={() => handleUpdate(_id)} >UPDATE</Button></td>
+  //         <td><Button variant="danger" onClick={() => handleShow(_id)} >Delete</Button></td>
+  //       </tr>
+  //     )
+  //   })
+  // }
   const columns = [
     {
       title: 'state_Name',

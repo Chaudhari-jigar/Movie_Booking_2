@@ -43,6 +43,7 @@ const AddTScreen = (props) => {
     start_date: "",
     end_date: "",
     end_time: "",
+    price:""
   })
 
   useEffect(()=>{
@@ -63,7 +64,7 @@ const AddTScreen = (props) => {
         formdata.append("end_time",obj.end_time);
         formdata.append("start_date",obj.start_date);
         formdata.append("end_date",obj.end_date);
-      
+        formdata.append("price",obj.price);
         console.log(obj.screen_time);
         await props.addtscreen(formdata);
         props.history.replace("/theater/tscreenList");
@@ -87,6 +88,10 @@ const AddTScreen = (props) => {
     {
       if(e!=null)
       olddata[name] = new Date(e._d).toLocaleTimeString();
+    }
+    else
+    {
+      olddata[name] = e.target.value;
     }
     console.log(olddata);
     setMyObj(olddata);
@@ -167,7 +172,13 @@ const AddTScreen = (props) => {
                           </Form.Item>
                           </Col>
                       </Row>
-                      
+                      <Row gutter={0}>
+                      <Col span={12}>
+                      <Form.Item {...formItemLayout} label="Price:-"  rules={[{ required: true, message: 'Please Select End Date!' }]}>
+                      <Input type="text" name="price" value={obj._id} onChange={(e) => { HandleChange(e, "price") }} placeholder="Price"/>
+                          </Form.Item>
+                          </Col>
+                      </Row>  
                         
                            <Form.Item {...formTailLayout} label=""> 
                                 <Button type="primary" onClick={(e) =>handleSubmit()} loading={props.loading}>Add Theater Screen</Button>

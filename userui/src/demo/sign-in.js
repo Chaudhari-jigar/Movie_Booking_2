@@ -6,7 +6,6 @@ import {Form,Button,Input} from "antd";
 import Logo from '../Movie_logo/Admin3.jpg'
 import './css/Home';
 import { Link } from 'react-router-dom';
-import accountBG from './assets/images/account/account-bg.jpg';
 
 
 const Sign = (props) =>{
@@ -30,10 +29,6 @@ const Sign = (props) =>{
         if(props.token!==true && obj.email && obj.password){
          setError(true);
         }
-    }
-
-    const signUp = () =>{
-        props.history.replace("/userreg");
     }
 
     const HandleChange = (e,name) =>{
@@ -86,7 +81,7 @@ const Sign = (props) =>{
                                         <Input.Password  placeholder="*************" onChange={(e) => {HandleChange(e,"password")}}/>
                                         </Form.Item>
                                 </div>
-                                {(error)?<h4 style={{color:"red"}}>You are Not Unable to Login !!</h4>:""}
+                                {(error)?<h4 style={{marginLeft:"60px",color:"red"}}> You are not authorization user !!</h4>:""}
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" onClick={() =>handleSubmit()} style={{width:"120px",marginLeft:"200px",marginTop:"20px"}}>Login</Button>
                                     </Form.Item>
