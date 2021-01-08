@@ -39,6 +39,7 @@ import horror from './assets/images/movie_category/horrormovie.jpg';
 import romance from './assets/images/movie_category/romancemovie.jpg';
 import mystry from './assets/images/movie_category/mystrymovie.jpg';
 import Helmet from 'react-helmet';
+import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import demo from '.';
 const {Option} = Select;
@@ -68,11 +69,9 @@ const {Option} = Select;
             //     _id:props.singlemovie.
             // });
           props.fetchmoviedata();
-          
-
           console.log(props.match.params.movie_id);
         },[props.fetchmoviedata])
-        
+    
         return(
             <>
             
@@ -159,7 +158,7 @@ const {Option} = Select;
                         <p><a href="#0">Rate It</a></p>
                     </div>
                 </div>
-                <a href="#0" class="custom-button">book tickets</a>
+                <span class="custom-button" style={{cursor:"pointer"}}><Link to={"/singlemovietheater/"+props.singlemovie._id}>book tickets</Link></span>
             </div>
         </div>
     </section>

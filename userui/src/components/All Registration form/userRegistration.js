@@ -35,7 +35,7 @@ const FormPage = (props) => {
 
   const handleSubmit =async () =>{
     let errors = { ...error,isValid: true };
-    obj.group_id="5fcc4220e862ea35384c7c8e";
+    obj.group_id="5fe49d9efcd4173394b09b42";
     obj.is_active="1";
     // obj.photo1="sds";
     errors.state_nameError="";

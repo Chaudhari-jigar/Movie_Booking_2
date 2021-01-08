@@ -30,6 +30,7 @@ const RegisterTask = (props) => {
             <Route path="/sign-in" exact component={SignIn}/>
             <Route path="/singlemovie" exact component={UserLoginTask}/>
             <Route path="/categorymovie/:category" exact component={UserLoginTask}/>
+            <Route path="/singlemovietheater/:mid" exact component={UserLoginTask}/>
             <Redirect to="/" />
         </Switch>
     }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="user"){
@@ -39,6 +40,7 @@ const RegisterTask = (props) => {
             <Route path="/index" exact component={UserTask}/>
             <Route path="/singlemovie" exact component={UserTask}/>
             <Route path="/categorymovie/:category" exact component={UserTask}/>
+            <Route path="/singlemovietheater/:mid" exact component={UserLoginTask}/>
             <Redirect to="/index" />    
          </Switch>
         </div> 

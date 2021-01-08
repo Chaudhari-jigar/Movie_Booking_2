@@ -32,6 +32,7 @@ const MovieList = (props) => {
     moviename:"",
     releasedate:"",
     movie_category:"",
+    movie_languages:"",
     director_name:"",
     Actors_name:"",
     movie_description:"",
@@ -59,6 +60,7 @@ const MovieList = (props) => {
       olddata._id = props.singlemovie._id;
       olddata.movie_category=props.singlemovie.movie_category;
       olddata.releasedate=props.singlemovie.releasedate;
+      olddata.movie_languages = props.singlemovie.movie_languages;
       olddata.director_name=props.singlemovie.director_name;
       olddata.Actors_name=props.singlemovie.Actors_name;
       olddata.movie_description=props.singlemovie.movie_description;
@@ -105,6 +107,7 @@ const SingleSubmit = async () =>{
           formdata.append("releasedate",obj.releasedate);
           formdata.append("movie_status",obj.movie_status);
           formdata.append("movie_category",obj.movie_category);
+          formdata.append("movie_languages",obj.movie_languages);
           formdata.append("director_name",obj.director_name);
           formdata.append("Actors_name",obj.Actors_name);
           formdata.append("movie_description",obj.movie_description);
@@ -162,7 +165,7 @@ const handleUpdate = async (_id) => {
     if(e!=null){
       olddata[name] = new Date(e._d).toLocaleDateString();
     }
-  }else if((name=="booking_status") || (name==="movie_status") || (name === "movie_type")  || (name === "movie_category")){
+  }else if((name=="booking_status") || (name==="movie_status") || (name === "movie_type")  || (name === "movie_category") || (name === "movie_languages")){
       olddata[name]=e;
   }else
   {
@@ -216,6 +219,12 @@ const columns = [
     key: 'movie_category',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.movie_category.length - b.movie_category.length,
+  },{
+    title: () => <b>Movie Languages</b>,
+    dataIndex: 'movie_languages',
+    key: 'movie_languages',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.movie_languages.length - b.movie_languages.length,
   },{
     title: () => <b>Movie Type</b>,
     dataIndex: 'movie_type',
@@ -364,6 +373,25 @@ const columns = [
                           
                       </Col>
                       </Row>
+                      <Row gutter={0}>
+                        <Col span={12}>
+                        <Form.Item {...formItemLayout} label="Movie Languages:-" rules={[{ required: true, message: 'Please required movie Languages !' }]}>
+                                  <Select name="movie_languages" value={obj.movie_languages} onChange={(e)=>HandleChange(e,"movie_languages")} placeholder="------ Select Movie Languages Type-----" allowClear style={{maxWidth : "300px"}}>
+                                      <Option value="English" key={"English"}>English</Option>
+                                      <Option value="Hindi" key={"Hindi"}>Hindi</Option>
+                                      <Option value="Tamil" key={"Tamil"}>Tamil</Option>
+                                      <Option value="Gujarati" key={"Gujarati"}>Gujarati</Option>
+                                      <Option value="Telugu" key={"Telugu"}>Telugu</Option>
+                                      <Option value="Bengali" key={"Bengali"}>Bengali</Option>
+                                      <Option value="Marathi" key={"Marathi"}>Marathi</Option>
+                                      <Option value="Telugu" key={"Telugu"}>Telugu</Option>
+                                      <Option value="Bhojpuri" key={"Bhojpuri"}>Bhojpuri</Option>
+                                  </Select>
+                          </Form.Item>
+                          
+                      </Col>
+                      </Row>
+                      
                       <Row gutter={0}>
                       <Col span={12}>
                           <Form.Item {...formItemLayout} label="Enter Movie Status:-">

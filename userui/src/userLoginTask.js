@@ -5,7 +5,7 @@ import Index from './demo/index';
 import Sign from './demo/sign-up';
 import singlemovie from './demo/singlemovie';
 import categorymovie from "./demo/categorymovie";
-
+import singlemovietheaterlist from './demo/singlemovietheaterlist';
 const UserLoginTask = (props) => {
 
     let content = 
@@ -13,6 +13,7 @@ const UserLoginTask = (props) => {
             <Route path="/" exact component={Index}/>
             <Route path="/singlemovie" exact component={singlemovie}/>
             <Route path="/categorymovie/:category" exact component={categorymovie}/>
+            <Route path="/singlemovietheater/:mid" exact component={singlemovietheaterlist}/>
         </Switch>
 
     return <>

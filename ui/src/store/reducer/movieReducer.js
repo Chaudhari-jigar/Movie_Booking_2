@@ -93,6 +93,7 @@ const store = (state = initalstore,action) =>{
                     order.movie_category=action.movies.movie_category;
                     order.releasedate=action.movies.releasedate;
                     order.director_name=action.movies.director_name;
+                    order.movie_languages =action.movies.movie_languages;
                     order.Actors_name=action.movies.Actors_name; 
                     order.movie_description=action.movies.movie_description;
                     order.movie_type=action.movies.movie_type;

@@ -37,6 +37,7 @@ import horror from './assets/images/movie_category/horrormovie.jpg';
 import romance from './assets/images/movie_category/romancemovie.jpg';
 import mystry from './assets/images/movie_category/mystrymovie.jpg';
 import {connect} from 'react-redux';
+var a = "";
 const {Option} = Select;
      const Index = (props) =>{
        
@@ -74,7 +75,7 @@ const renderTableData = () => {
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <span style={{color:'white'}} onClick={()=> onmovieclick(_id)}>{moviename}</span>
+                              <span style={{color:'white',cursor:'pointer'}} onClick={()=> onmovieclick(_id)}>{moviename}</span>
                             </h5>
                             <ul className="movie-rating-percent">
                               <li>
