@@ -8,10 +8,13 @@ import 'antd/dist/antd.css';
 import {changepassword} from '../../store/action/userAction';
 
 import {
+  HomeOutlined,AntDesignOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  PieChartOutlined,LockOutlined,LogoutOutlined
+  DribbbleOutlined,LockOutlined,LogoutOutlined,
+  SlackSquareOutlined,WeiboSquareOutlined,
+  AlibabaOutlined,QqOutlined
 } from '@ant-design/icons';
 
 const { Header, Sider } = Layout;
@@ -122,23 +125,23 @@ const SiderDemo = (props) => {
       <Layout style={{minHeight:"100vh"}}>
           <Sider trigger={null} collapsible collapsed={collapsed}>
               <div className="logo"><img src={Logo} style={{height: "60px",width: "60px",marginLeft:"05px"}}/></div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="/dashboard" icon={<PieChartOutlined />}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
+          <Menu.Item key="/dashboard" icon={<HomeOutlined/>} style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
           <Link to="/dashboard">Dashboard</Link>
             </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="State">
+            <SubMenu key="sub1" icon={<AntDesignOutlined />} title="State" style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
               <Menu.Item key="/state/stateAdd"><Link to="/state/stateAdd">Add State</Link></Menu.Item>
               <Menu.Item key="/state"><Link to="/state">View State</Link></Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<UserOutlined />} title="City">
+            <SubMenu key="sub2" icon={<QqOutlined />} title="City" style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
               <Menu.Item key="/city/cityAdd"><Link to="/city/cityAdd">Add City</Link></Menu.Item>
               <Menu.Item key="/city"><Link to="/city">View City</Link></Menu.Item>
             </SubMenu>
-            <SubMenu key="sub3" icon={<UserOutlined />} title="Movie">
+            <SubMenu key="sub3" icon={<DribbbleOutlined />} title="Movie" style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
               <Menu.Item key="/movie/movieAdd"><Link to="/movie/movieAdd">Add Movie</Link></Menu.Item>
               <Menu.Item key="/movie"><Link to="/movie">View Movies</Link></Menu.Item>
             </SubMenu>
-            <SubMenu key="sub4" icon={<UserOutlined />} title="User/Theater">
+            <SubMenu key="sub4" icon={<AlibabaOutlined />} title="User/Theater" style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
               <Menu.Item key="/users"><Link to="/users">View Users</Link></Menu.Item>
               <Menu.Item key="/theaters"><Link to="/theaters">View Theater</Link></Menu.Item>
             </SubMenu>

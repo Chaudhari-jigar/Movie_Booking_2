@@ -190,6 +190,26 @@ export const fetchDashboradRecord = () =>{
     }
 }
 
+export const fetchDashboradRecordTheaterPanel = (user_id) =>{
+    return async(dispatch)=>{
+        dispatch({
+            type:actionTypes.INIT_SINGLE_FETCHDASHBOARDRECORD
+        })
+        await axios.get(`http://localhost:3001/fetchDashboradRecord/${user_id}`).then(res => {
+            console.log(res.data);
+            dispatch({
+                type:actionTypes.SINGLE_FETCHDASHBOARDRECORD_SUCCESS,
+                singleDashboard:res.data
+            })
+        }).catch(error=>{
+            dispatch({
+                type:actionTypes.SINGLE_FETCHDASHBOARDRECORD_FAILED,
+                error:error.message
+            })
+        });    
+    }
+}
+
 export const changepassword = (pass,newpass) =>{
     console.log(newpass);
     return async(dispatch)=>{

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { addtscreen } from "../../store/action/theaterscreenAction";
 import { getscreen } from "../../store/action/screenAction";
-import { fetchmoviedata } from "../../store/action/movieAction"
+import { fetchmoviedata,singlemovieDataFetch } from "../../store/action/movieAction"
 import {login} from '../../store/action/userAction';
 import { connect } from 'react-redux';
 import { Breadcrumb,Card,Row,Col,DatePicker,TimePicker,Select } from 'antd';
-import moment from 'moment';
 import {
   Form,
   Input,
@@ -91,10 +90,19 @@ const AddTScreen = (props) => {
     }
     else
     {
+      if(name== "movie_id"){
+        console.log(e.target.value);
+      }
       olddata[name] = e.target.value;
     }
     console.log(olddata);
     setMyObj(olddata);
+    cityCall(olddata.movie_id);
+  }
+
+  const cityCall =async (id) =>{
+    await props.singlemovieDataFetch(id);
+    console.log(props.singlemovie);
   }
 
    const optionTemplate = ()=>{
@@ -108,9 +116,10 @@ const AddTScreen = (props) => {
 
    const optionMovieTemplate = ()=>{
     return props.movies.map((movielist)=>{
-      const{_id,moviename} = movielist;
+      const{_id,moviename,relesedate} = movielist;
+      // <input type="hidden" value={relesedate} key={_id}></input>
       return(
-        <option value={_id} key={_id}>{moviename}</option>
+        <option value={_id} key={_id}>{moviename}{relesedate}</option>
       )
     })
   }
@@ -119,7 +128,7 @@ const AddTScreen = (props) => {
     <>
       <div className={"Title"} style={{marginTop: "-29px" }}>
           </div>
-          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px"  }}>
+          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px",fontFamily:"auto",textTransform:"uppercase"   }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>Theater</Breadcrumb.Item>
               <Breadcrumb.Item>Add Theater Screen</Breadcrumb.Item>
@@ -173,13 +182,15 @@ const AddTScreen = (props) => {
                           </Col>
                       </Row>
                       <Row gutter={0}>
-                      <Col span={12}>
-                      <Form.Item {...formItemLayout} label="Price:-"  rules={[{ required: true, message: 'Please Select End Date!' }]}>
-                      <Input type="text" name="price" value={obj._id} onChange={(e) => { HandleChange(e, "price") }} placeholder="Price"/>
-                          </Form.Item>
+                          <Col span={12}>
+                                <Form.Item {...formItemLayout} label="Price:-"  rules={[{ required: true, message: 'Please Select End Date!' }]}>
+                                    <Input type="text" name="price" value={obj._id} onChange={(e) => { HandleChange(e, "price") }} placeholder="Price"/>
+                                  </Form.Item>
+                          </Col>
+                          <Col span={12}>
+                                    <span style={{color:"#0955ff",fontStyle:"inherit",textTransform: "capitalize"}}>Note:- Please Starting and ending Date is select <br></br> After ReleaseDate :- {props.singlemovie.releasedate}<br></br></span>                               
                           </Col>
                       </Row>  
-                        
                            <Form.Item {...formTailLayout} label=""> 
                                 <Button type="primary" onClick={(e) =>handleSubmit()} loading={props.loading}>Add Theater Screen</Button>
                           </Form.Item>                           
@@ -190,6 +201,7 @@ const AddTScreen = (props) => {
   );
 }
 const mapStateToProps =  (state) => ({
+  singlemovie:state.movieReducer.singlemovie,
    screens:state.screenReducer.screens,
    error:state.screenReducer.error,
    movies:state.movieReducer.movies,
@@ -200,6 +212,7 @@ const mapStateToProps =  (state) => ({
 const mapDispatchToProps = dispatch => {
   return {
     addtscreen: (postdata) => dispatch(addtscreen(postdata)),
+    singlemovieDataFetch:(id) => dispatch(singlemovieDataFetch(id)),
     getscreen: ()=> dispatch(getscreen()),
     fetchmoviedata:()=>dispatch(fetchmoviedata())
   }

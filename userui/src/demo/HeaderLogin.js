@@ -45,35 +45,29 @@ const SiderDemo = (props) => {
                 </div>
                 <ul className="menu">
                   <li>
-                    <Link to="/index" className="active">Home</Link>
+                    <a href="/index">Home</a>
                   </li>
                   <li>
-                    <a href="#0">movies</a>
+                    <a href="#0">Category</a>
                     <ul className="submenu">
-                      <li>
-                        <a href="movie-grid.html">Movie Grid</a>
-                      </li>
-                      <li>
-                        <a href="movie-list.html">Movie List</a>
-                      </li>
-                      <li>
-                        <a href="movie-details.html">Movie Details</a>
-                      </li>
-                      <li>
-                        <a href="movie-details-2.html">Movie Details 2</a>
-                      </li>
-                      <li>
-                        <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
-                      </li>
-                      <li>
-                        <a href="movie-seat-plan.html">Movie Seat Plan</a>
-                      </li>
-                      <li>
-                        <a href="movie-checkout.html">Movie Checkout</a>
-                      </li>
-                      <li>
-                        <a href="popcorn.html">Movie Food</a>
-                      </li>
+                    <li>
+                      <a href="/categorymovie/Action">Action</a>
+                    </li>
+                    <li>
+                      <a href="/categorymovie/Comedy">Comedy</a>
+                    </li>
+                    <li>
+                      <a href="/categorymovie/Fantasy">Fantasy</a>
+                    </li>
+                    <li>
+                      <a href="/categorymovie/Horror">Horror</a>
+                    </li>
+                    <li>
+                      <a href="/categorymovie/Mystry">Mystry</a>
+                    </li>
+                    <li>
+                      <a href="/categorymovie/Romance">Romance</a>
+                    </li>
                     </ul>
                   </li>
                   <li>
@@ -117,7 +111,7 @@ const SiderDemo = (props) => {
                     <a href="#0">pages</a>
                     <ul className="submenu">
                       <li>
-                        <a href="about.html">About Us</a>
+                        <a href="/about-us">About Us</a>
                       </li>
                       <li>
                         <a href="apps-download.html">Apps Download</a>
@@ -140,15 +134,18 @@ const SiderDemo = (props) => {
                         <a href="blog.html">Blog</a>
                       </li>
                       <li>
-                        <a href="blog-details.html">Blog Single</a>
+                        <a href="/sign-sdin">Blog Single</a>
                       </li>
                     </ul>
                   </li>
                   <li>
                     <a href="contact.html">contact</a>
                   </li>
+                  <li>
+                    <a href="about-us">About</a>
+                  </li>
                   <li className="header-button pr-0">
-                    <Link to="/sign-in" className="active">Sign IN</Link>
+                    <a href="/sign-in">Sign IN</a>
                   </li>
                 </ul>
                 <div className="header-bar d-lg-none">

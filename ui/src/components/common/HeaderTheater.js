@@ -5,13 +5,12 @@ import { Layout, Menu,Dropdown,Modal,Form,Input,Breadcrumb } from 'antd';
 import { logout} from '../../store/action/userAction';
 import {changepassword} from '../../store/action/userAction';
 import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
+  HomeOutlined,
   UserOutlined,
   LockOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  AlibabaOutlined,
+  QqOutlined
 } from '@ant-design/icons';
 import Logo from '../../Movie_logo/logo1.png'
 
@@ -32,7 +31,7 @@ const TheaterHeader = (props) => {
       const [show, setShow] = useState(false);
 
       useEffect(() =>{
-        if(props.err.length!=0)
+        if(props.err.length != 0)
         {
           setError({
             passwordError:props.err,
@@ -107,10 +106,6 @@ const TheaterHeader = (props) => {
         await props.logout();
       }
       const[collapsed,setCollapsed] = useState(false);
-      
-    // const toggle = () => {
-    //   setCollapsed(!collapsed);
-    // };
 
     const onCollapse=() =>{
         if(collapsed==true){
@@ -133,25 +128,25 @@ const TheaterHeader = (props) => {
         <Layout style={{ minHeight: '100vh',backgroundColor:"#287688" }}>
         <Sider collapsible collapsed={collapsed} onCollapse={()=>onCollapse()} style={{backgroundColor:"#800000"}}>
           <div className="logo" /><img src={Logo} height="80px" width="50px"></img>
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{backgroundColor:"#800000"}}>
-            <Menu.Item key="/theater/dashboard"  icon={<PieChartOutlined />} >
+          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{backgroundColor:"#800000",color:"white",fontFamily:"auto",textTransform:"uppercase"}}>
+            <Menu.Item key="/theater/dashboard"  icon={<HomeOutlined />} >
                 <Link to="/theater/dashboard">Dashboard</Link>
             </Menu.Item>
             <SubMenu key="Screen" icon={<UserOutlined />} title="Screen">
               <Menu.Item key="4"><Link to="/theater/addScreen">Add Scrren</Link></Menu.Item>
               <Menu.Item key="3"><Link to="/theater/screenList">View Screen</Link></Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<TeamOutlined />} title="Theater Screen">
+            <SubMenu key="sub2" icon={<AlibabaOutlined />} title="Theater Screen">
               <Menu.Item key="6"><Link to="/theater/addtscreen">Add Theater Screen</Link></Menu.Item>
               <Menu.Item key="8"><Link to="/theater/tscreenList">View Theater Screen</Link></Menu.Item>
             </SubMenu>
-            <Menu.Item key="9" icon={<FileOutlined />}>
+            <Menu.Item key="9" icon={<QqOutlined />}>
               Files
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0,backgroundColor:"#d06a6a" }} >
+          <Header className="site-layout-background" style={{ padding: 0,backgroundColor:" #002140" }} >
           <Dropdown.Button
                 style={{ float: 'right',marginTop: "20px", marginRight: "13px" }}
                 overlay={userMenu}
@@ -170,7 +165,7 @@ const TheaterHeader = (props) => {
           {props.content};
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
-        <Modal title="Are you sure!"
+        <Modal title="CHANGE PASSWORD"
               visible={show}
               onOk={() => changePassword()}
               onCancel={() => handleClose()}>

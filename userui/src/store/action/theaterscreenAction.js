@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as actionTypes from '../theaterscreenActionType';
+import * as actionTypes from '../allactiontypes/theaterscreenActionType';
 
 export const gettscreen = () => {
     return async (dispatch) => {
@@ -7,7 +7,7 @@ export const gettscreen = () => {
             type: actionTypes.INIT_FETCH_THEATER_SCREEN
         })
         try {
-            let response = await axios.get("http://localhost:3001/gettscreen")
+            let response = await axios.get("http://localhost:3001/gettscreens")
             console.log(response.data);
             dispatch({
                 type: actionTypes.FETCH_SCREEN_THEATER_SUCCESS,

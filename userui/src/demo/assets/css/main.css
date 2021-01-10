@@ -70,7 +70,6 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
-  font-family:"sans-serif";
 }
 
 html *::first-letter {
@@ -834,7 +833,6 @@ input[type="submit"] {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("../images/account/account-bg.jpg");
 }
 
 .speaker-banner {
@@ -869,7 +867,6 @@ input[type="submit"] {
 
 .padding-bottom {
   padding-bottom: 80px;
-      background-color: #0a1e5e;
 }
 
 @media (min-width: 992px) {
@@ -1545,7 +1542,6 @@ input[type="submit"] {
   border-bottom: 1px solid rgba(255, 255, 255, 0.102);
   padding: 21px 0;
   position: fixed;
-  background-color: #001232;
   width: 100%;
   top: 0;
   left: 0;
@@ -7462,7 +7458,7 @@ input[type="submit"] {
 /*Account-Section Starts Here*/
 .account-area {
   width: 100%;
-  max-width: 640px;
+  max-width: 540px;
   padding: 60px 45px;
   margin: 0 auto;
   background-color: rgba(68, 90, 153, 0.051);

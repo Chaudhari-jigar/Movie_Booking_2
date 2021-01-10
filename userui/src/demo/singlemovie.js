@@ -2,35 +2,12 @@ import React,{useEffect,useState} from 'react';
 import './css/Home';
 import {fetchmoviedata,updatemoviedata,singlemovieDataFetch,deletemoviedata} from '../store/action/movieAction';
 import {Select,Form} from 'antd';
-// import Logo from './assets/images/logo/logo.png';
-import first from './assets/images/ticket/ticket-tab01.png';
-import second from "./assets/images/ticket/ticket-tab02.png";
-import third from "./assets/images/ticket/ticket-tab03.png";
-import cinema from './assets/images/ticket/cinema.png';
-import city from './assets/images/ticket/city.png';
-import date1 from './assets/images/ticket/date.png';
 import offer1 from './assets/images/sidebar/offer01.png';
 import offer2 from './assets/images/sidebar/offer02.png'
 import offer3 from './assets/images/sidebar/offer03.png'
-import sidebar01 from './assets/images/sidebar/icons/sidebar01.png';
-import sidebar02 from './assets/images/sidebar/icons/sidebar02.png';
-import sidebar03 from './assets/images/sidebar/icons/sidebar03.png';
 import tomato from './assets/images/movie/tomato.png';
 import cake from './assets/images/movie/cake.png';
-import ticket01 from './assets/images/ticket/ticket-bg01.jpg';
-import newslater from './assets/images/newslater/newslater-bg01.jpg';
 import banner01 from './assets/images/sidebar/banner/banner01.jpg';
-import backgroundBanner from './assets/images/banner/banner01.jpg';
-import banner02 from './assets/images/sidebar/banner/banner01.jpg';
-import movie01 from './assets/images/movie/movie01.jpg';
-import movie02 from './assets/images/movie/movie02.jpg';
-import movie03 from './assets/images/movie/movie03.jpg';
-import event01 from './assets/images/event/event01.jpg';
-import event02 from './assets/images/event/event02.jpg';
-import event03 from './assets/images/event/event03.jpg';
-import sports01 from './assets/images/sports/sports01.jpg';
-import sports02 from './assets/images/sports/sports02.jpg';
-import sports03 from './assets/images/sports/sports03.jpg';
 import videobtn from './assets/images/movie/video-button.png';
 import fantasy from './assets/images/movie_category/fantasymovie.jpeg';
 import comedy from './assets/images/movie_category/comedymovie.jpg';
@@ -38,10 +15,7 @@ import action from './assets/images/movie_category/actionmovie.jpg';
 import horror from './assets/images/movie_category/horrormovie.jpg';
 import romance from './assets/images/movie_category/romancemovie.jpg';
 import mystry from './assets/images/movie_category/mystrymovie.jpg';
-import Helmet from 'react-helmet';
-import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
-import demo from '.';
 const {Option} = Select;
      const SingleMovie = (props) =>{
         
@@ -61,17 +35,10 @@ const {Option} = Select;
         })
 
         useEffect(()=>{
-            console.log(props.singlemovie)
-            // props.singlemovie
-            // let tempobj = [...obj];
-            // tempdobj[movie_category]= props.s
-            // let [obj,setObj] = useState({
-            //     _id:props.singlemovie.
-            // });
-          props.fetchmoviedata();
-          console.log(props.match.params.movie_id);
-        },[props.fetchmoviedata])
-    
+            props.singlemovieDataFetch(props.match.params.id); 
+        //   props.fetchmoviedata();
+        },[props.fetchmoviedata,props.singlemovieDataFetch])
+        
         return(
             <>
             
@@ -158,7 +125,7 @@ const {Option} = Select;
                         <p><a href="#0">Rate It</a></p>
                     </div>
                 </div>
-                <span class="custom-button" style={{cursor:"pointer"}}><Link to={"/singlemovietheater/"+props.singlemovie._id}>book tickets</Link></span>
+                <a href={"/singlemovietheater/"+props.singlemovie._id}  class="custom-button">Book tickets</a>
             </div>
         </div>
     </section>
@@ -402,7 +369,9 @@ const {Option} = Select;
                             <a href="#0">
                               <img src={action} alt="event" />
                             </a>
-                            
+                            <h5 className="title m-0">
+                              <a href="#0">Action</a>
+                            </h5>
                           </div>
                           
                         </div>
@@ -418,7 +387,6 @@ const {Option} = Select;
                             <h5 className="title m-0">
                               <a href="#0">Fantasy</a>
                             </h5>
-                            
                           </div>
                         </div>
                       </div>
@@ -499,7 +467,8 @@ const {Option} = Select;
         err:state.movieReducer.error,
         Loading:state.movieReducer.loading,
         movies:state.movieReducer.movies,
-        singlemovie:state.movieReducer.singlemovie,
+        singlemovie:state.movieReducer.singlemovie,        
+        singleuser:state.userReducer.singleuser,
       })
       
       const mapDispatchToProps = dispatch =>{

@@ -8,9 +8,9 @@ import Temp from './components/All Registration form/Temp';
 import UserLoginTask from './userLoginTask';
 import UserTask from  './userTask';
 import {connect} from 'react-redux';
+
 import SignUp from './demo/sign-up';
 import SignIn from './demo/sign-in';
-import singlemovie from './demo/singlemovie';
 
 const RegisterTask = (props) => {
 
@@ -26,11 +26,15 @@ const RegisterTask = (props) => {
         console.log("Login In " + false + " token " + props.token);
         content = <Switch>
             <Route path="/" exact component={UserLoginTask}/>
+
+            <Route path="/about-us" exact component={UserLoginTask}/>
+            <Route path="/movie-seat-plan/:userid/:screenid/:id" exact component={UserLoginTask}/>
+            <Route path="/checkout/:price/:seats/:movie" exact component={UserLoginTask}/>
             <Route path="/sign-up" exact component={SignUp}/>
             <Route path="/sign-in" exact component={SignIn}/>
-            <Route path="/singlemovie" exact component={UserLoginTask}/>
-            <Route path="/categorymovie/:category" exact component={UserLoginTask}/>
             <Route path="/singlemovietheater/:mid" exact component={UserLoginTask}/>
+            <Route path="/singlemovie/:id" exact component={UserLoginTask}/>
+            <Route path="/categorymovie/:category" exact component={UserLoginTask}/>
             <Redirect to="/" />
         </Switch>
     }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="user"){
@@ -38,10 +42,13 @@ const RegisterTask = (props) => {
         <div >
         <Switch>
             <Route path="/index" exact component={UserTask}/>
-            <Route path="/singlemovie" exact component={UserTask}/>
-            <Route path="/categorymovie/:category" exact component={UserTask}/>
-            <Route path="/singlemovietheater/:mid" exact component={UserLoginTask}/>
-            <Redirect to="/index" />    
+            <Route path="/index/about-us" exact component={UserTask}/>
+            <Route path="/index/movie-seat-plan/:userid/:screenid/:id" exact component={UserTask}/>
+            <Route path="/index/singlemovietheater/:mid" exact component={UserTask}/>
+            <Route path="/index/checkout/:price/:seats/:movie" exact component={UserTask}/>
+            <Route path="/index/singlemovie/:id" exact component={UserTask}/>
+            <Route path="/index/categorymovie/:category" exact component={UserTask}/>
+            <Redirect to="/index" />
          </Switch>
         </div> 
     </>

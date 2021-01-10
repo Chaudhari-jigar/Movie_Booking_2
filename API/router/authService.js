@@ -8,7 +8,6 @@ const bodyparser = require('body-parser');
 const router = new express.Router();
 const auth = require("../middleware/auth");
 app.use(bodyparser.urlencoded({ extended: false }));
-
 router.get('/login/:email/:password', async (req, res, next) => {
     try {
         let user = await User.findOne({ email: req.params.email, is_active: "1" }).populate("group_id").populate("state_id").populate("city_id");

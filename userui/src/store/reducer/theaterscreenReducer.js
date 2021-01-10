@@ -1,7 +1,8 @@
-import * as actionTypes from '../theaterscreenActionType';
+import * as actionTypes from '../allactiontypes/theaterscreenActionType';
 const initialstore = {
     tscreens:[],
     singletscreen:{},
+    sing:{},
     loading:false,
     error:""
 }
@@ -72,7 +73,8 @@ const store = (state=initialstore,action)=>{
                 return {
                     ...state,
                     loading: false,
-                    singletscreen: action.singletscreen
+                    singletscreen: action.singletscreen,
+                    sing:action.singletscreen
                 }
         case actionTypes.SINGLE_SCREEN_THEATERFAILED:
                 return {
