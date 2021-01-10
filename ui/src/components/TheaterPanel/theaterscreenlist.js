@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { gettscreen,deletetscreen,updatetscreen,singletscreenrecord } from '../../store/action/theaterscreenAction';
 import { getscreen } from "../../store/action/screenAction";
-import { fetchmoviedata } from "../../store/action/movieAction"
+import { fetchmoviedata,singlemovieDataFetch } from "../../store/action/movieAction"
 import { connect } from 'react-redux';
 import '../state.css';
 import { Table, Space, Button, Breadcrumb, Card, Form, Modal, Input,Col,DatePicker,TimePicker,Row,Select,Switch } from 'antd';
@@ -39,7 +39,8 @@ const TheaterScreenList = (props) => {
     screen_time:"",
     start_date:"",
     end_date:"",
-    end_time:""
+    end_time:"",
+    price:""
   })
   const [ids, setIds] = useState("");
   const [show, setShow] = useState(false);
@@ -61,6 +62,7 @@ const TheaterScreenList = (props) => {
       olddata.start_date=props.singletscreen.start_date;
       olddata.end_date=props.singletscreen.end_date;
       olddata.end_time=props.singletscreen.end_time;
+      olddata.price=props.singletscreen.price;
       console.log(olddata);
       console.log(obj.start_date)
       setMyObj1(olddata);
@@ -187,10 +189,21 @@ const TheaterScreenList = (props) => {
       if(e!=null)
       olddata[name] = new Date(e._d).toLocaleTimeString();
     }
+    else
+    {
+      olddata[name] = e.target.value;
+    }
     console.log(olddata);
     
     setMyObj1(olddata);
+    cityCall(olddata.movie_id);
   }
+
+  const cityCall =async (id) =>{
+    await props.singlemovieDataFetch(id);
+    console.log(props.singlemovie);
+  }
+
   const optionTemplate = ()=>{
     return props.screens.map((screenlist)=>{
       const{_id,screen_name} = screenlist;
@@ -212,7 +225,7 @@ const TheaterScreenList = (props) => {
     <>
       <div className={"Title"} style={{ marginTop: "-29px"}}>
           </div>
-      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px" }}>
+      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px",fontFamily:"auto",textTransform:"uppercase"  }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>Theater Screen</Breadcrumb.Item>
         <Breadcrumb.Item>View Theater Screen List</Breadcrumb.Item>
@@ -273,7 +286,17 @@ const TheaterScreenList = (props) => {
                           <DatePicker format="DD/MM/yyyy" value={moment(obj.end_date,'MM/DD/ YYYY')} name="end_date" onChange={(e) => { HandleChange(e, "end_date") }} placeholder="End date"/>
                           </Form.Item>
                           </Col>
-                      </Row>                                
+                      </Row>  
+                      <Row gutter={0}>
+                      <Col span={12}>
+                          <Form.Item {...formItemLayout} label="Price:-"  rules={[{ required: true, message: 'Please Select End Date!' }]}>
+                              <Input type="text" name="price" value={obj.price} onChange={(e) => { HandleChange(e, "price") }}/>
+                          </Form.Item>
+                       </Col>
+                       <Col span={12}>
+                              <span style={{color:"#0955ff",fontStyle:"inherit",textTransform: "capitalize"}}>Note:- Please Starting and ending Date is select  After ReleaseDate :- {props.singlemovie.releasedate}<br></br></span>                               
+                       </Col>
+                      </Row>                               
       </Form>
       </Modal>
 
@@ -290,6 +313,7 @@ const TheaterScreenList = (props) => {
 
 const mapStateToProps = (state) => ({
   err: state.theaterscreenReducer.error,
+  singlemovie:state.movieReducer.singlemovie,
   tscreens:state.theaterscreenReducer.tscreens,
   singletscreen: state.theaterscreenReducer.singletscreen,
   screens:state.screenReducer.screens,
@@ -302,6 +326,7 @@ const mapDispatchToProps = dispatch => {
     // getscreen: () => dispatch(getscreen()),
     // deletescreen: (_id) => dispatch(deletescreen(_id)),
     updatetscreen: (postdata, put) => dispatch(updatetscreen(postdata, put)),
+    singlemovieDataFetch:(id) => dispatch(singlemovieDataFetch(id)),
     singletscreenrecord: (id) => dispatch(singletscreenrecord(id)),
       gettscreen: ()=>dispatch(gettscreen()),
       deletetscreen: (_id)=>dispatch(deletetscreen(_id)),

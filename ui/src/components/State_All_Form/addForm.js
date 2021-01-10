@@ -54,7 +54,7 @@ const AddForm = (props) => {
     <>    
           <div className={"Title"} style={{marginTop: "-29px" }}>
           </div>
-          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px"  }}>
+          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px",fontFamily:"auto",textTransform:"uppercase"  }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>State</Breadcrumb.Item>
               <Breadcrumb.Item>Add State</Breadcrumb.Item>

@@ -33,6 +33,10 @@ const moviescheme = new mongoose.Schema({
         type:String,
         require:true
     },
+    movie_languages:{
+        type:String,
+        require:true
+    },
     movie_type:{
         type:String,
         require:true

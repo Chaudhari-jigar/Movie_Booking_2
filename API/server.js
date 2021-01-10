@@ -13,6 +13,7 @@ const authService = require('./router/authService');
 const screenRouter = require('./router/screenRouter');
 const moviereviewRouter = require('./router/moviereviewRouter');
 const theaterscreenRouter = require('./router/theaterRouter');
+const bookingRouter = require('./router/bookingrouter');
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
         app.use(express.json());
@@ -24,6 +25,7 @@ app.use(fileUpload())
         app.use(userRouter);
         app.use(movieRouter);
         app.use(groupRouter);
+        app.use(bookingRouter);
         app.use(authService);
         app.use(screenRouter);
         app.use(moviereviewRouter);

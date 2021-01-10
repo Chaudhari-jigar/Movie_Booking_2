@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { addmoviedata } from "../../store/action/movieAction";
 import { connect } from 'react-redux';
 import { Breadcrumb,Card,Row,Col,DatePicker,Select } from 'antd';
-import moment from 'moment';
 import {
   Form,
   Input,
@@ -35,6 +34,7 @@ const AddMovie = (props) => {
   const [obj, setMyObj] = useState({
     moviename: "",
     releasedate: "",
+    movie_languages:"",
     movie_status: "",
     movie_category: "",
     director_name: "",
@@ -65,6 +65,7 @@ const AddMovie = (props) => {
         formdata.append("Actors_name",obj.Actors_name);
         formdata.append("movie_description",obj.movie_description);
         formdata.append("movie_type",obj.movie_type);
+        formdata.append("movie_languages",obj.movie_languages);
         formdata.append("movie_logo",obj.movie_logo);
         formdata.append("booking_status",obj.booking_status);
       
@@ -85,7 +86,7 @@ const AddMovie = (props) => {
       if(e!=null){
         olddata[name] = new Date(e._d).toLocaleDateString();
       }
-    }else if((name === "movie_type") || (name === "movie_category") || (name === "booking_status") || (name === "movie_status")){
+    }else if((name === "movie_type") || (name === "movie_category") || (name === "booking_status") || (name === "movie_status") || (name=== "movie_languages")){
         olddata[name] = e;
     }else
     {
@@ -98,7 +99,7 @@ const AddMovie = (props) => {
     <>
       <div className={"Title"} style={{marginTop: "-29px" }}>
           </div>
-          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px"  }}>
+          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px",fontFamily:"auto",textTransform:"uppercase"   }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>Movie</Breadcrumb.Item>
               <Breadcrumb.Item>Add Movie</Breadcrumb.Item>
@@ -178,6 +179,23 @@ const AddMovie = (props) => {
                           </Form.Item>
                           
                       </Col>
+                      </Row>
+                      <Row gutter={0}>
+                        <Col span={12}>
+                        <Form.Item {...formItemLayout} label="Movie Languages:-" name="movie_languages" rules={[{ required: true, message: 'Please required movie Languages !' }]}>
+                                  <Select name="movie_languages" onChange={(e)=>HandleChange(e,"movie_languages")} placeholder="------ Select Movie Languages Type-----" allowClear style={{maxWidth : "300px"}}>
+                                      <Option value="English" key={"English"}>English</Option>
+                                      <Option value="Hindi" key={"Hindi"}>Hindi</Option>
+                                      <Option value="Tamil" key={"Tamil"}>Tamil</Option>
+                                      <Option value="Gujarati" key={"Gujarati"}>Gujarati</Option>
+                                      <Option value="Telugu" key={"Telugu"}>Telugu</Option>
+                                      <Option value="Bengali" key={"Bengali"}>Bengali</Option>
+                                      <Option value="Marathi" key={"Marathi"}>Marathi</Option>
+                                      <Option value="Telugu" key={"Telugu"}>Telugu</Option>
+                                      <Option value="Bhojpuri" key={"Bhojpuri"}>Bhojpuri</Option>
+                                  </Select>
+                          </Form.Item>
+                        </Col>
                       </Row>
                       <Row gutter={0}>
                       <Col span={12}>

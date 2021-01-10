@@ -8,6 +8,8 @@ import cityReducer from './store/reducer/cityReducer';
 import userReducer from './store/reducer/userReducer';
 import movieReducer from './store/reducer/movieReducer';
 import screenReducer from './store/reducer/screenReducer';
+import theaterscreenReducer from './store/reducer/theaterscreenReducer';
+import bookingReducer from "./store/reducer/bookingReducer";
 import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
@@ -17,7 +19,9 @@ const rootReducer = combineReducers({
   cityReducer:cityReducer,
   movieReducer:movieReducer,
   userReducer:userReducer,
-  screenReducer:screenReducer
+  screenReducer:screenReducer,
+  theaterscreenReducer:theaterscreenReducer,
+  bookingReducer:bookingReducer
 })
 
 const componseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

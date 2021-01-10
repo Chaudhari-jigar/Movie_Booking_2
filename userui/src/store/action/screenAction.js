@@ -74,6 +74,7 @@ export const deletescreen = (id) => {
 }
 
 export const singlescreenrecord = (id) => {
+    console.log(id)
     return async (dispatch) => {
         dispatch({
             type: actionTypes.INIT_SINGLE_SCREEN

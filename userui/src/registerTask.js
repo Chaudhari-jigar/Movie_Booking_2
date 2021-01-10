@@ -26,9 +26,15 @@ const RegisterTask = (props) => {
         console.log("Login In " + false + " token " + props.token);
         content = <Switch>
             <Route path="/" exact component={UserLoginTask}/>
+
             <Route path="/about-us" exact component={UserLoginTask}/>
+            <Route path="/movie-seat-plan/:userid/:screenid/:id" exact component={UserLoginTask}/>
+            <Route path="/checkout/:price/:seats/:movie" exact component={UserLoginTask}/>
             <Route path="/sign-up" exact component={SignUp}/>
             <Route path="/sign-in" exact component={SignIn}/>
+            <Route path="/singlemovietheater/:mid" exact component={UserLoginTask}/>
+            <Route path="/singlemovie/:id" exact component={UserLoginTask}/>
+            <Route path="/categorymovie/:category" exact component={UserLoginTask}/>
             <Redirect to="/" />
         </Switch>
     }else if(props.location.pathname.startsWith("/") && props.token && props.singleuser.group_id.group_name=="user"){
@@ -36,7 +42,12 @@ const RegisterTask = (props) => {
         <div >
         <Switch>
             <Route path="/index" exact component={UserTask}/>
-            <Route path="/index/about-us" exact component={UserLoginTask}/>
+            <Route path="/about-us" exact component={UserTask}/>
+            <Route path="/movie-seat-plan/:userid/:screenid/:id" exact component={UserTask}/>
+            <Route path="/singlemovietheater/:mid" exact component={UserTask}/>
+            <Route path="/checkout/:price/:seats/:movie" exact component={UserTask}/>
+            <Route path="/singlemovie/:id" exact component={UserTask}/>
+            <Route path="/categorymovie/:category" exact component={UserTask}/>
             <Redirect to="/index" />
          </Switch>
         </div> 

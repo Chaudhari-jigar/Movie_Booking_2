@@ -118,7 +118,7 @@ const columns = [
     <>
       <div className={"Title"} style={{ marginTop: "-29px"}}>
           </div>
-      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px" }}>
+      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px",fontFamily:"auto",textTransform:"uppercase"  }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>All Theater</Breadcrumb.Item>
         <Breadcrumb.Item>View Theaters List</Breadcrumb.Item>

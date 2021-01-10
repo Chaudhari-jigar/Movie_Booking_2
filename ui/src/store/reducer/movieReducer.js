@@ -94,6 +94,7 @@ const store = (state = initalstore,action) =>{
                     order.releasedate=action.movies.releasedate;
                     order.director_name=action.movies.director_name;
                     order.Actors_name=action.movies.Actors_name; 
+                    order.movie_languages =action.movies.movie_languages;
                     order.movie_description=action.movies.movie_description;
                     order.movie_type=action.movies.movie_type;
                     order.movie_logo=action.movies.movie_logo;

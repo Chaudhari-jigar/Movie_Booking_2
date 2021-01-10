@@ -5,7 +5,6 @@ const User = require("../model/user");
 
 const auth = async (req,res,next) => {
     try {
-        
         const header= req.headers.authorization
         const errorObj = {
             statusCode: 401

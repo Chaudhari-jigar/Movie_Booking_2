@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as actionTypes from '../theaterscreenActionType';
+import * as actionTypes from '../allactiontypes/theaterscreenActionTypes';
 
 export const gettscreen = () => {
     return async (dispatch) => {
@@ -7,10 +7,7 @@ export const gettscreen = () => {
             type: actionTypes.INIT_FETCH_THEATER_SCREEN
         })
         try {
-            let verifytoken = localStorage.getItem("Token");
-            let response = await axios.get("http://localhost:3001/gettscreen", {
-                headers: { 'Authorization': verifytoken }
-            })
+            let response = await axios.get("http://localhost:3001/gettscreens")
             console.log(response.data);
             dispatch({
                 type: actionTypes.FETCH_SCREEN_THEATER_SUCCESS,

@@ -44,7 +44,7 @@ export const login = (email,password) =>{
         dispatch({
             type:actionTypes.INIT_SINGLE_LOGIN
         })
-        await axios.get(`http://localhost:3001/login/${email}/${password}`).then(res => {
+        await axios.get(`http://localhost:3001/userlogin/${email}/${password}`).then(res => {
             console.log(res.data);
             dispatch({
                 type:actionTypes.SINGLE_LOGIN_SUCCESS,

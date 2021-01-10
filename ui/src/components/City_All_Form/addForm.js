@@ -97,7 +97,7 @@ const deleteHandler = async (id) =>{
     <>
      <div className={"Title"} style={{marginTop: "-29px" }}>
           </div>
-          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px"  }}>
+          <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"30px",fontFamily:"auto",textTransform:"uppercase"  }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>City</Breadcrumb.Item>
               <Breadcrumb.Item>Add City</Breadcrumb.Item>

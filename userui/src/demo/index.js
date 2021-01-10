@@ -1,6 +1,10 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import './css/Home';
-import {Select} from 'antd';
+import { Link } from "react-router-dom";
+import {fetchmoviedata,updatemoviedata,singlemovieDataFetch,deletemoviedata} from '../store/action/movieAction';
+import {getAllTheater} from '../store/action/userAction';
+import {Select,Form} from 'antd';
+import Moment from 'moment';
 // import Logo from './assets/images/logo/logo.png';
 import first from './assets/images/ticket/ticket-tab01.png';
 import second from "./assets/images/ticket/ticket-tab02.png";
@@ -14,23 +18,115 @@ import sidebar03 from './assets/images/sidebar/icons/sidebar03.png';
 import tomato from './assets/images/movie/tomato.png';
 import cake from './assets/images/movie/cake.png';
 import ticket01 from './assets/images/ticket/ticket-bg01.jpg';
-import newslater from './assets/images/newslater/newslater-bg01.jpg';
 import banner01 from './assets/images/sidebar/banner/banner01.jpg';
 import backgroundBanner from './assets/images/banner/banner01.jpg';
-import banner02 from './assets/images/sidebar/banner/banner01.jpg';
-import movie01 from './assets/images/movie/movie01.jpg';
-import movie02 from './assets/images/movie/movie02.jpg';
-import movie03 from './assets/images/movie/movie03.jpg';
-import event01 from './assets/images/event/event01.jpg';
-import event02 from './assets/images/event/event02.jpg';
-import event03 from './assets/images/event/event03.jpg';
-import sports01 from './assets/images/sports/sports01.jpg';
-import sports02 from './assets/images/sports/sports02.jpg';
-import sports03 from './assets/images/sports/sports03.jpg';
-import footerLogo from './assets/images/footer/footer-logo.png';
-
+import banner02 from './assets/images/sidebar/banner/banner02.jpg';
+import fantasy from './assets/images/movie_category/fantasymovie.jpeg';
+import comedy from './assets/images/movie_category/comedymovie.jpg';
+import action from './assets/images/movie_category/actionmovie.jpg';
+import horror from './assets/images/movie_category/horrormovie.jpg';
+import romance from './assets/images/movie_category/romancemovie.jpg';
+import mystry from './assets/images/movie_category/mystrymovie.jpg';
+import {connect} from 'react-redux';
 const {Option} = Select;
-     const Index = () =>{
+     const Index = (props) =>{
+       
+        const {form} =Form.useForm();
+        const [obj,setMyObj1]= useState({
+          _id:"",
+          moviename:"",
+          releasedate:"",
+          movie_category:"",
+          director_name:"",
+          Actors_name:"",
+          movie_description:"",
+          movie_type:"",
+          movie_logo:"",
+          movie_status:"",
+          booking_status:""
+        })
+        const onmovieclick = async (_id) => {
+          //await props.singlemovieDataFetch(_id); 
+          // console.log(props.singleuser)
+          // if(props.singleuser._id==null){
+          //   props.history.replace(`/index/singlemovie/${_id}`)
+          // }else{
+            props.history.replace(`/singlemovie/${_id}`)
+          // }
+        }
+        useEffect(()=>{
+          console.log(props.users);
+          props.fetchmoviedata();
+          props.getAllTheater()
+        },[props.fetchmoviedata,props.getAllTheater])
+    const renderTableData = () => {
+    return props.movies.map((movies, index) => {
+      const { _id, moviename,releasedate,movie_category,movie_type,movie_logo,movie_status,booking_status,movie_languages } = movies
+      
+      // const Difference_In_Time = Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+      const start = new Date(new Date().toLocaleString()) //clone
+      const end = new Date(releasedate) //clone
+      let dayCount = 0
+    
+      while (end > start) {
+        dayCount++
+        start.setDate(start.getDate() + 1)
+      }
+      if(booking_status!=="false")
+      return (
+        <div className="col-sm-6 col-lg-4">
+                        <div className="movie-grid">
+                          <div className="movie-thumb c-thumb">
+                              <img src={"http://localhost:3001/"+movie_logo} alt="movie" onClick={()=> onmovieclick(_id)}/>
+                              <div class="event-date">
+                                  <h6 class="date-title"><b>{dayCount}</b></h6>
+                                  <span>Left</span>
+                              </div>
+                          </div>
+                          
+                          <div className="movie-content bg-one">
+                            <h5 className="title m-0">
+                              <span style={{color:'white'}} onClick={()=> onmovieclick(_id)}>{moviename} </span>
+                            </h5>
+                            
+                            <ul className="movie-rating-percent">
+                              <li>
+                                <div className="thumb" style={{color:"#72c3f1"}}>
+                                  {/* <img src={tomato} alt="movie" /> */}
+                                  Release:- {Moment(releasedate).format("DD-MM-YYYY")} <br></br>
+                                  Language:- {movie_languages}
+                                </div>
+                              </li>
+                              <li>
+                                <div className="thumb">
+                                  <img src={cake} alt="movie" />
+                                </div>
+                                
+                                <span className="content">88%</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+      )
+    })
+    
+  }
+
+      const popularCinema = () => {
+          return props.users.map((users1) => {
+             const { _id ,cinema_name,city_id} = users1;
+             
+            return (
+                <li>
+                  <h6 className="sub-title">
+                    <a href="#0">{cinema_name}</a>
+                  </h6>
+                  <p style={{color:"white"}}>{city_id.city_name} city</p>
+                </li>
+            )                 
+          });
+      }
       return (
         <>
         <section class="banner-section" style={{backgroundColor:"#00123266"}}>
@@ -57,7 +153,7 @@ const {Option} = Select;
                 <div className="row align-items-center mb--20">
                   <div className="col-lg-6 mb-20">
                     <div className="search-ticket-header">
-                      <h6 className="category">welcome to Boleto </h6>
+                      <h6 className="category">welcome to Movie System </h6>
                       <h3 className="title">what are you looking for</h3>
                     </div>
                   </div>
@@ -68,18 +164,6 @@ const {Option} = Select;
                           <img src={first} alt="ticket" />
                         </div>
                         <span>movie</span>
-                      </li>
-                      <li>
-                        <div className="tab-thumb">
-                          <img src={second} alt="ticket" />
-                        </div>
-                        <span>events</span>
-                      </li>
-                      <li>
-                        <div className="tab-thumb">
-                          <img src={third} alt="ticket" />
-                        </div>
-                        <span>sports</span>
                       </li>
                     </ul>
                   </div>
@@ -277,33 +361,10 @@ const {Option} = Select;
                     </div>
                   </div>
                   <div className="widget-1 widget-trending-search">
-                    <h3 className="title">Trending Searches</h3>
+                    <h4 className="title" style={{color:"white",textTransform:"uppercase"}}>Trending Cinema</h4>
                     <div className="widget-1-body">
                       <ul>
-                        <li>
-                          <h6 className="sub-title">
-                            <a href="#0">mars</a>
-                          </h6>
-                          <p>Movies</p>
-                        </li>
-                        <li>
-                          <h6 className="sub-title">
-                            <a href="#0">alone</a>
-                          </h6>
-                          <p>Movies</p>
-                        </li>
-                        <li>
-                          <h6 className="sub-title">
-                            <a href="#0">music event</a>
-                          </h6>
-                          <p>event</p>
-                        </li>
-                        <li>
-                          <h6 className="sub-title">
-                            <a href="#0">NBA Games 2020</a>
-                          </h6>
-                          <p>Sports</p>
-                        </li>
+                        {popularCinema()}
                       </ul>
                     </div>
                   </div>
@@ -318,233 +379,107 @@ const {Option} = Select;
                 <div className="col-lg-9">
                   <div className="article-section padding-bottom">
                     <div className="section-header-1">
-                      <h2 className="title">movies</h2>
-                      <a className="view-all" href="movie-grid.html">View All</a>
+                      <h2 className="title" style={{color:"#ffff"}}>&nbsp;All movies</h2>
+                      <a className="view-all" href="movie-grid.html">View All&nbsp;</a>
                     </div>
                     <div className="row mb-30-none justify-content-center">
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="movie-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={movie01} alt="movie" />
-                            </a>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">alone</a>
-                            </h5>
-                            <ul className="movie-rating-percent">
-                              <li>
-                                <div className="thumb">
-                                  <img src={tomato} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                              <li>
-                                <div className="thumb">
-                                  <img src={cake} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="movie-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={movie02} alt="movie" />
-                            </a>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">mars</a>
-                            </h5>
-                            <ul className="movie-rating-percent">
-                              <li>
-                                <div className="thumb">
-                                  <img src={tomato} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                              <li>
-                                <div className="thumb">
-                                  <img src={cake} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="movie-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={movie03} alt="movie" />
-                            </a>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">venus</a>
-                            </h5>
-                            <ul className="movie-rating-percent">
-                              <li>
-                                <div className="thumb">
-                                  <img src={tomato} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                              <li>
-                                <div className="thumb">
-                                  <img src={cake} alt="movie" />
-                                </div>
-                                <span className="content">88%</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+                      {renderTableData()}
                     </div>
                   </div>
                   <div className="article-section padding-bottom">
                     <div className="section-header-1">
-                      <h2 className="title">events</h2>
-                      <a className="view-all" href="events.html">View All</a>
+                      <h2 className="title" style={{color:"#ffff"}}>&nbsp;Category</h2>
+                      <a className="view-all" href="events.html">View All&nbsp;</a>
                     </div>
                     <div className="row mb-30-none justify-content-center">
                       <div className="col-sm-6 col-lg-4">
-                        <div className="event-grid">
+                        <div className="movie-grid">
                           <div className="movie-thumb c-thumb">
                             <a href="#0">
-                              <img src={event01} alt="event" />
+                              <img src={action} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">Digital Economy Conference 2020</a>
+                              <a href="/categorymovie/Action">Action</a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>
                       <div className="col-sm-6 col-lg-4">
                         <div className="event-grid">
                           <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={event02} alt="event" />
+                            <a href="/categorymovie/Fantasy">
+                              <img src={fantasy} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">web design conference 2020</a>
+                              <a href="/categorymovie/Fantasy">Fantasy</a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>
                       <div className="col-sm-6 col-lg-4">
                         <div className="event-grid">
                           <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={event03} alt="event" />
+                            <a href="/categorymovie/Horror">
+                              <img src={horror} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">digital thinkers meetup</a>
+                              <a href="/categorymovie/Horror">Horror</a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="article-section">
-                    <div className="section-header-1">
-                      <h2 className="title">sports</h2>
-                      <a className="view-all" href="sports.html">View All</a>
-                    </div>
-                    <div className="row mb-30-none justify-content-center">
-                      <div className="col-sm-6 col-lg-4">
-                        <div className="sports-grid">
-                          <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={sports01} alt="sports" />
-                            </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
-                          </div>
-                          <div className="movie-content bg-one">
-                            <h5 className="title m-0">
-                              <a href="#0">football league tournament</a>
-                            </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
                           </div>
                         </div>
                       </div>
                       <div className="col-sm-6 col-lg-4">
-                        <div className="sports-grid">
+                        <div className="event-grid">
                           <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={sports02} alt="sports" />
+                            <a href="/categorymovie/Romance">
+                              <img src={romance} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">world cricket league 2020</a>
+                              <a href="/categorymovie/Romance">Romance</a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
                           </div>
                         </div>
                       </div>
                       <div className="col-sm-6 col-lg-4">
-                        <div className="sports-grid">
+                        <div className="event-grid">
                           <div className="movie-thumb c-thumb">
-                            <a href="#0">
-                              <img src={sports03} alt="sports" />
+                            <a href="/categorymovie/Comedy">
+                              <img src={comedy} alt="event" />
                             </a>
-                            <div className="event-date">
-                              <h6 className="date-title">28</h6>
-                              <span>Dec</span>
-                            </div>
+                            
                           </div>
                           <div className="movie-content bg-one">
                             <h5 className="title m-0">
-                              <a href="#0">basket ball tournament 2020</a>
+                              <a href="/categorymovie/Comedy">Comedy</a>
                             </h5>
-                            <div className="movie-rating-percent">
-                              <span>327 Montague Street</span>
-                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-sm-6 col-lg-4">
+                        <div className="event-grid">
+                          <div className="movie-thumb c-thumb">
+                            <a href="/categorymovie/Mystry">
+                              <img src={mystry} alt="event" />
+                            </a>
+                            
+                          </div>
+                          <div className="movie-content bg-one">
+                            <h5 className="title m-0">
+                              <a href="/categorymovie/Mystry">Mystry</a>
+                            </h5>
                           </div>
                         </div>
                       </div>
@@ -558,4 +493,23 @@ const {Option} = Select;
       );
     }
 
-    export default (Index);
+    const mapStateToProps =  (state) => ({
+      err:state.movieReducer.error,
+      Loading:state.movieReducer.loading,
+      movies:state.movieReducer.movies,
+      singlemovie:state.movieReducer.singlemovie,
+      users:state.userReducer.users,
+      singleuser:state.userReducer.singleuser
+    })
+    
+    const mapDispatchToProps = dispatch =>{
+      return{
+        fetchmoviedata:()=>dispatch(fetchmoviedata()),
+        getAllTheater:()=>dispatch(getAllTheater()),
+        deletemoviedata:(_id)=>dispatch(deletemoviedata(_id)),
+        updatemoviedata:(postdata,put) => dispatch(updatemoviedata(postdata,put)),
+        singlemovieDataFetch:(id)=>dispatch(singlemovieDataFetch(id))
+      }
+    }
+
+    export default connect(mapStateToProps,mapDispatchToProps)(Index);

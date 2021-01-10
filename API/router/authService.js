@@ -9,7 +9,7 @@ const router = new express.Router();
 const auth = require("../middleware/auth");
 app.use(bodyparser.urlencoded({ extended: false }));
 
-router.get('/login/:email/:password', async (req, res, next) => {
+router.get('/login/:email/:password/', async (req, res, next) => {
     try {
         let user = await User.findOne({ email: req.params.email, is_active: "1" }).populate("group_id").populate("state_id").populate("city_id");
         // console.log(user)
@@ -20,6 +20,27 @@ router.get('/login/:email/:password', async (req, res, next) => {
         } else {
             let token = jwt.sign({ id: user._id }, secret);
             res.send({ token: "Bearer " + token, user })
+        }
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get('/userlogin/:email/:password/', async (req, res, next) => {
+    try {
+        let user = await User.findOne({ email: req.params.email, is_active: "1" }).populate("group_id").populate("state_id").populate("city_id");
+        console.log(user.group_id.group_name)
+        const isValid = bcrypt.compareSync(req.params.password, user.password);
+        console.log(isValid);
+        if (!isValid) {
+            throw new Error('BROKEN')
+        } else {
+            if(user.group_id.group_name == "user"){
+                let token = jwt.sign({ id: user._id }, secret);
+                res.send({ token: "Bearer " + token, user })
+            }else{
+                throw new Error('BROKEN')
+            }
         }
     } catch (err) {
         next(err)
@@ -54,6 +75,5 @@ router.get('/changepassword/:pass/:newpass', auth, async (req, res) => {
         res.end(JSON.stringify({message: err.message}));
     }
 });
-
 
 module.exports = router;

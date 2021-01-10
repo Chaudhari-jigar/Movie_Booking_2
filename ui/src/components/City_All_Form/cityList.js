@@ -159,7 +159,7 @@ const CityList = (props) => {
       <div className={"Title"} style={{ marginTop: "-29px"}}>
         {/* City List */}
           </div>
-      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px" }}>
+      <Breadcrumb style={{ marginTop: "1px",textAlign:"right",marginBottom:"29px",fontFamily:"auto",textTransform:"uppercase" }}>
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>City</Breadcrumb.Item>
         <Breadcrumb.Item>View City List</Breadcrumb.Item>

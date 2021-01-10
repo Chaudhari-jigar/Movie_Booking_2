@@ -45,7 +45,6 @@ router.post('/addmovie', async (req, res) => {
     console.log(movie_logo.name)
 
     try {
-        // const imagepath = path.join(__dirname, '..', '..','public','images');
         const datenow = Date.now();
         movie_logo.mv('./public/images/' + datenow + movie_logo.name)
         req.body.movie_logo = "/images/"+ datenow +movie_logo.name;
@@ -60,14 +59,13 @@ router.post('/addmovie', async (req, res) => {
 });
 
 router.put('/updatemovie/:id',async (req,res) => {
-    
     try{
         if(req.files){
             const { movie_logo } = req.files;
             console.log(movie_logo.name)
             const datenow = Date.now();
             movie_logo.mv('./public/images/' + datenow + movie_logo.name)
-            req.body.movie_logo = "/images/"+ datenow +movie_logo.name;
+            req.body.movie_logo = "/images/" + datenow + movie_logo.name;
         }
         console.log(req.body.movie_logo);
         const Movies = await movie.findByIdAndUpdate({_id:req.params.id},req.body,{new:true});
