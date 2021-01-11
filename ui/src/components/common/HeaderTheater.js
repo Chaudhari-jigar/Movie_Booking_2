@@ -140,9 +140,9 @@ const TheaterHeader = (props) => {
               <Menu.Item key="6"><Link to="/theater/addtscreen">Add Theater Screen</Link></Menu.Item>
               <Menu.Item key="8"><Link to="/theater/tscreenList">View Theater Screen</Link></Menu.Item>
             </SubMenu>
-            <Menu.Item key="9" icon={<QqOutlined />}>
-              Files
-            </Menu.Item>
+            <SubMenu key="sub3" icon={<AlibabaOutlined />} title="Booking Details">
+              <Menu.Item key="9"><Link to="/theater/bookingdetail">View Booking Details</Link></Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout className="site-layout">

@@ -15,6 +15,7 @@ const store = (state=initialstore,action)=>{
                 loading:true
             }
         case actionTypes.FETCH_SCREEN_THEATER_SUCCESS:
+            console.log(action.theaterscreens);
             return{
                 ...state,
                 loading:false,

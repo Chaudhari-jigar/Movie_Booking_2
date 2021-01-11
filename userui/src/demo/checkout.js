@@ -27,7 +27,9 @@ const {Option} = Select;
           }
         const [movie,setmovie] = useState({
             moviename:"",
-            movie_language:""
+            movie_language:"",
+            movie_date:"",
+            movie_time:""
         })
         useEffect(async() => {
             // var today = new Date();
@@ -43,43 +45,83 @@ const {Option} = Select;
                 console.log(props.singletscreen._id)
                 setmovie({
                     moviename:props.singletscreen.movie_id.moviename,
-                    movie_language:props.singletscreen.movie_id.movie_language
+                    movie_language:props.singletscreen.movie_id.movie_languages,
+                    movie_date:props.singletscreen.start_date,
+                    movie_time:props.singletscreen.screen_time
                 })
             }
 
             console.log(props.match.params.movie);
             console.log(props.singletscreen._id);
         },[props.singletscreenrecord])
-         
-     const seatsasd = () =>{
-         console.log(props.match.params.seats);
-        //  var a = new Array();
+        
+        const backtoMovieSeat = () => {
+            props.history.replace(`/movie-seat-plan/${props.match.params.mid}/${props.match.params.userid}/${props.match.params.screenid}/${props.match.params.id}`);
+            // props.history.replace(`movie-seat-plan/5fd82a7e3514ba0688833bc0/5fded54a43ced62cf42c1d6c/5ff27c67eaf0e51930bd1591/5ff27cabeaf0e51930bd1592`);
+        }
 
-        //  for (let i = 0; i < array.length; i++) {
-        //      const element = array[i];
-             
-        //  }
-        //  a = props.match.params.seats;
-        // a.forEach(function(vals){return <h1>{"["+vals+"]"}</h1>})
+     const seatsasd = () =>{
+         var g="";
+         var n="";
+         for(let v=0;v<temprows.length;v++)
+        {
+            switch(temprows[v])
+            {
+                case 1:
+                    n='A'
+                    break;
+                case 2:
+                    n='B'
+                    break;
+                case 3:
+                    n='C'
+                    break;
+                case 4:
+                    n='D'
+                    break;
+                case 5:
+                    n='E'
+                    break;
+                case 6:
+                    n='F'
+                    break;
+                case 7:
+                    n='G'
+                    break;
+                case 8:
+                    n='H'
+                    break;
+                case 9:
+                    n='I'
+                    break;
+                case 10:
+                    n='J'
+                    break;
+            }
+            g += "[";
+            g += (n+"-"+[tempcols[v]]);
+            g += "]"
+        }
+        return g;
+     }
+     var temprows=new Array();
+     var tempcols=new Array();
+     var kl=0;
+     var numStr = props.match.params.seats;
+     var nums = Array.from(numStr.split(','),Number);
+     console.log(nums);
+     var a = nums.length
+     for(let pk=0; pk<a; pk++){
+         if(kl==0){
+             tempcols.push(nums.pop());
+             kl=1;
+         }else{
+             temprows.push(nums.pop());
+             kl=0;
+         }
      }
      const bookmovie =async () => {
-            
-         var temprows=new Array();
-         var tempcols=new Array();
-         var kl=0;
-            var numStr = props.match.params.seats;
-            var nums = Array.from(numStr.split(','),Number);
-            console.log(nums);
-            var a = nums.length
-            for(let pk=0; pk<a; pk++){
-                if(kl==0){
-                    tempcols.push(nums.pop());
-                    kl=1;
-                }else{
-                    temprows.push(nums.pop());
-                    kl=0;
-                }
-            }
+      
             console.log(temprows);
             console.log(tempcols);
             // Imortant Code
@@ -94,6 +136,7 @@ const {Option} = Select;
                 cols:tempcols
             }
            await props.addbooking(data);
+           props.history.replace("/");
      }
       return (
         <>
@@ -117,7 +160,7 @@ const {Option} = Select;
         <div class="container">
             <div class="page-title-area">
                 <div class="item md-order-1">
-                    <a href="movie-ticket-plan.html" class="custom-button back-button">
+                    <a href="" class="custom-button back-button" onClick={() => backtoMovieSeat()}>
                         <i class="flaticon-double-right-arrows-angles"></i>back
                     </a>
                 </div>
@@ -188,43 +231,50 @@ const {Option} = Select;
                         <ul>
                             <li>
                                 <h6 class="subtitle" style={{color:"white",fontFamily:"auto"}}>{movie.moviename}</h6>
-                                <span class="info">qwe</span>
+                                <span class="info">{"Language:-"+movie.movie_language}</span>
                             </li>
                             <li>
                                 {/* <h6 class="subtitle"><span>City Walk</span><span>02</span></h6> */}
-                                <div class="info"><span>10 SEP TUE, 11:00 PM</span> </div>
+                                <div class="info"><span>{"Movie Date:-"+movie.movie_date}</span> </div>
+                                <div class="info"><span>{"Movie Time:-"+movie.movie_time}</span> </div>
                             </li>
                             <li>
-                                <h6 class="subtitle mb-0"><span>Your Seats</span><span></span></h6><br/>
+                                <h6 class="subtitle mb-0"><span >Your Seats</span><span></span></h6><br/>
                                 <h6 style={{color:'white'}}>{seatsasd()}</h6>
+                                <h6 style={{color:'white'}}>{"Total Tickets = "+temprows.length}</h6>
                             </li>
                         </ul>
                         <ul>
                             <li>
                                 <span class="info"><span>price</span><span>&#8377;{props.match.params.price}</span></span>
-                                <span class="info"><span>vat</span><span onClick={()=>bookmovie()}>$15</span></span>
+                                
                             </li>
                         </ul>
                     </div>
                     <div class="proceed-area  text-center">
                         <h6 class="subtitle"><span style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}}>Amount Payable</span><span style={{color:"white",fontFamily:"auto",textTransform:"uppercase"}} >&#8377;{props.match.params.price}</span></h6>
                         {/* <a href="#0" class="custom-button back-button">proceed</a> */}
-                        <PayPalButton 
-                                 class="custom-button back-button"
-                                amount={props.match.params.price}
-                                // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                onSuccess={(details, data) => {
-                                alert("Transaction completed by " + details.payer.name.given_name);
-                                {bookmovie()}
-                                // OPTIONAL: Call your server to save the transaction
-                                return fetch("/paypal-transaction-complete", {
-                                    method: "post",
-                                    body: JSON.stringify({
-                                    orderID: data.orderID
-                                    })
-                                });
-                                }}
-                            />
+                        <PayPalButton
+                  class="custom-button back-button"
+                  amount={(props.match.params.price)}
+                  // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                  onSuccess={(details, data) => {
+                    alert(
+                      "Transaction completed by " +
+                        details.payer.name.given_name
+                    );
+                    {
+                      bookmovie();
+                    }
+                    // OPTIONAL: Call your server to save the transaction
+                    return fetch("/paypal-transaction-complete", {
+                      method: "post",
+                      body: JSON.stringify({
+                        orderID: data.orderID,
+                      }),
+                    });
+                  }}
+                />
                     </div>
                 </div>
             </div>

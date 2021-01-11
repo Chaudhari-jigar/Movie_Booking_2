@@ -69,7 +69,7 @@ router.delete('/deletetscreen/:id',async(req,res) => {
 
 router.get('/singletscreen/:id',async(req,res) => {
     try{
-        const Tscreens = await (await tscreen.findById({_id:req.params.id})).populate('screen_id').populate('movie_id').populate('user_id');
+        const Tscreens = await tscreen.findById({_id:req.params.id}).populate('screen_id').populate('movie_id').populate('user_id')
         await res.send(Tscreens);
     }catch(error){
         console.log("fetch error !!");

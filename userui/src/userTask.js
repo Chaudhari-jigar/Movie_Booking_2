@@ -15,9 +15,9 @@ const UserTask = (props) => {
         <Switch>
             <Route path="/index" exact component={Index}/>
             <Route path="/about-us" exact component={About}/>
-            <Route path="/checkout/:price/:seats/:movie" exact component={Checkout}/>
+            <Route path="/checkout/:price/:seats/:movie/:mid/:userid/:screenid/:id" exact component={Checkout}/>
             <Route path="/singlemovietheater/:mid" exact component={singlemovietheaterlist}/>
-            <Route path="/movie-seat-plan/:userid/:screenid/:id" exact component={movie_seat_plan}/>
+            <Route path="/movie-seat-plan/:mid/:userid/:screenid/:id" exact component={movie_seat_plan}/>
             <Route path="/singlemovie/:id" exact component={singlemovie}/>
             <Route path="/categorymovie/:category" exact component={categorymovie}/>
         </Switch>

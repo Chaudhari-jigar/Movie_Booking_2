@@ -81,6 +81,7 @@ export const singletscreenrecord = (id) => {
         })
         try {
             let response = await axios.get(`http://localhost:3001/singletscreen/${id}`)
+            console.log(response.data);
             dispatch({
                 type: actionTypes.SINGLE_SCREEN_THEATER_SUCCESS,
                 singletscreen: response.data

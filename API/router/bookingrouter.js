@@ -49,7 +49,7 @@ router.post("/addbookings", async (req, res) => {
     await book.save();
     var r1 = req.body.rows;
     var c1 = req.body.cols;
-    req.body.price = req.body.price/r1.length;
+    req.body.price = req.body.price / r1.length;
     for (let temp = 0; temp < r1.length; temp++) {
       console.log("sd");
       var d = {
@@ -77,6 +77,7 @@ router.post("/addbookings", async (req, res) => {
     res.send(error.message);
   }
 });
+
 router.get("/getmoviebooking/:id", async (req, res) => {
   try {
     var mbook = await moviebookingtbl
@@ -85,10 +86,38 @@ router.get("/getmoviebooking/:id", async (req, res) => {
       })
       .populate("booking_id")
       .populate("movie_id")
-      .populate("tscreen_id");
+      .populate("tscreen_id")
+      .populate("screen_id");
     res.send(mbook);
   } catch (error) {
     res.send(error.message);
   }
 });
+
+router.get("/getmoviebookingTheater/:id", async (req, res) => {
+  try {
+    var Tempbooks = new Array();
+
+    var tscreens = await theater.find({ user_id: req.params.id }).populate("tscreen_id");
+    var book = await bookings.find({}).populate("movie_id").populate("user_id");
+    var a = "asd";
+    var b = "asd";
+    if(a == b)
+    {
+      console.log("hello");
+    }
+        for (let r = 0; r < tscreens.length; r++) {
+    for (let n = 0; n < book.length; n++) {
+        if (book[n].tscreen_id.toString() == tscreens[r]._id.toString()) {
+          console.log("hello");
+          Tempbooks.push(book[n]);
+        }
+      }
+    }
+    res.send(Tempbooks);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
+
 module.exports = router;

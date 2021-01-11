@@ -174,6 +174,9 @@ const SiderDemo = (props) => {
                   <ul className="submenu">
                     <li>
                       <Menu>
+                        <Menu.Item key="/admin/changepassword">Booking Details</Menu.Item>
+                      </Menu>
+                      <Menu>
                         <Menu.Item key="/admin/changepassword" onClick={() => handleShow()}>Change Password</Menu.Item>
                       </Menu>
                     </li>

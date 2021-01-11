@@ -5,6 +5,7 @@ import AddScreen from './components/TheaterPanel/addScreen';
 import ScreenList from './components/TheaterPanel/screenList';
 import HeaderTheater from './components/common/HeaderTheater';
 import AddTScreen from './components/TheaterPanel/addtheaterscreen';
+import BookingDetails from './components/TheaterPanel/bookingDetails';
 import TScreenList from './components/TheaterPanel/theaterscreenlist';
 import { Layout } from 'antd';
 
@@ -25,6 +26,7 @@ const TheaterTask = () => {
             <Route path="/theater/addScreen" exact component={AddScreen} />
             <Route path="/theater/screenList" exact component={ScreenList} />
             <Route path="/theater/addtscreen" exact component={AddTScreen} />
+            <Route path="/theater/bookingdetail" exact component={BookingDetails} />
             <Route path="/theater/tscreenList" exact component={TScreenList} />
         </Switch>
     </Content>

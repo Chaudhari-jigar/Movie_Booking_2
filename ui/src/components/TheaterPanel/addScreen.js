@@ -83,10 +83,10 @@ const AddForm = (props) => {
                             <Input type="text" name="screen_name" onChange={(e) => { HandleChange(e, "screen_name") }} placeholder="Enter Screen name ..." style={{ maxWidth: "300px" }} />
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="Enter Total Rows:-" name="rows" rules={[{ required: true, message: 'Please Enter Rows!' }]}>
-                            <Input type="number" name="rows" onChange={(e) => { HandleChange(e, "rows") }} placeholder="rows no ..." style={{ maxWidth: "300px" }} min="1" max="100"/>
+                            <Input type="number" name="rows" onChange={(e) => { HandleChange(e, "rows") }} placeholder="rows no ..." style={{ maxWidth: "300px" }} min="1" max="10"/>
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="Enter Total Column :-" name="cols" rules={[{ required: true, message: 'Please Enter Cols!' }]}>
-                            <Input type="number" name="cols" onChange={(e) => { HandleChange(e, "cols") }} placeholder="cols no ..." style={{ maxWidth: "300px" }} min="1" max="100"/>
+                            <Input type="number" name="cols" onChange={(e) => { HandleChange(e, "cols") }} placeholder="cols no ..." style={{ maxWidth: "300px" }} min="1" max="20"/>
                         </Form.Item>
                         <Form.Item {...formTailLayout} label="">
                             <Button type="primary" style={{ backgroundColor: "#058a5f" }} onClick={(e) => handleSubmit()}>Add Screen</Button>

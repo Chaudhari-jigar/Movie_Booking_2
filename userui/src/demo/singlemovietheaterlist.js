@@ -22,12 +22,6 @@ const SingleMovie = (props) => {
 
     useEffect(() => {
         console.log(props.singlemovie)
-        // props.singlemovie
-        // let tempobj = [...obj];
-        // tempdobj[movie_category]= props.s
-        // let [obj,setObj] = useState({
-        //     _id:props.singlemovie.
-        // });
         props.fetchmoviedata();
         props.gettscreen();
         console.log(props.gettscreen)
@@ -37,6 +31,7 @@ const SingleMovie = (props) => {
         console.log(props.tscreens);
         return props.tscreens
             .filter(screen => screen.user_id._id == ids)
+            .filter(screen => screen.movie_id._id == props.match.params.mid)
             .map(({ _id,screen_time,user_id,screen_id }, index) => (<div class="item" key={index} onClick={() => renderSeatBook(user_id._id,screen_id._id,_id)}>
                     {screen_time}
                 </div>
@@ -46,7 +41,7 @@ const SingleMovie = (props) => {
     const renderSeatBook = (user_id,screen_id,_id) =>{
         console.log(screen_id);
         props.getmbooking(_id);
-        props.history.replace(`/movie-seat-plan/${user_id}/${screen_id}/${_id}`);
+        props.history.replace(`/movie-seat-plan/${props.match.params.mid}/${user_id}/${screen_id}/${_id}`);
     }
 
     var mlogo = "";
@@ -110,7 +105,7 @@ const SingleMovie = (props) => {
         <div class="container">
             <div class="page-title-area">
                 <div class="item md-order-1">
-                    <a href="movie-ticket-plan.html" class="custom-button back-button">
+                    <a href="/categorymovie/Action" class="custom-button back-button">
                         <i class="flaticon-double-right-arrows-angles"></i>back
                     </a>
                 </div>
@@ -144,7 +139,7 @@ const SingleMovie = (props) => {
                                 <div class="widget-1-body">
                                     <a href="#0">
                                         <img src={"http://localhost:3001" + mlogo} alt="banner" />
-                                        <h1>{mname}</h1>
+                                        <h5 style={{color:"white",textTransform:"uppercase",fontFamily:"cursive",textAlign:"center"}}>{mname}</h5>
                                     </a>
                                 </div>
                             </div>

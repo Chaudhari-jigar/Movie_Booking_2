@@ -224,13 +224,10 @@ export const changepassword = (pass,newpass) =>{
             console.log(res);
             dispatch({
                 type:actionTypes.SINGLE_CHANGEPASSWORD_SUCCESS,
-                singleuser2:res.data,
+                singleuser2:res,
             })
          
         } catch (error) {
-            // if(error.response.status === 422) {
-            //     // message = error.response.data.message;
-            // }
             console.log(error.response.data.message);
             dispatch({
                 type:actionTypes.SINGLE_CHANGEPASSWORD_FAILED,
@@ -240,3 +237,27 @@ export const changepassword = (pass,newpass) =>{
         } 
     }
 }   
+
+export const getmbookingTheaterDetails = (id) => {
+    console.log("sdsd");
+    return async (dispatch) => {
+      dispatch({
+        type: actionTypes.INIT_FETCH_MBOOKINGS,
+      });
+      try {
+        let response = await axios.get(`http://localhost:3001/getmoviebookingTheater/${id}`);
+        console.log(response.data);
+        dispatch({
+          type: actionTypes.FETCH_MBOOKINGS_SUCCESS,
+          bookings: response.data,
+        });
+      } catch (error) {
+        console.log(error.message);
+        dispatch({
+          type: actionTypes.FETCH_MBOOKINGS_FAILED,
+          error: error.message,
+        });
+        throw new Error();
+      }
+    };
+  };

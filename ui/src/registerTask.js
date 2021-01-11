@@ -70,6 +70,7 @@ const RegisterTask = (props) => {
                 <Route path="/theater/screenList" exact component={TheaterTask} />
                 <Route path="/theater/addtscreen" exact component={TheaterTask} />
                 <Route path="/theater/tscreenList" exact component={TheaterTask} />
+                <Route path="/theater/bookingdetail" exact component={TheaterTask} />
                 <Redirect to="/theater/dashboard" />
             </Switch>
              </div>

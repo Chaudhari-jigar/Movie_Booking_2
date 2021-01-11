@@ -53,11 +53,11 @@ const TheaterScreenList = (props) => {
     console.log(props.singletscreen);
     if (props.singletscreen.screen_id) {
       let olddata={...obj};
-      console.log(props.singletscreen.screen_id)
-      olddata.screen_id = props.singletscreen.screen_id;
+      console.log(props.singletscreen.screen_id._id)
+      olddata.screen_id = props.singletscreen.screen_id._id;
       olddata._id = props.singletscreen._id;
-      olddata.user_id = props.singletscreen.user_id;
-      olddata.movie_id=props.singletscreen.movie_id;
+      olddata.user_id = props.singletscreen.user_id._id;
+      olddata.movie_id=props.singletscreen.movie_id._id;
       olddata.screen_time=props.singletscreen.screen_time;
       olddata.start_date=props.singletscreen.start_date;
       olddata.end_date=props.singletscreen.end_date;

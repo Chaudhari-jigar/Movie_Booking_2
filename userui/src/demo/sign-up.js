@@ -95,7 +95,7 @@ import accountbg from './assets/images/account/account-bg.jpg';
       formdata.append("is_active",obj.is_active);
       console.log(formdata);
       await props.adduserdata(formdata);
-      props.history.replace("/");
+      props.history.replace("/sign-in");
     }
     setError(errors);
   }

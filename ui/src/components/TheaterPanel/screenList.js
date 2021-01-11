@@ -161,10 +161,10 @@ const ScreenList = (props) => {
             <Input type="text" name="screen_name" value={obj.screen_name || " "} onChange={(e) => { HandleChange(e, "screen_name") }} placeholder="Enter Screen name ..." />
           </Form.Item>
           <Form.Item {...formItemLayout} label="Enter Rows:-" >
-            <Input type="number" name="rows" value={obj.rows || " "} onChange={(e) => { HandleChange(e, "rows") }} placeholder="Enter Rows ..." min="1" max="100"/>
+            <Input type="number" name="rows" value={obj.rows || " "} onChange={(e) => { HandleChange(e, "rows") }} placeholder="Enter Rows ..." min="1" max="10"/>
           </Form.Item>
           <Form.Item {...formItemLayout} label="Enter Cols:-" >
-            <Input type="number" name="cols" value={obj.cols || " "} onChange={(e) => { HandleChange(e, "cols") }} placeholder="Enter Cols ..." min="1" max="100"/>
+            <Input type="number" name="cols" value={obj.cols || " "} onChange={(e) => { HandleChange(e, "cols") }} placeholder="Enter Cols ..." min="1" max="20"/>
           </Form.Item>
         </Form>
       </Modal>
