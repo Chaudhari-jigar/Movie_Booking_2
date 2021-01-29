@@ -1,0 +1,545 @@
+[{
+  "_id": {
+    "$oid": "5ffca05999067e30d4e49e27"
+  },
+  "booking_id": {
+    "$oid": "5ffca05999067e30d4e49e26"
+  },
+  "rows": 4,
+  "cols": 8,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffca721086aef3a044aee8a"
+  },
+  "booking_id": {
+    "$oid": "5ffca721086aef3a044aee89"
+  },
+  "rows": 5,
+  "cols": 10,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffca8e828d79c23f0bc96cb"
+  },
+  "booking_id": {
+    "$oid": "5ffca8e828d79c23f0bc96ca"
+  },
+  "rows": 3,
+  "cols": 8,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcabd2903039259cc85482"
+  },
+  "booking_id": {
+    "$oid": "5ffcabd2903039259cc85481"
+  },
+  "rows": 3,
+  "cols": 3,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcadfb114e5f2a7013fc22"
+  },
+  "booking_id": {
+    "$oid": "5ffcadfb114e5f2a7013fc21"
+  },
+  "rows": 3,
+  "cols": 3,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb00faaab5b27ec14b80e"
+  },
+  "booking_id": {
+    "$oid": "5ffcb00faaab5b27ec14b80d"
+  },
+  "rows": 5,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb0971b67f616dc4e3ebd"
+  },
+  "booking_id": {
+    "$oid": "5ffcb0971b67f616dc4e3ebc"
+  },
+  "rows": 4,
+  "cols": 12,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb23d9df93f0294d61cde"
+  },
+  "booking_id": {
+    "$oid": "5ffcb23d9df93f0294d61cdd"
+  },
+  "rows": 4,
+  "cols": 12,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb37a50b6a941881cd60e"
+  },
+  "booking_id": {
+    "$oid": "5ffcb37a50b6a941881cd60d"
+  },
+  "rows": 4,
+  "cols": 12,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb53e984bd91658de57f7"
+  },
+  "booking_id": {
+    "$oid": "5ffcb53e984bd91658de57f6"
+  },
+  "rows": 4,
+  "cols": 12,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb93c6bdb0a0ac0650c94"
+  },
+  "booking_id": {
+    "$oid": "5ffcb93c6bdb0a0ac0650c93"
+  },
+  "rows": 2,
+  "cols": 8,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb93c6bdb0a0ac0650c95"
+  },
+  "booking_id": {
+    "$oid": "5ffcb93c6bdb0a0ac0650c93"
+  },
+  "rows": 2,
+  "cols": 9,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb99da0b1ff049cf0f2d9"
+  },
+  "booking_id": {
+    "$oid": "5ffcb99da0b1ff049cf0f2d8"
+  },
+  "rows": 2,
+  "cols": 8,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb99da0b1ff049cf0f2da"
+  },
+  "booking_id": {
+    "$oid": "5ffcb99da0b1ff049cf0f2d8"
+  },
+  "rows": 2,
+  "cols": 9,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcba118af11f3818b5a79c"
+  },
+  "booking_id": {
+    "$oid": "5ffcba118af11f3818b5a79b"
+  },
+  "rows": 2,
+  "cols": 8,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcba118af11f3818b5a79d"
+  },
+  "booking_id": {
+    "$oid": "5ffcba118af11f3818b5a79b"
+  },
+  "rows": 2,
+  "cols": 9,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd2066b91f6e28b0b8efe1"
+  },
+  "booking_id": {
+    "$oid": "5ffd2066b91f6e28b0b8efe0"
+  },
+  "rows": 4,
+  "cols": 4,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd2066b91f6e28b0b8efe2"
+  },
+  "booking_id": {
+    "$oid": "5ffd2066b91f6e28b0b8efe0"
+  },
+  "rows": 4,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd2101fa07c02dc84fb1e9"
+  },
+  "booking_id": {
+    "$oid": "5ffd2101fa07c02dc84fb1e8"
+  },
+  "rows": 4,
+  "cols": 4,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd2101fa07c02dc84fb1ea"
+  },
+  "booking_id": {
+    "$oid": "5ffd2101fa07c02dc84fb1e8"
+  },
+  "rows": 4,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd23307552fb1d88592c39"
+  },
+  "booking_id": {
+    "$oid": "5ffd23307552fb1d88592c38"
+  },
+  "rows": 4,
+  "cols": 4,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd23307552fb1d88592c3a"
+  },
+  "booking_id": {
+    "$oid": "5ffd23307552fb1d88592c38"
+  },
+  "rows": 4,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd23b66c3dd22be034100e"
+  },
+  "booking_id": {
+    "$oid": "5ffd23b66c3dd22be034100d"
+  },
+  "rows": 4,
+  "cols": 4,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd23b66c3dd22be034100f"
+  },
+  "booking_id": {
+    "$oid": "5ffd23b66c3dd22be034100d"
+  },
+  "rows": 4,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd24c0eae13738c4868124"
+  },
+  "booking_id": {
+    "$oid": "5ffd24c0eae13738c4868123"
+  },
+  "rows": 4,
+  "cols": 4,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd24c0eae13738c4868125"
+  },
+  "booking_id": {
+    "$oid": "5ffd24c0eae13738c4868123"
+  },
+  "rows": 4,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd254e7e60dc142892c5ec"
+  },
+  "booking_id": {
+    "$oid": "5ffd254e7e60dc142892c5eb"
+  },
+  "rows": 4,
+  "cols": 4,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd254e7e60dc142892c5ed"
+  },
+  "booking_id": {
+    "$oid": "5ffd254e7e60dc142892c5eb"
+  },
+  "rows": 4,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f39b2c4ff252f98c868d5"
+  },
+  "booking_id": {
+    "$oid": "600f39b2c4ff252f98c868d4"
+  },
+  "rows": 2,
+  "cols": 5,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f39b2c4ff252f98c868d6"
+  },
+  "booking_id": {
+    "$oid": "600f39b2c4ff252f98c868d4"
+  },
+  "rows": 2,
+  "cols": 6,
+  "price": 500,
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f97af47d61f24dcf6d30a"
+  },
+  "booking_id": {
+    "$oid": "600f97af47d61f24dcf6d309"
+  },
+  "rows": 2,
+  "cols": 4,
+  "price": 540,
+  "movie_id": {
+    "$oid": "5fca87e7f587803570f9aa42"
+  },
+  "tscreen_id": {
+    "$oid": "5ffcb77e389fb23cd81c8782"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f9893ad7ba537688eda04"
+  },
+  "booking_id": {
+    "$oid": "600f9893ad7ba537688eda03"
+  },
+  "rows": 1,
+  "cols": 5,
+  "price": 540,
+  "movie_id": {
+    "$oid": "5fca87e7f587803570f9aa42"
+  },
+  "tscreen_id": {
+    "$oid": "5ffcb77e389fb23cd81c8782"
+  },
+  "__v": 0
+}]

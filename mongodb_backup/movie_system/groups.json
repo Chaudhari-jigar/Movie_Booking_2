@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "5fe49d95fcd4173394b09b40"
+  },
+  "group_name": "theater",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe49d99fcd4173394b09b41"
+  },
+  "group_name": "admin",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "group_name": "user",
+  "__v": 0
+}]

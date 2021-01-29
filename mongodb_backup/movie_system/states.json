@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "5fca622c78f3522b0c97cf86"
+  },
+  "state_name": "Mahastra",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fca623f78f3522b0c97cf87"
+  },
+  "state_name": "Madhaya Pradesh",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fca624578f3522b0c97cf88"
+  },
+  "state_name": "Rajasthane",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fca625378f3522b0c97cf89"
+  },
+  "state_name": "Jammu & Kashmir",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fca626078f3522b0c97cf8a"
+  },
+  "state_name": "Uttar Pradesh",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fca626f78f3522b0c97cf8b"
+  },
+  "state_name": "Kerala",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "state_name": "Gujarat",
+  "__v": 0
+}]

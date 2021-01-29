@@ -1,0 +1,409 @@
+[{
+  "_id": {
+    "$oid": "5ffca05999067e30d4e49e26"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "12:30 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffca721086aef3a044aee89"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "12:59 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffca8e828d79c23f0bc96ca"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:07 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcabd2903039259cc85481"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:19 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcadfb114e5f2a7013fc21"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:28 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb00faaab5b27ec14b80d"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:37 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb0971b67f616dc4e3ebc"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:39 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb23d9df93f0294d61cdd"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:47 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb37a50b6a941881cd60d"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:52 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb53e984bd91658de57f6"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "1:59 am",
+  "total": 500,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb93c6bdb0a0ac0650c93"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "2:16 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb99da0b1ff049cf0f2d8"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "2:18 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcba118af11f3818b5a79b"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "11-01-2021",
+  "booking_time": "2:20 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd2066b91f6e28b0b8efe0"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:37 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd2101fa07c02dc84fb1e8"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:39 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd22bb1d944a40401686cc"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:46 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd22fa44bc082a0049d9e1"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:48 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd23307552fb1d88592c38"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:48 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd23b66c3dd22be034100d"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:51 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd24c0eae13738c4868123"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:55 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffd254e7e60dc142892c5eb"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "12-01-2021",
+  "booking_time": "9:57 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f39b2c4ff252f98c868d4"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "25-01-2021",
+  "booking_time": "3:05 am",
+  "total": 1000,
+  "tscreen_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f97af47d61f24dcf6d309"
+  },
+  "movie_id": {
+    "$oid": "5fca87e7f587803570f9aa42"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "26-01-2021",
+  "booking_time": "9:46 am",
+  "total": 540,
+  "tscreen_id": {
+    "$oid": "5ffcb77e389fb23cd81c8782"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f9893ad7ba537688eda03"
+  },
+  "movie_id": {
+    "$oid": "5fca87e7f587803570f9aa42"
+  },
+  "user_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "booking_date": "26-01-2021",
+  "booking_time": "9:50 am",
+  "total": 540,
+  "tscreen_id": {
+    "$oid": "5ffcb77e389fb23cd81c8782"
+  },
+  "__v": 0
+}]

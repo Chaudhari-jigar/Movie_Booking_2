@@ -1,0 +1,97 @@
+[{
+  "_id": {
+    "$oid": "5fca87e7f587803570f9aa42"
+  },
+  "moviename": "Tom & Jerry",
+  "releasedate": "12/29/2020",
+  "movie_status": "true",
+  "movie_category": "B",
+  "director_name": "wb",
+  "Actors_name": "akshay kumnar",
+  "movie_description": "So nice Movie",
+  "movie_type": "Drama",
+  "movie_logo": "/images/1609673666292movie06.jpg",
+  "booking_status": "true",
+  "__v": 0,
+  "movie_languages": "Telugu"
+},{
+  "_id": {
+    "$oid": "5fe96a87527ecf236ca72500"
+  },
+  "moviename": "Mirzapur",
+  "releasedate": "12/22/2020",
+  "movie_status": "true",
+  "movie_category": "A",
+  "director_name": "KRK",
+  "Actors_name": "SRK",
+  "movie_description": "Crime",
+  "movie_type": "Action",
+  "booking_status": "false",
+  "movie_logo": "/images/1609673657795movie11.jpg",
+  "__v": 0,
+  "movie_languages": "Hindi"
+},{
+  "_id": {
+    "$oid": "5ff1ab4d19278f02e49c6314"
+  },
+  "moviename": "Scared Games",
+  "releasedate": "1/24/2021",
+  "movie_status": "true",
+  "movie_category": "B",
+  "director_name": "sanjay leela bnsali",
+  "Actors_name": "kishan",
+  "movie_description": "best movie in the world",
+  "movie_type": "Fantasy",
+  "booking_status": "true",
+  "movie_logo": "/images/1609673649107movie02.jpg",
+  "__v": 0,
+  "movie_languages": "Telugu"
+},{
+  "_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "moviename": "Mard Ko Dard Nahi Hota-2",
+  "releasedate": "1/27/2021",
+  "movie_status": "true",
+  "movie_category": "B",
+  "director_name": "rajj",
+  "Actors_name": "raj",
+  "movie_description": "ram",
+  "movie_type": "Action",
+  "booking_status": "true",
+  "movie_logo": "/images/1609673637376movie03.jpg",
+  "__v": 0,
+  "movie_languages": "Tamil"
+},{
+  "_id": {
+    "$oid": "5ff1ae728682f9368c4d2243"
+  },
+  "moviename": "Rom-Com",
+  "releasedate": "4/7/2021",
+  "movie_status": "true",
+  "movie_category": "A",
+  "director_name": "Malhar Thakar",
+  "Actors_name": "Malhar,Varun Dhawan",
+  "movie_description": "Gujarati Movie",
+  "movie_type": "Mystery",
+  "booking_status": "true",
+  "movie_logo": "/images/1609674666041movie01.jpg",
+  "__v": 0,
+  "movie_languages": "Hindi"
+},{
+  "_id": {
+    "$oid": "5ff86617852ca52f98decdf8"
+  },
+  "moviename": "My Name Is Khan",
+  "releasedate": "2/10/2021",
+  "movie_status": "true",
+  "movie_category": "A",
+  "director_name": "Sanjay Leela Bansali",
+  "Actors_name": "Dhaval,Yash,Mahesh",
+  "movie_description": "Best Movie In The World",
+  "movie_type": "Comedy",
+  "movie_languages": "Gujarati",
+  "booking_status": "true",
+  "movie_logo": "/images/1610114583716drama-movie.jpg",
+  "__v": 0
+}]

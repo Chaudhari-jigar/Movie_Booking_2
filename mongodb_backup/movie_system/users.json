@@ -1,0 +1,248 @@
+[{
+  "_id": {
+    "$oid": "5fe49bb6fcd4173394b09b3c"
+  },
+  "user_name": "Dhaval",
+  "password": "$2a$10$suacnwER617qZpH3hkJmEOHtAA49FjT/g79/Z8lI0BNaprgTjUUnm",
+  "email": "d@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fca622478f3522b0c97cf85"
+  },
+  "city_id": {
+    "$oid": "5fca628478f3522b0c97cf8c"
+  },
+  "group_id": {
+    "$oid": "5fe49d99fcd4173394b09b41"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe96be2edb8902c3c17a208"
+  },
+  "user_name": "jigs",
+  "password": "$2a$10$lkmkAxgAOnUwSOCnKmqSleRJlq851/.nOz7Lv6QmtJ07pmFS7HYcq",
+  "email": "j@gmail.com",
+  "gender": "female",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64ac6c651001d44bfbbfe"
+  },
+  "group_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe96cd7edb8902c3c17a209"
+  },
+  "user_name": "b",
+  "password": "$2a$10$0hhlNpPN9APr.jQ9JphRGuPime4EeGMux8WyuXswgdQ8pFxvGF0Pu",
+  "email": "b@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe96fe6679307224c676259"
+  },
+  "user_name": "xy",
+  "password": "$2a$10$HygWys.eBDlYWnZmy2eQA.yR8rEEIOiWdg.pmco6sgJHD452Gy2Gm",
+  "email": "x@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d95fcd4173394b09b40"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe97007679307224c67625a"
+  },
+  "user_name": "f",
+  "password": "$2a$10$tuGJjwk0b7PbEo4GAUdRZOCn3o1zigO/2bF0dGpy2gJbzkvjJXl7i",
+  "email": "f@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d95fcd4173394b09b40"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fef47b012e94126845d081a"
+  },
+  "user_name": "Rajhansh",
+  "password": "$2a$10$yFbuVYE8zeeaAwPPrxYJlOJ0BAVQwEg8kgNUevgamXjJPwrTVlYcK",
+  "email": "c@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d95fcd4173394b09b40"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ff145a919278f02e49c6313"
+  },
+  "user_name": "ty",
+  "password": "$2a$10$lL/iHz/OJ1WivjI8vVXzJeSZMGJXpWQ9n.iSy/17.zvJKUjO80BRS",
+  "email": "t@g.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ff1ed296482690cc073d10f"
+  },
+  "user_name": "PVR",
+  "password": "$2a$10$81snRSuMmyThxqiBx2XpXO7/bMMVuLieLv9gfU9orl8/g5Pp/o8pO",
+  "email": "f@f.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d95fcd4173394b09b40"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ff85fc942a9220b883f95c4"
+  },
+  "user_name": "q",
+  "password": "$2a$10$H7.5doc951cCQ4ja93eSae0AArpL4LTbFluS8Xx2Fz7ImtflBchiC",
+  "email": "q@gmail.com",
+  "gender": "female",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffa051bf8e8ba3a9c0800ce"
+  },
+  "user_name": "a",
+  "password": "$2a$10$Lm.wm/F9CIU/DBh4pKWY/.HHxa.7jjFByq4R4yjqMZlk1XgsYMY8S",
+  "email": "a@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fcc4220e862ea35384c7c8e"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffb469aedbb2733d40d74f3"
+  },
+  "user_name": "asd",
+  "password": "$2a$10$9TTjcLDusRMWShtbggCUE.W5vGAJNNew9rbkWBPNaYIidGtjwVNEW",
+  "email": "md052akm@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffbf2538a201a43340835ef"
+  },
+  "user_name": "Rupali",
+  "password": "$2a$10$c2Z/UEIeOeun3Ar9R7YiG.qh4ax3Ojb/35Q4f0WvO4p6ioijl5Mmu",
+  "email": "ru@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d95fcd4173394b09b40"
+  },
+  "is_active": "1",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "600f3885c4ff252f98c868d3"
+  },
+  "user_name": "a",
+  "password": "$2a$10$9TTjcLDusRMWShtbggCUE.W5vGAJNNew9rbkWBPNaYIidGtjwVNEW",
+  "email": "a@gmail.com",
+  "gender": "Male",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "city_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "group_id": {
+    "$oid": "5fe49d9efcd4173394b09b42"
+  },
+  "is_active": "1",
+  "__v": 0
+}]

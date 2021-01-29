@@ -1,0 +1,77 @@
+[{
+  "_id": {
+    "$oid": "5ff9ae7664bece2c3c67df5c"
+  },
+  "user_id": {
+    "$oid": "5ff1ed296482690cc073d10f"
+  },
+  "screen_id": {
+    "$oid": "5ff9ae1964bece2c3c67df5b"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "screen_time": "6:52:49 PM",
+  "end_time": "6:52:51 PM",
+  "start_date": "2/2/2021",
+  "end_date": "2/16/2021",
+  "price": 500,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffbe5568a201a43340835ea"
+  },
+  "user_id": {
+    "$oid": "5ff1ed296482690cc073d10f"
+  },
+  "screen_id": {
+    "$oid": "5ff9ae1964bece2c3c67df5b"
+  },
+  "movie_id": {
+    "$oid": "5ff1aba519278f02e49c6315"
+  },
+  "screen_time": "11:11:52 AM",
+  "end_time": "11:11:59 AM",
+  "start_date": "1/31/2020",
+  "end_date": "1/5/2022",
+  "price": 52,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffbf2a58a201a43340835f1"
+  },
+  "user_id": {
+    "$oid": "5ffbf2538a201a43340835ef"
+  },
+  "screen_id": {
+    "$oid": "5ffbf2878a201a43340835f0"
+  },
+  "movie_id": {
+    "$oid": "5fe96a87527ecf236ca72500"
+  },
+  "screen_time": "12:09:14 PM",
+  "end_time": "12:09:18 PM",
+  "start_date": "2/1/2021",
+  "end_date": "3/24/2021",
+  "price": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ffcb77e389fb23cd81c8782"
+  },
+  "user_id": {
+    "$oid": "5ffbf2538a201a43340835ef"
+  },
+  "screen_id": {
+    "$oid": "5ffbf2878a201a43340835f0"
+  },
+  "movie_id": {
+    "$oid": "5fca87e7f587803570f9aa42"
+  },
+  "screen_time": "2:08:47 AM",
+  "end_time": "2:08:53 AM",
+  "start_date": "2/1/2021",
+  "end_date": "1/26/2021",
+  "price": 540,
+  "__v": 0
+}]

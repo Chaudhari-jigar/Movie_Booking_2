@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "5fe64abdc651001d44bfbbfd"
+  },
+  "city_name": "Surat",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe64ac6c651001d44bfbbfe"
+  },
+  "city_name": "Ahemedabad",
+  "state_id": {
+    "$oid": "5fe64ab1c651001d44bfbbfc"
+  },
+  "__v": 0
+}]
